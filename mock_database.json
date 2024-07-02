@@ -1,0 +1,216 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "john_doe",
+      "password": "hashed_password",
+      "name": "John Doe",
+      "age": 28,
+      "gender": "male",
+      "location": "New York, NY",
+      "bio": "Love hiking and outdoor adventures.",
+      "profile_pictures": [
+        "https://images.pexels.com/photos/2340978/pexels-photo-2340978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 1x, https://images.pexels.com/photos/3802510/pexels-photo-3802510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 2x"
+      ],
+      "preferences": {
+        "gender": "female",
+        "age_range": {
+          "min": 24,
+          "max": 32
+        },
+        "location_range": 50
+      }
+    },
+    {
+      "id": 2,
+      "username": "jane_smith",
+      "password": "hashed_password",
+      "name": "Jane Smith",
+      "age": 26,
+      "gender": "female",
+      "location": "Los Angeles, CA",
+      "bio": "Avid reader and coffee enthusiast.",
+      "profile_pictures": [
+        "",
+        ""
+      ],
+      "preferences": {
+        "gender": "male",
+        "age_range": {
+          "min": 25,
+          "max": 30
+        },
+        "location_range": 100
+      }
+    },
+    {
+      "id": 3,
+      "username": "sam_wilson",
+      "password": "hashed_password",
+      "name": "Sam Wilson",
+      "age": 30,
+      "gender": "male",
+      "location": "Chicago, IL",
+      "bio": "Musician and foodie. Always looking for the next great dish.",
+      "profile_pictures": [
+        "https://images.pexels.com/photos/1278566/pexels-photo-1278566.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 1x, https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 2x"
+      ],
+      "preferences": {
+        "gender": "female",
+        "age_range": {
+          "min": 26,
+          "max": 35
+        },
+        "location_range": 75
+      }
+    },
+    {
+      "id": 4,
+      "username": "emily_jones",
+      "password": "hashed_password",
+      "name": "Emily Jones",
+      "age": 27,
+      "gender": "female",
+      "location": "Houston, TX",
+      "bio": "Fitness enthusiast and amateur photographer.",
+      "profile_pictures": [
+        "https://images.pexels.com/photos/1035673/pexels-photo-1035673.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "https://images.pexels.com/photos/2101187/pexels-photo-2101187.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1 1x, https://images.pexels.com/photos/2101187/pexels-photo-2101187.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2 2x"
+      ],
+      "preferences": {
+        "gender": "male",
+        "age_range": {
+          "min": 27,
+          "max": 33
+        },
+        "location_range": 50
+      }
+    },
+    {
+      "id": 5,
+      "username": "michael_brown",
+      "password": "hashed_password",
+      "name": "Michael Brown",
+      "age": 32,
+      "gender": "male",
+      "location": "San Francisco, CA",
+      "bio": "Tech geek and movie buff. Always up for a sci-fi film.",
+      "profile_pictures": [
+        "https://images.pexels.com/photos/3782169/pexels-photo-3782169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "https://images.pexels.com/photos/1252890/pexels-photo-1252890.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      ],
+      "preferences": {
+        "gender": "female",
+        "age_range": {
+          "min": 28,
+          "max": 35
+        },
+        "location_range": 50
+      }
+    },
+    {
+      "id": 6,
+      "username": "sarah_lee",
+      "password": "hashed_password",
+      "name": "Sarah Lee",
+      "age": 25,
+      "gender": "female",
+      "location": "Seattle, WA",
+      "bio": "Nature lover and painter. Find me in a gallery or a forest.",
+      "profile_pictures": [
+        "https://images.pexels.com/photos/983569/pexels-photo-983569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "https://images.pexels.com/photos/1429567/pexels-photo-1429567.jpeg"
+      ],
+      "preferences": {
+        "gender": "male",
+        "age_range": {
+          "min": 25,
+          "max": 30
+        },
+        "location_range": 75
+      }
+    },
+    {
+      "id": 7,
+      "username": "sarah_lee",
+      "password": "hashed_password",
+      "name": "Sarah Lee",
+      "age": 25,
+      "gender": "female",
+      "location": "Seattle, WA",
+      "bio": "Nature lover and painter. Find me in a gallery or a forest.",
+      "profile_pictures": [
+        "https://images.pexels.com/photos/983569/pexels-photo-983569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "https://images.pexels.com/photos/1429567/pexels-photo-1429567.jpeg"
+      ],
+      "preferences": {
+        "gender": "male",
+        "age_range": {
+          "min": 25,
+          "max": 30
+        },
+        "location_range": 75
+      }
+    }
+  ],
+  "matches": [
+    {
+      "user1_id": 1,
+      "user2_id": 2,
+      "match_date": "2024-06-28T14:45:00Z"
+    }
+  ],
+  "messages": [
+    {
+      "sender_id": 1,
+      "receiver_id": 0,
+      "timestamp": "",
+      "message": "Hey Jane, how are you?"
+    },
+    {
+      "sender_id": 2,
+      "receiver_id": 0,
+      "timestamp": "",
+      "message": "Hi John, I'm good! How about you?"
+    },
+    {
+      "sender_id": 1,
+      "receiver_id": 0,
+      "timestamp": "",
+      "message": "I am good too, Jane."
+    },
+    {
+      "sender_id": 2,
+      "receiver_id": 0,
+      "timestamp": "",
+      "message": "That is great..."
+    },
+    {
+      "sender_id": 1,
+      "receiver_id": 0,
+      "timestamp": "",
+      "message": "Uhmmm...Whether looks great outside."
+    },
+    {
+      "sender_id": 2,
+      "receiver_id": 0,
+      "timestamp": "",
+      "message": "You spelled weather wrong..."
+    },
+    {
+      "sender_id": 1,
+      "receiver_id": 0,
+      "timestamp": "",
+      "message": "Oh sorry...*weather I mean."
+    },
+    {
+      "sender_id": 2,
+      "receiver_id": 0,
+      "timestamp": "",
+      "message": "Yeah...I don't think this is going to work out."
+    }
+  ]
+}
+
