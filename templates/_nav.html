@@ -1,0 +1,50 @@
+<nav class="mx-24 sticky z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
+  <div class="ml-[6px]">
+    <div class="h-6 w-[224px] pt-1">
+    <a class="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white" href="/">Pages
+      <span class="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white"> / </span>
+    </a>
+      <a class="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white" href="#">{{title}}</a>
+  </div>
+    <p class="shrink text-[33px] capitalize text-navy-700 dark:text-white">
+      <a class="font-bold capitalize hover:text-navy-700 dark:hover:text-white" href="#">{{title}}</a>
+    </p>
+  </div>
+  <div class="mt-[3px] flex h-[61px] flex-grow items-center justify-around gap-2 rounded-full bg-white px-2 py-2 shadow-xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none md:flex-grow-0 md:gap-1  xl:gap-2">
+    <div class="flex h-full items-center rounded-full bg-lightblue text-navy-700 dark:bg-navy-900 dark:text-white">
+      <p class="pl-3 pr-2 text-xl">
+        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-gray-400 dark:text-white" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </p>
+      <input type="text" placeholder="Search..." class="block h-full w-full rounded-full bg-lightblue -sm font-medium text-navy-700 outline-none placeholder:!text-gray-400 dark:bg-navy-900 dark:text-white dark:placeholder:!text-white sm:w-fit">
+
+    </div>
+    <span class="flex cursor-pointer text-xl text-gray-600 dark:text-white xl:hidden">
+      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>
+    </span>
+    {% with item = {"name": "Community", "href": "/community", "icon": url_for('static', filename='images/icons/community-icon.png')} %}
+        {% include "_nav_item.html" %}
+        {% endwith %}
+    {% with item = {"name": "Profiles", "href": "/", "icon": url_for('static', filename='images/icons/profiles.png')} %}
+        {% include "_nav_item.html" %}
+        {% endwith %}
+    {% with item = {"name": "Announcements", "href": "/announcements", "icon": url_for('static', filename='images/icons/announcements.png')} %}
+        {% include "_nav_item.html" %}
+        {% endwith %}
+
+        <div class="relative flex">
+          <div class="flex">
+        {% if active_user %}
+        <img id="profile_picture" style=" margin-top: 5px;" class="h-10 w-10 rounded-full" src="{{active_user['profile_pictures'][1] or ''}}" alt="Profile Picture">
+        {% endif %}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+</nav>

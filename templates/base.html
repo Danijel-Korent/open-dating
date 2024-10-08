@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/output.css') }}">
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"/>
+      <script>
+        $SCRIPT_ROOT = {{ request.script_root|tojson }};
+      </script>
+
+    <title>{{title}}</title>
+</head>
+<body class="bg-lightblue overflow-overlay items-center justify-center">
+  <header>
+    {% include("_user_switch.html")%}
+    {% include("_nav.html")%}
+    {% block header %}
+    {% endblock header %}
+  </header>
+  <main>
+    {% block content %}{% endblock content %}
+  </main>
+  <footer>
+    {% block footer %}{%endblock footer%}
+        </footer>
+</body>
+</html> 

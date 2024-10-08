@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home
+{% endblock title%}
+
+{% block header %}
+
+
+{% endblock header %}
+
+{% block content %}
+  <div class="flex flex-row flex-wrap justify-center items-center h-[100vh]">
+  {% for user in users %}
+    {% with user=user %}
+      {% include "_user.html" %}
+    {% endwith %}
+  {%endfor%}
+  </div>
+{% endblock content%}
