@@ -1,26 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" class="h-full">
+  <head>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/output.css') }}">
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"/>
-      <script>
-        $SCRIPT_ROOT = {{ request.script_root|tojson }};
-      </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='js/feather.min.js')}}"></script>
+    <script>
+    $SCRIPT_ROOT = {{ request.script_root|tojson }};
+    </script>
 
+    
     <title>{{title}}</title>
-</head>
-<body class="bg-lightblue overflow-overlay items-center justify-center">
-  <header>
-    {% include("_user_switch.html")%}
-    {% include("_nav.html")%}
-    {% block header %}
-    {% endblock header %}
-  </header>
-  <main>
-    {% block content %}{% endblock content %}
-  </main>
-  <footer>
-    {% block footer %}{%endblock footer%}
-        </footer>
-</body>
+  </head>
+  <body class="h-full bg-lightblue overflow-overlay items-center justify-center font-sans">
+    <header>
+      {% block header %}
+      {% endblock header %}
+    </header>
+    <main class="flex flex-row h-full">
+      {% include("_nav.html")%}
+      <div class="">
+        {% block content %}{% endblock content %}
+      </div>
+    </main>
+    <footer>
+      {% block footer %}{%endblock footer%}
+    </footer>
+  </body>
+
+<script>
+      feather.replace();
+</script>
+
 </html> 
+
+

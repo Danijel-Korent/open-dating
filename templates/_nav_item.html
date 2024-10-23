@@ -1,10 +1,17 @@
-<div class="flex">
-  <p class="cursor-pointer">
-    <a href="{{ item.href }}" style="color:#808080;" onclick="handleClick(event)"
-      class="gap-2 items-center text-black flex transition-all ease-in-out  py-3 px-3 rounded-3xl cursor-pointer">
-      <img width="25" height="25" src="{{item.icon}}" alt="globe--v1"/>
-      <span class="px-2">{{ item.name }}</span>
-    </a>
-
-  </p>
-
+{% if request.path == item.href %}
+<a href="{{item.href}}" class="block bg-orange-500 text-white transition-all p-2 rounded-md">
+  <span class="flex flex-row gap-2 items-center">
+    <i data-feather={{item.icon}}></i>
+  <p class="font-semibold font-sans text-lg">{{item.label}}</p>
+  </span>
+  <p>{{item.num}}</p>
+</a>
+{% else %}
+<a href="{{item.href}}" class="block hover:bg-orange-500 hover:text-white transition-all p-2 rounded-md">
+  <span class="flex flex-row gap-2 items-center">
+    <i data-feather={{item.icon}}></i>
+  <p class="font-semibold font-sans text-lg">{{item.label}}</p>
+  </span>
+  <p>{{item.num}}</p>
+</a>
+{% endif %}
