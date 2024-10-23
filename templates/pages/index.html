@@ -10,7 +10,7 @@
 {% endblock header %}
 
 {% block content %}
-  <div class="flex flex-row flex-wrap justify-center items-center h-[100vh]">
+  <div class="flex flex-row flex-wrap justify-center items-center h-[100vh] overflow-scroll">
   {% for user in users %}
     {% with user=user %}
       {% include "_user.html" %}
