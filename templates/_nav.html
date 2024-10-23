@@ -1,4 +1,4 @@
-<div class="bg-white h-full w-fit static p-8">
+<div class="bg-white h-screen w-fit static p-8 flex flex-col">
   <div class="w-max">
   <h1 class="font-light text-3xl">Dating App</h1>
   <hr class="border"/>
@@ -10,8 +10,8 @@
       <i data-feather="sliders"></i>
   </span>
   </div>
-  <nav class="flex flex-col h-full justify-between">
-    <div class="flex flex-col gap-2">
+  <nav class="flex flex-col flex-1 justify-between">
+    <div class="flex flex-col gap-2 ">
     {%with item={"label": "Profiles", "icon": "home", "href": "/"} %} 
       {% include "_nav_item.html" %} 
     {%endwith %}
