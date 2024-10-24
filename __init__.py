@@ -24,6 +24,10 @@ def community():
 def announcements(): 
     return render_template("pages/announcements.html", title="Announcements")
 
+@app.route("/matches")
+def matches():
+    return render_template("pages/matches.html", title="Matches")
+
 @app.route("/active_user", methods=['GET' ,'POST'])
 def active_user():
     if request.method == "POST":

@@ -1,9 +1,28 @@
 import json
 import sys
+import sqlite3 
 
 
 class DB: 
-    def __init__(self, filename="mock_database.json"):
+    def __init__(self, filename="app.db"):
+        # database = sqlite3.connect(filename)
+        # database.execute("PRAGMA foreign_keys = 1")
+        # users_statement = """
+        # CREATE TABLE IF NOT EXISTS users (
+        #     id INTEGER PRIMARY KEY,
+        #     name TEXT 
+        #     hashed_password TEXT,
+        #     password_salt TEXT,
+        #     gender INTEGER,
+        # ) """
+        #
+        # preferences_statement = """
+        # CREATE TABLE IF NOT EXISTS preferences (
+        #     
+        #
+        # ) """
+
+
         with open("mock_database.json") as db:
             d = json.load(db)
             db.close()

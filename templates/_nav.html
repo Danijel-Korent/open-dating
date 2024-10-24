@@ -1,5 +1,5 @@
-<div class="bg-white h-screen w-fit static p-8 flex flex-col">
-  <div class="w-max">
+<div class="bg-white h-fit lg:h-screen w-full lg:w-fit static p-8 flex flex-col">
+  <div class="w-max hidden lg:block">
   <h1 class="font-light text-3xl">Dating App</h1>
   <hr class="border"/>
   <span class="flex flex-row items-center justify-between py-4 gap-8">
@@ -10,8 +10,7 @@
       <i data-feather="sliders"></i>
   </span>
   </div>
-  <nav class="flex flex-col flex-1 justify-between">
-    <div class="flex flex-col gap-2 ">
+  <nav class="flex flex-row lg:flex-col flex-1 justify-between lg:justify-normal">
     {%with item={"label": "Profiles", "icon": "home", "href": "/"} %} 
       {% include "_nav_item.html" %} 
     {%endwith %}
@@ -24,13 +23,8 @@
     {%with item={"label": "Community", "icon": "users", "href": "/community"} %} 
       {% include "_nav_item.html" %} 
     {%endwith %}
-
-    </div>
-    <div class="flex flex-col gap-2">
-      {%with item={"label": "Settings", "icon": "settings","href":"/settings"} %} 
-      {% include "_nav_item.html" %} 
-    {%endwith %}
-{%with item={"label": "Sign out", "icon": "log-out", "href":"/signout"} %} 
+    <div class="lg:mt-auto">
+    {%with item={"label": "Settings", "icon": "settings","href":"/settings"} %} 
       {% include "_nav_item.html" %} 
     {%endwith %}
     </div>
