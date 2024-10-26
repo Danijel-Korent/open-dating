@@ -3,7 +3,7 @@
     <button id="dropdown-btn" class="px-2 py-1 rounded-md flex flex-row items-center gap-1 hover:bg-gray-200">
       <p class="font-semibold">{{active_user.name}}</p> 
       <i class="w-4 h-4" data-feather="chevron-down"></i> 
-      </button>
+    </button>
     <div id="user-dropdown" class="hidden absolute w-48 mt-2">
       <div class="bg-white rounded-md border border-solid border-gray-200">
         {% for user in users %}
@@ -18,25 +18,25 @@
 </div >
 
 <script>
-  function submitUserSwitch(e) {
-    e.preventDefault();
-    var form = $(e.target);
-    var data = form.serialize();
-    $.post('/active_user', data, function() {
-      window.location.reload();
-    });
-  }
-
-  $(document).ready(function() {
-    $('#dropdown-btn').click(function() {
-      $('#user-dropdown').toggleClass('hidden');
-    });
-
-    $(document).click(function(event) {
-      if (!$(event.target).closest('#dropdown-btn, #user-dropdown').length) {
-        $('#user-dropdown').addClass('hidden');
-      }
-    });
+function submitUserSwitch(e) {
+  e.preventDefault();
+  var form = $(e.target);
+  var data = form.serialize();
+  $.post('/active_user', data, function() {
+    window.location.reload();
   });
+}
+
+$(document).ready(function() {
+  $('#dropdown-btn').click(function() {
+    $('#user-dropdown').toggleClass('hidden');
+  });
+
+  $(document).click(function(event) {
+    if (!$(event.target).closest('#dropdown-btn, #user-dropdown').length) {
+      $('#user-dropdown').addClass('hidden');
+    }
+  });
+});
 </script>
 

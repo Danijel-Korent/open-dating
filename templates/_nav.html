@@ -1,36 +1,29 @@
+{% from "includes/macros.html" import nav_link,preferences with context %}
+
 <div class="bg-white h-fit lg:h-screen w-full lg:w-fit static p-8 flex flex-col">
   <div class="w-max hidden lg:block">
-  <h1 class="font-light text-3xl">Dating App</h1>
-  <hr class="border"/>
-  <span class="flex flex-row items-center justify-between py-4 gap-8">
+    <h1 class="font-light text-3xl">Dating App</h1>
+    <hr class="border"/>
+    <span class="flex flex-row items-center justify-between py-4 gap-8">
       <span class="flex flex-row items-center gap-2">
-      <span class="bg-gray-500 rounded-full h-6 w-6"></span>
-      {% include "_user_switch.html" %}
+        <span class="bg-gray-500 rounded-full h-6 w-6"></span>
+        {% include "_user_switch.html" %}
       </span>
-      <i data-feather="sliders"></i>
-  </span>
+      {{preferences()}}
+    </span>
   </div>
-  <nav class="flex flex-row lg:flex-col flex-1 justify-between lg:justify-normal">
-    {%with item={"label": "Profiles", "icon": "home", "href": "/"} %} 
-      {% include "_nav_item.html" %} 
-    {%endwith %}
-    {%with item={"label": "Messages", "icon": "send", "href":"/messages"} %} 
-      {% include "_nav_item.html" %} 
-    {%endwith %}
-    {%with item={"label": "Matches", "icon": "heart", "href": "/matches"} %} 
-      {% include "_nav_item.html" %} 
-    {%endwith %}
-    {%with item={"label": "Community", "icon": "users", "href": "/community"} %} 
-      {% include "_nav_item.html" %} 
-    {%endwith %}
-    <div class="lg:mt-auto">
-    {%with item={"label": "Settings", "icon": "settings","href":"/settings"} %} 
-      {% include "_nav_item.html" %} 
-    {%endwith %}
+  <nav class="flex flex-row lg:flex-col flex-1 lg:gap-4 justify-between lg:justify-normal">
+    {{nav_link('Profiles', '/home', 'home')}}
+    {{nav_link('Matches', '/matches', 'heart')}}
+    {{nav_link('Messages', '/messages', 'send')}}
+        {{nav_link('Community', '/community', 'users')}}
+    <div class="lg:hidden">
+      {{nav_link('Profile', '/profile', 'circle')}}
     </div>
 
-
-
+    <div class="lg:mt-auto hidden lg:block">
+      {{nav_link('Settings', '/settings', 'settings')}}
+    </div>
 
   </nav>
 </div>

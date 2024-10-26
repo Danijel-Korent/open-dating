@@ -1,3 +1,5 @@
+{% from "includes/macros.html" import profile with context %}
+
 {% extends 'base.html' %}
 
 {% block title %}
@@ -10,11 +12,5 @@
 {% endblock header %}
 
 {% block content %}
-  <div class="flex flex-row flex-wrap justify-center items-center h-[100vh] overflow-scroll">
-  {% for user in users %}
-    {% with user=user %}
-      {% include "_user.html" %}
-    {% endwith %}
-  {%endfor%}
-  </div>
+    {{profile(users[0])}}
 {% endblock content%}
