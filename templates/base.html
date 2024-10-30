@@ -1,6 +1,10 @@
+{% from "includes/macros.html" import mobile_header with context %} 
+
 <!DOCTYPE html>
 <html lang="en" class="h-full">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -15,16 +19,16 @@
     <title>{{title}}</title>
   </head>
   <body class="h-full w-full flex flex-col bg-lightblue font-sans">
-    <header class="shrink-0">
+    <header>
       {% block header %}
       {% endblock header %}
     </header>
-    <main class="flex flex-col-reverse lg:flex-row h-full">
+    <main class="flex flex-col-reverse md:flex-row h-full">
       {% include("_nav.html")%}
-      <div class="overflow-scroll grow">
+      <div class="overflow-scroll grow md:bg-light-50">
         {% block content %}{% endblock content %}
       </div>
-      {% include("_mobile_header.html") %}
+      {{ mobile_header() }}
     </main>
     <footer>
       {% block footer %}{%endblock footer%}
@@ -34,7 +38,6 @@
 <script>
       feather.replace();
 </script>
-
 </html> 
 
 

@@ -1,0 +1,19 @@
+{% from "includes/macros.html" import chat_display with context %}
+
+{% extends 'base.html' %}
+
+
+
+
+
+
+
+{% block content %}
+<div class="w-full bg-white p-4">
+    <div class="flex flex-col mx-4 gap-4">
+        {% for chat in chats %}
+            {{chat_display(chat['user'], chat['chat'])}}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

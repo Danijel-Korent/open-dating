@@ -1,28 +1,31 @@
-{% from "includes/macros.html" import nav_link,preferences with context %}
+{% from "includes/macros.html" import nav_link,preferences,nav_btn with context %}
 
-<div class="bg-white h-fit lg:h-screen w-full lg:w-fit static p-8 flex flex-col">
-  <div class="w-max hidden lg:block">
-    <h1 class="font-light text-3xl">Dating App</h1>
+<div class="bg-white h-fit md:h-screen w-full md:w-80 static p-4 md:p-8 flex flex-col">
+  <div class="w-full hidden md:block">
+    <span class="flex flex-row items-center">
+      <h1 class="font-light text-3xl">Dating App</h1>
+    </span>
     <hr class="border"/>
-    <span class="flex flex-row items-center justify-between py-4 gap-8">
-      <span class="flex flex-row items-center gap-2">
-        <span class="bg-gray-500 rounded-full h-6 w-6"></span>
+    <span class="flex flex-row items-center justify-between py-4 gap-8 max-w-full overflow-wrap">
+      <span class="flex flex-row items-center gap-1">
+        <div class="bg-light-300 rounded-full h-6 w-6"></div>
         {% include "_user_switch.html" %}
       </span>
       {{preferences()}}
     </span>
   </div>
-  <nav class="flex flex-row lg:flex-col flex-1 lg:gap-4 justify-between lg:justify-normal">
-    {{nav_link('Profiles', '/home', 'home')}}
+  <nav class="flex flex-row md:flex-col flex-1 md:gap-4 justify-between md:justify-normal">
+    {{nav_link('Profiles', '/', 'home')}}
     {{nav_link('Matches', '/matches', 'heart')}}
     {{nav_link('Messages', '/messages', 'send')}}
-        {{nav_link('Community', '/community', 'users')}}
-    <div class="lg:hidden">
+    {{nav_link('Community', '/community', 'users')}}
+    <div class="md:hidden">
       {{nav_link('Profile', '/profile', 'circle')}}
     </div>
 
-    <div class="lg:mt-auto hidden lg:block">
+    <div class="md:mt-auto hidden md:block">
       {{nav_link('Settings', '/settings', 'settings')}}
+      {{nav_btn('Reload JSON', '/reload_json', 'rotate-ccw')}}
     </div>
 
   </nav>

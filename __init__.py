@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 import logging
 import sys
 import json
@@ -14,11 +14,11 @@ db = DB()
 
 @app.route("/")
 def home():
-    return render_template("pages/index.html", title="Dating App") 
+    return render_template("pages/index.html", title="Recommended") 
 
 @app.route("/community")
 def community(): 
-    return render_template("pages/community.html", messages=db.messages2, get_user_by_id=get_user_by_id, current_id=db.current_id, title="Community Chat")
+    return render_template("pages/community.html", messages=db.messages2, get_user_by_id=get_user_by_id, current_username=db.current_username, title="Community")
 
 @app.route("/announcements")
 def announcements(): 
@@ -26,27 +26,37 @@ def announcements():
 
 @app.route("/matches")
 def matches():
-    return render_template("pages/matches.html", title="Matches")
+    return render_template("pages/matches.html", title="Matches", matches=db.get_current_user_matches())
+
+@app.route("/messages")
+def messages():
+    return render_template("pages/messages.html", title="Messages",chats=db.get_user_chats())
 
 @app.route("/active_user", methods=['GET' ,'POST'])
 def active_user():
     if request.method == "POST":
-        db.current_id = request.form['id']
+        db.current_username = request.form['id']
         db.save()
-        return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+        return {}, 200 
     elif request.method=="GET":
-        return {id: db.current_id}
+        return {id: db.current_username}
+
+@app.route("/reload_json", methods=['POST']) 
+def reload_json():
+    if request.method == "POST":
+        db.load()
+        return {}, 200 
 
 @app.context_processor
 def inject_users():
-    return {'users': db.users, 'active_user': db.get_user_by_id(db.current_id)}
+    return {'users': db.users, 'active_user': db.get_user_by_username(db.current_username)}
 
 @app.context_processor
 def inject_chat_users():
     message_users = [] 
     for user in db.users: 
         active = False
-        if user["id"] == db.current_id: 
+        if user["username"] == db.current_username: 
             active = True
         
         color = random_hex_color(['#FFFFFF', '#F5F5F5', '#E0E7FF', '#F4F4F4', '#efffaf','#00fef4'])

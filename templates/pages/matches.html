@@ -1,4 +1,22 @@
+{% from "includes/macros.html" import match with context %}
+
 {% extends 'base.html' %}
+
+{% block title %}
+    Matches 
+{% endblock title%}
+
+
+{% block content %}
+<div class="flex flex-row flex-wrap gap-4">
+    {% for curr_match in matches %}
+
+    {{match(curr_match)}}
+
+    {% endfor %}
+</div>
+{% endblock content %}
+
 
 
 
