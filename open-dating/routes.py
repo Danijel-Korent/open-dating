@@ -1,7 +1,8 @@
 from flask import render_template, request
 from .util import random_hex_color
+from .db import DB
 
-def configure_page_routes(app, db):
+def configure_page_routes(app, db: DB):
     @app.route("/")
     def home():
         return render_template("pages/index.html", title="Recommended") 
@@ -22,6 +23,17 @@ def configure_page_routes(app, db):
     def messages():
         return render_template("pages/messages.html", title="Messages",chats=db.get_user_chats())
 
+    @app.route("/messages/<user>")
+    def chat(user):
+        db_user = db.get_user_by_username(user)
+        if db_user != None:
+            return render_template("pages/chat.html", title="Chat with " + db_user['name'], user=db_user) 
+        else: 
+            return "User not found"
+
+
+
+        
 def configure_api_and_processors(app, db):
     @app.route("/active_user", methods=['GET' ,'POST'])
     def active_user():

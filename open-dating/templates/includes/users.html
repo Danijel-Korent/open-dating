@@ -35,7 +35,7 @@
 
 {% macro chat_display(user, messages) %}
 {% if messages|length > 0 %}
-<a class="flex flex-row items-center hover:bg-light-50 p-4 rounded-lg gap-4">
+<a href="{{"messages/" ~ user['username']}}" class="flex flex-row items-center hover:bg-light-50 p-4 rounded-lg gap-4">
     <div class="min-w-12 min-h-12 bg-light-300 rounded-full"></div>
     <span class="flex flex-col leading-none flex-1">
     <p class="font-bold text-lg">{{user['name']}}</p>

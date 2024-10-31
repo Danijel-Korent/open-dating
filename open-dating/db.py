@@ -1,9 +1,10 @@
 import json
 import sys
+from typing import Dict
 
 
 class DB: 
-    def __init__(self, filename="../mock_database.json"):
+    def __init__(self, filename="mock_database.json"):
         self.filename=filename
         self.load() 
 
@@ -26,7 +27,7 @@ class DB:
             new_db = dict(users = self.users, current_username=self.current_username, matches=self.matches,messages=self.messages,messages2=self.messages2)
             json.dump(new_db, db, indent=4)
 
-    def get_user_by_username(self,username):
+    def get_user_by_username(self,username) -> Dict[str, str] | None:
         for user in self.users:
             if str(user['username']) == username:
                 return user

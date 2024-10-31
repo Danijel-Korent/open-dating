@@ -1,6 +1,6 @@
 import random
 
-def random_hex_color(excluded_colors):
+def random_hex_color(excluded_colors = []):
     while True:
         # Generate random hex color
         color = "#{:06x}".format(random.randint(0, 0xFFFFFF)).upper()
