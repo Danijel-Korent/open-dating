@@ -1,1 +1,11 @@
 {% extends "base.html" %}
+
+
+{% block content %}
+<p>Hello</p>
+<p>{{chat.messages|len}}</p>
+{% for message in chat.messages %}
+    <p>Hello</p>
+    <p>{{message.message}}</p>
+{% endfor %}
+{% endblock %}

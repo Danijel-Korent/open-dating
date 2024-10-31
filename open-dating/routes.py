@@ -27,7 +27,7 @@ def configure_page_routes(app, db: DB):
     def chat(user):
         db_user = db.get_user_by_username(user)
         if db_user != None:
-            return render_template("pages/chat.html", title="Chat with " + db_user['name'], user=db_user) 
+            return render_template("pages/chat.html", title="Chat with " + db_user.name, user=db_user, chat=db.get_user_chat(db_user.username)) 
         else: 
             return "User not found"
 
@@ -59,11 +59,11 @@ def configure_api_and_processors(app, db):
         message_users = [] 
         for user in db.users: 
             active = False
-            if user["username"] == db.current_username: 
+            if user.username == db.current_username: 
                 active = True
             
             color = random_hex_color(['#FFFFFF', '#F5F5F5', '#E0E7FF', '#F4F4F4', '#efffaf','#00fef4'])
-            message_users.append({"user": user, "color": color, "active": active, "initial": user["name"][0]})
+            message_users.append({"user": user, "color": color, "active": active, "initial": user.name[0]})
 
         return {'msg_users': message_users}
 

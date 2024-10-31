@@ -4,26 +4,9 @@ from typing import Dict
 from dataclasses import dataclass, asdict
 from enum import Enum
 
-class Gender(Enum):
-    MALE = 0
-    FEMALE = 1
-    OTHER = 2
-
-    @staticmethod
-    def from_str(gender_str: str):
-        match gender_str.lower():
-                case "male":
-                    return Gender.MALE
-                case "female":
-                    return Gender.FEMALE
-                case _:
-                    return Gender.OTHER
-
-
-
 @dataclass
 class Preferences:
-    gender: Gender
+    gender: str
     age_max: int
     age_min: int
     distance_meters: int
@@ -33,7 +16,7 @@ class User:
     username: str
     name: str
     age: int
-    gender: Gender
+    gender: str
     location: str
     bio: str
     pictures: list[str]
@@ -53,18 +36,23 @@ class Message:
     message: str
 
 @dataclass
-class Conversation:
+class Chat:
     messages: list[Message]
 
 @dataclass
 class DB: 
+    filename: str
     users: list[User]
     current_username: str
     matches: list[Match]
-    messages: list[Conversation]
+    chats: list[Chat]
 
     def __init__(self, filename="mock_database.json"):
         self.filename=filename
+        self.current_username = ""
+        self.users = []
+        self.matches = []
+        self.chats = [] 
         self.load() 
 
     def load(self):
@@ -75,21 +63,22 @@ class DB:
             db.close()
     
     def from_json(self, json_dict: dict):
+        self.current_username = json_dict['current_username']
         for user in json_dict['users']:
             self.users.append(
                 User(
                     username=user['username'], 
                     name=user['name'],
                     age=user['age'],
-                    gender=Gender.from_str(user['gender']),
+                    gender=user['gender'],
                     location=user['location'],
                     bio=user['bio'],
-                    pictures=user['profile_pictures'],
+                    pictures=user['pictures'],
                     preferences=Preferences(
-                        gender=Gender.from_str(user['preferences']['gender']),
-                        age_min=user['preferences']['age_range']['min'],
-                        age_max=user['preferences']['age_range']['max'],
-                        distance_meters=user['preferences']['location_range']
+                        gender=user['preferences']['gender'],
+                        age_min=user['preferences']['age_min'],
+                        age_max=user['preferences']['age_max'],
+                        distance_meters=user['preferences']['distance_meters']
                     )
                 )
             )
@@ -102,8 +91,8 @@ class DB:
             for match in json_dict['matches']
         ]
 
-        self.messages = [
-                Conversation(
+        self.chats = [
+                Chat(
                     messages=[
                         Message(
                             sender_id=msg['sender_id'],
@@ -111,10 +100,10 @@ class DB:
                             timestamp=msg['timestamp'],
                             message=msg['message']
                         )
-                        for msg in conversation
+                        for msg in conversation['messages']
                     ]
                 )
-                for conversation in json_dict['messages']
+                for conversation in json_dict['chats']
             ]
 
     def save(self):
@@ -122,13 +111,13 @@ class DB:
             db.seek(0)
             db.truncate()
             new_db = asdict(self)
+            new_db.pop('filename')
             json.dump(new_db, db, indent=4)
 
     def get_user_by_username(self,username) -> User | None:
         for user in self.users:
             if user.username == username:
                 return user
-        
         return None
 
     def get_current_user_matches(self):
@@ -143,13 +132,13 @@ class DB:
         return matches
 
     def get_user_chats(self):
-        chats = self.messages
+        chats = self.chats
         matches = self.get_current_user_matches()  
 
         chats_final = []
 
         for match in matches:
-            chat = self.get_user_chat(match['username'])
+            chat = self.get_user_chat(match.username)
             if chat == None:
                 chat = {}
             chats_final.append({"user": match, "chat": chat})
@@ -159,11 +148,12 @@ class DB:
 
 
 
-    def get_user_chat(self, username):
-        for chat in self.messages:
+    def get_user_chat(self, username: str):
+        for chat in self.chats:
             if len(chat.messages) > 0: 
                if chat.messages[0].sender_id == username or chat.messages[0].sender_id == username:
                     return chat
+        return None
 
 
 
