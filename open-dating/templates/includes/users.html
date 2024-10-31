@@ -34,17 +34,44 @@
 {% endmacro %}
 
 {% macro chat_display(user, messages) %}
-{% if messages|length > 0 %}
-<a href="{{"messages/" ~ user['username']}}" class="flex flex-row items-center hover:bg-light-50 p-4 rounded-lg gap-4">
+{% if messages.messages|length > 0 %}
+<a href="{{"messages/" ~ user.username}}" class="flex flex-row items-center hover:bg-light-50 p-4 rounded-lg gap-4">
     <div class="min-w-12 min-h-12 bg-light-300 rounded-full"></div>
     <span class="flex flex-col leading-none flex-1">
-    <p class="font-bold text-lg">{{user['name']}}</p>
-    <p class="overflow-ellipsis">{{messages[messages|length-1]['message']}}</p>
+    <p class="font-bold text-lg">{{user.name}}</p>
+    <p class="overflow-ellipsis">{{messages.messages[messages.messages|length-1].message}}</p>
     </span>
+    {% if messages.messages[messages.messages|length-1].sender_id == user.username %}
+      <span class="bg-orange-500 rounded-md text-light-50 text-sm px-2 py-1">
+        Your Move
+      </span>
+    {% endif %}
     <p class="text-sm">8:59</p>
 </a>
 {% endif %}
 {%endmacro %}
+
+{% macro message_box(message, active_user) %}
+  {% if message.sender_id == active_user.username %}
+  <div class="ml-auto w-fit">
+    <span class="flex flex-row items-center gap-2">
+    <p class="bg-orange-500 text-light-50 p-2 rounded-md max-w-64">
+    {{message.message}}
+    </p>
+    <div class="rounded-full w-8 h-8 bg-light-400"></div>
+    </span>
+  </div>
+  {% else %}
+  <div class="w-fit">
+    <span class="flex flex-row items-center gap-2">
+    <div class="rounded-full w-8 h-8 bg-light-400"></div>
+    <p class="bg-light-100 p-2 rounded-md max-w-64">
+    {{message.message}}
+    </p>
+    </span>
+  </div>
+  {% endif %}
+{% endmacro %}
 
 
 

@@ -1,2 +1,2 @@
 class Config:
-    pass
+    TEMPLATES_AUTO_RELOAD=True

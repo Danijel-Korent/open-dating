@@ -151,7 +151,7 @@ class DB:
     def get_user_chat(self, username: str):
         for chat in self.chats:
             if len(chat.messages) > 0: 
-               if chat.messages[0].sender_id == username or chat.messages[0].sender_id == username:
+               if chat.messages[0].sender_id == username or chat.messages[0].receiver_id == username:
                     return chat
         return None
 
