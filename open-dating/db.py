@@ -3,7 +3,7 @@ import sys
 
 
 class DB: 
-    def __init__(self, filename="mock_database.json"):
+    def __init__(self, filename="../mock_database.json"):
         self.filename=filename
         self.load() 
 
@@ -20,7 +20,7 @@ class DB:
 
 
     def save(self):
-        with open("mock_database.json","r+") as db:
+        with open(self.filename,"r+") as db:
             db.seek(0)
             db.truncate()
             new_db = dict(users = self.users, current_username=self.current_username, matches=self.matches,messages=self.messages,messages2=self.messages2)
