@@ -1,6 +1,6 @@
 from flask import render_template, request
 from .util import random_hex_color
-from .db import DB
+from .db import DB, Chat, Message
 
 def configure_page_routes(app, db: DB):
     @app.route("/")
@@ -34,7 +34,7 @@ def configure_page_routes(app, db: DB):
 
 
         
-def configure_api_and_processors(app, db):
+def configure_api_and_processors(app, db: DB):
     @app.route("/active_user", methods=['GET' ,'POST'])
     def active_user():
         if request.method == "POST":
@@ -50,6 +50,22 @@ def configure_api_and_processors(app, db):
         if request.method == "POST":
             db.load()
             return {}, 200 
+
+    @app.route("/api/send_message", methods=['POST']) 
+    def send_message(user):
+        chat = db.get_user_chat(user.username)
+        message = request.form['message']
+        if chat != None:
+            chat.messages.append(message)
+            db.save()
+        else:
+            db.chats.append(Chat([
+                Message(sender_id=db.current_username, receiver_id=user.username, timestamp="", message=message)
+            ]))
+
+        return {},200
+
+
 
     @app.context_processor
     def inject_users():
@@ -67,5 +83,9 @@ def configure_api_and_processors(app, db):
             message_users.append({"user": user, "color": color, "active": active, "initial": user.name[0]})
 
         return {'msg_users': message_users}
+
+            
+        
+
 
 

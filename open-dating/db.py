@@ -65,7 +65,7 @@ class DB:
     def from_json(self, json_dict: dict):
         self.current_username = json_dict['current_username']
         for user in json_dict['users']:
-            self.users.append(
+            self.users = [
                 User(
                     username=user['username'], 
                     name=user['name'],
@@ -81,7 +81,8 @@ class DB:
                         distance_meters=user['preferences']['distance_meters']
                     )
                 )
-            )
+                for user in json_dict["users"]
+            ]
         self.matches = [
             Match(
                 user1=match['user1'],

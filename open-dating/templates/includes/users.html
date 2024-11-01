@@ -24,7 +24,7 @@
 {%endmacro %}
 
 {% macro match(user) %}
-<a>
+  <a href={{"/messages/" ~ user.username}}>
   <div class="flex flex-col text-white p-2 h-[250px] w-[200px] rounded-md bg-gradient-to-t from-black/30 to-40%">
   <p class="mt-auto">
     {{user['name']}}
@@ -58,13 +58,11 @@
     <p class="bg-orange-500 text-light-50 p-2 rounded-md max-w-64">
     {{message.message}}
     </p>
-    <div class="rounded-full w-8 h-8 bg-light-400"></div>
     </span>
   </div>
   {% else %}
   <div class="w-fit">
     <span class="flex flex-row items-start gap-2">
-    <div class="rounded-full w-8 h-8 bg-light-400"></div>
     <p class="bg-light-100 p-2 rounded-md max-w-64">
     {{message.message}}
     </p>
@@ -73,10 +71,10 @@
   {% endif %}
 {% endmacro %}
 
-{% macro message_box() %}
-<div class="mx-4 my-2 rounded-lg shadow-md w-4/5 h-16 mx-auto bg-white overflow-clip">
+{% macro message_box(user, active_user) %}
+<div class="mx-4 my-2 rounded-lg shadow-md w-full md:w-4/5 h-16 mx-auto bg-white overflow-clip">
   <form id="messageboxform" class="flex flex-row gap-2 w-full h-full">
-    <input class="h-full grow px-4 focus:outline-none" type="text" placeholder="Send a message...">
+    <input name="message" id="message" class="h-full grow px-4 focus:outline-none" type="text" placeholder="Send a message...">
       <button type="submit" class="p-4 bg-orange-500 text-light-50"><i data-feather="send"></i></button>
   </form>
 </div>
@@ -85,8 +83,15 @@
   document.getElementById("messageboxform").addEventListener("submit", submitMessage)
   function submitMessage(e) {
     e.preventDefault();
+    form = $(e.target);
+    data = form.serialize();
 
     $.ajax({
+      url: "/api/send_message",
+      type: "post",
+      data: data,
+      success: function() {
+      }
 
 
     })

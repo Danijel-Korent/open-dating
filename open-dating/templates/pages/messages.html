@@ -9,7 +9,7 @@
 
 
 {% block content %}
-<div class="w-full bg-white p-4">
+<div class="w-full flex flex-col bg-white p-4">
     <div class="flex flex-col mx-4 gap-4">
         {% for chat in chats %}
             {{chat_display(chat.user, chat.chat)}}
