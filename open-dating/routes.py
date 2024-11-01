@@ -46,6 +46,7 @@ def configure_api_and_processors(app, db):
 
     @app.route("/reload_json", methods=['POST']) 
     def reload_json():
+        print("Hello")
         if request.method == "POST":
             db.load()
             return {}, 200 

@@ -51,10 +51,10 @@
 {% endif %}
 {%endmacro %}
 
-{% macro message_box(message, active_user) %}
+{% macro message_display(message, active_user) %}
   {% if message.sender_id == active_user.username %}
   <div class="ml-auto w-fit">
-    <span class="flex flex-row items-center gap-2">
+    <span class="flex flex-row items-start gap-2">
     <p class="bg-orange-500 text-light-50 p-2 rounded-md max-w-64">
     {{message.message}}
     </p>
@@ -63,7 +63,7 @@
   </div>
   {% else %}
   <div class="w-fit">
-    <span class="flex flex-row items-center gap-2">
+    <span class="flex flex-row items-start gap-2">
     <div class="rounded-full w-8 h-8 bg-light-400"></div>
     <p class="bg-light-100 p-2 rounded-md max-w-64">
     {{message.message}}
@@ -71,6 +71,29 @@
     </span>
   </div>
   {% endif %}
+{% endmacro %}
+
+{% macro message_box() %}
+<div class="mx-4 my-2 rounded-lg shadow-md w-4/5 h-16 mx-auto bg-white overflow-clip">
+  <form id="messageboxform" class="flex flex-row gap-2 w-full h-full">
+    <input class="h-full grow px-4 focus:outline-none" type="text" placeholder="Send a message...">
+      <button type="submit" class="p-4 bg-orange-500 text-light-50"><i data-feather="send"></i></button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("messageboxform").addEventListener("submit", submitMessage)
+  function submitMessage(e) {
+    e.preventDefault();
+
+    $.ajax({
+
+
+    })
+}
+
+
+</script>
 {% endmacro %}
 
 

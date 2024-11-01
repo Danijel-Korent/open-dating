@@ -1,11 +1,17 @@
 {% extends "base.html" %}
-{% from "includes/users.html" import message_box with context %}
+{% from "includes/users.html" import message_display,message_box with context %}
 
 
 {% block content %}
 <div class="flex flex-col gap-4 p-8">
 {% for message in chat.messages %}
-        {{message_box(message, active_user)}}
+        {{message_display(message, active_user)}}
 {% endfor %}
+</div>
+{% endblock %}
+
+{% block bottom_bar %}
+<div class="static">
+{{message_box()}}
 </div>
 {% endblock %}

@@ -21,7 +21,7 @@
 {% endmacro %}
 
 {% macro nav_btn(label, href, icon, number="") %}
-<form onsubmit="submitReload()">
+<form id="jsonreload">
 <button type="submit" class="block hover:bg-orange-500 hover:text-white transition-all p-2  rounded-md">
   <span class="flex flex-row gap-2 items-center">
     <i data-feather={{icon}} class="h-6 w-6"></i>
@@ -32,14 +32,16 @@
 </form>
 
 <script>
+  document.getElementById("jsonreload").addEventListener("submit", submitReload)
   function submitReload(e) {
     e.preventDefault();
 
     $.ajax({
       url: "{{href}}",
         type: 'post',
-        data: data,
+        data: {},
         success: function(){
+          window.location.reload()
        }
    });
   }
