@@ -124,6 +124,8 @@
     ],
     "chats": [
         {
+            "user1": "john_doe",
+            "user2": "jane_smith",
             "messages": [
                 {
                     "sender_id": "john_doe",
@@ -202,6 +204,36 @@
                     "receiver_id": "john_doe",
                     "timestamp": "",
                     "message": "Good luck finding someone."
+                }
+            ]
+        },
+        {
+            "user1": "john_doe",
+            "user2": "sarah_lee",
+            "messages": [
+                {
+                    "sender_id": "john_doe",
+                    "receiver_id": "sarah_lee",
+                    "timestamp": "",
+                    "message": "hi there"
+                },
+                {
+                    "sender_id": "john_doe",
+                    "receiver_id": "sarah_lee",
+                    "timestamp": "",
+                    "message": "how are you"
+                },
+                {
+                    "sender_id": "sarah_lee",
+                    "receiver_id": "john_doe",
+                    "timestamp": "",
+                    "message": "i'm good"
+                },
+                {
+                    "sender_id": "john_doe",
+                    "receiver_id": "sarah_lee",
+                    "timestamp": "",
+                    "message": "that's great"
                 }
             ]
         }

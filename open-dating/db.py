@@ -37,6 +37,8 @@ class Message:
 
 @dataclass
 class Chat:
+    user1: str
+    user2: str
     messages: list[Message]
 
 @dataclass
@@ -94,6 +96,8 @@ class DB:
 
         self.chats = [
                 Chat(
+                    user1=chat['user1'],
+                    user2=chat['user2'],
                     messages=[
                         Message(
                             sender_id=msg['sender_id'],
@@ -101,10 +105,10 @@ class DB:
                             timestamp=msg['timestamp'],
                             message=msg['message']
                         )
-                        for msg in conversation['messages']
+                        for msg in chat['messages']
                     ]
                 )
-                for conversation in json_dict['chats']
+                for chat in json_dict['chats']
             ]
 
     def save(self):
@@ -151,9 +155,11 @@ class DB:
 
     def get_user_chat(self, username: str):
         for chat in self.chats:
-            if len(chat.messages) > 0: 
-               if chat.messages[0].sender_id == username or chat.messages[0].receiver_id == username:
+               if chat.user1 == username and chat.user2 == self.current_username:
                     return chat
+               if chat.user1 == self.current_username and chat.user2 == username:
+                    return chat
+
         return None
 
 

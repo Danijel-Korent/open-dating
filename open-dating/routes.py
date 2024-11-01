@@ -51,18 +51,15 @@ def configure_api_and_processors(app, db: DB):
             db.load()
             return {}, 200 
 
-    @app.route("/api/send_message", methods=['POST']) 
+    @app.route("/messages/<user>/send", methods=['POST', 'GET']) 
     def send_message(user):
-        chat = db.get_user_chat(user.username)
+        chat = db.get_user_chat(user)
         message = request.form['message']
         if chat != None:
-            chat.messages.append(message)
+            chat.messages.append(Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message))
             db.save()
         else:
-            db.chats.append(Chat([
-                Message(sender_id=db.current_username, receiver_id=user.username, timestamp="", message=message)
-            ]))
-
+            db.chats.append(Chat(user1=user,user2=db.current_username,messages=[Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message)]))
         return {},200
 
 

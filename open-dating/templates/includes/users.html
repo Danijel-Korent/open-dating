@@ -87,10 +87,11 @@
     data = form.serialize();
 
     $.ajax({
-      url: "/api/send_message",
+      url: "/messages/" + "{{user.username}}" + "/send",
       type: "post",
       data: data,
       success: function() {
+        window.location.reload();
       }
 
 
