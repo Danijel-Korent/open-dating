@@ -18,7 +18,6 @@ def create_app():
     app.config.from_object(Config)
     add_cmdline_options(app)
 
-    
     database = DB(app.config.get("DATABASE_FILE"))
 
     configure_page_routes(app, database)

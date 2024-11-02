@@ -139,7 +139,7 @@ class DB:
             json_str = json.dumps(new_db, indent=4)
             file.write(json_str)
 
-    def get_user_by_username(self,username) -> User:
+    def get_user_by_username(self,username: str) -> User:
         for user in self.users:
             if user.username == username:
                 return user
@@ -150,8 +150,8 @@ class DB:
         return self.get_user_by_username(self.current_username)
 
 
-    def get_current_user_matches(self):
-        matches = []
+    def get_match_users(self):
+        matches: list[User] = []
         for match in self.matches:
             if match.user1 == self.current_username:
                 matches.append(self.get_user_by_username(match.user2))
@@ -161,28 +161,25 @@ class DB:
 
         return matches
 
-    def get_user_chats(self):
-        chats = self.chats
-        matches = self.get_current_user_matches()  
+    def get_match_chats(self):
+        matches = self.get_match_users()  
 
-        chats_final = []
+        chats: list[Chat] = []
 
         for match in matches:
-            chat = self.get_user_chat(match.username)
+            chat = self.get_chat(match.username)
             if chat == None:
                 chat = {}
-            chats_final.append({"user": match, "chat": chat})
+            else:
+                chats.append(chat)
 
+        return chats
 
-        return chats_final
-
-
-
-    def get_user_chat(self, username: str):
+    def get_chat(self, with_username: str) -> Chat | None:
         for chat in self.chats:
-               if chat.user1 == username and chat.user2 == self.current_username:
+               if chat.user1 == with_username and chat.user2 == self.current_username:
                     return chat
-               if chat.user1 == self.current_username and chat.user2 == username:
+               if chat.user1 == self.current_username and chat.user2 == with_username:
                     return chat
 
         return None
