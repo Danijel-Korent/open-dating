@@ -35,7 +35,5 @@ def add_cmdline_options(app: App):
         set_key(".env", "DATABASE_FILE", path)
         print("Set DATABASE_FILE in .env to ", path)
 
-
-
     app.cli.add_command(db_cli)
 
