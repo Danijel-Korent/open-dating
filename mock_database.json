@@ -7,6 +7,7 @@
             "gender": "male",
             "location": "New York, NY",
             "bio": "Love hiking and outdoor adventures.",
+            "likes": [],
             "pictures": [
                 "/static/images/avatar2.png",
                 "/static/images/avatar.png"
@@ -25,6 +26,7 @@
             "gender": "female",
             "location": "Los Angeles, CA",
             "bio": "Avid reader and coffee enthusiast.",
+            "likes": [],
             "pictures": [
                 "/static/images/avatar2.png",
                 "/static/images/avatar.png"
@@ -43,6 +45,7 @@
             "gender": "male",
             "location": "Chicago, IL",
             "bio": "Musician and foodie. Always looking for the next great dish.",
+            "likes": [],
             "pictures": [
                 "/static/images/avatar2.png",
                 "/static/images/avatar.png"
@@ -61,6 +64,7 @@
             "gender": "female",
             "location": "Houston, TX",
             "bio": "Fitness enthusiast and amateur photographer.",
+            "likes": [],
             "pictures": [
                 "/static/images/avatar2.png",
                 "/static/images/avatar.png"
@@ -79,6 +83,7 @@
             "gender": "male",
             "location": "San Francisco, CA",
             "bio": "Tech geek and movie buff. Always up for a sci-fi film.",
+            "likes": [],
             "pictures": [
                 "/static/images/avatar2.png",
                 "/static/images/avatar.png"
@@ -97,6 +102,7 @@
             "gender": "female",
             "location": "Seattle, WA",
             "bio": "Nature lover and painter. Find me in a gallery or a forest.",
+            "likes": [],
             "pictures": [
                 "/static/images/avatar2.png",
                 "/static/images/avatar.png"
@@ -122,6 +128,7 @@
             "match_date": "2024-06-28T14:45:00Z"
         }
     ],
+    "likes": [],
     "chats": [
         {
             "user1": "john_doe",
@@ -237,5 +244,6 @@
                 }
             ]
         }
-    ]
+    ],
+    "seen_users": []
 }

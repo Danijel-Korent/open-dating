@@ -1,4 +1,4 @@
-{% from "includes/users.html" import profile with context %}
+{% from "includes/users.html" import profile,match_popup with context %}
 
 {% extends 'base.html' %}
 
@@ -13,6 +13,7 @@
 
 {% block content %}
   <div class="flex h-full w-full justify-center items-center">
-    {{profile(users[0])}}
+    {{match_popup(user)}}
+    {{profile(user)}}
   </div>
 {% endblock content%}

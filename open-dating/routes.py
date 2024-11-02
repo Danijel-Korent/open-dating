@@ -5,7 +5,8 @@ from .db import DB, Chat, Message
 def configure_page_routes(app, db: DB):
     @app.route("/")
     def home():
-        return render_template("pages/index.html", title="Recommended") 
+        user = db.get_recommended_user()
+        return render_template("pages/index.html", user=user, title="Recommended") 
 
     @app.route("/community")
     def community(): 

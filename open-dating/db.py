@@ -11,6 +11,13 @@ class Preferences:
     age_min: int
     distance_meters: int
 
+    def check_user(self, user:"User") -> bool:
+        if user.age > self.age_max or user.age < self.age_min:
+            return False
+        if user.gender != self.gender:
+            return False
+        return True
+
 @dataclass
 class User:
     username: str
@@ -19,8 +26,15 @@ class User:
     gender: str
     location: str
     bio: str
+    likes: list["Like"]
     pictures: list[str]
     preferences: Preferences
+
+@dataclass
+class Like:
+    liker: str
+    liked: str
+    timestamp: str
 
 @dataclass
 class Match:
@@ -47,14 +61,18 @@ class DB:
     users: list[User]
     current_username: str
     matches: list[Match]
+    likes: list[Like]
     chats: list[Chat]
+    seen_users: list[str]
 
     def __init__(self, filename="mock_database.json"):
         self.filename=filename
         self.current_username = ""
         self.users = []
+        self.likes = []
+        self.seen_users = []
         self.matches = []
-        self.chats = [] 
+        self.chawts = [] 
         self.load() 
 
     def load(self):
@@ -75,6 +93,7 @@ class DB:
                     gender=user['gender'],
                     location=user['location'],
                     bio=user['bio'],
+                    likes=[],
                     pictures=user['pictures'],
                     preferences=Preferences(
                         gender=user['preferences']['gender'],
@@ -161,6 +180,29 @@ class DB:
                     return chat
 
         return None
+
+    def get_recommended_user(self):
+        for user in self.users:
+            if self.validate_user_recommendation(user) == True:
+                return user
+
+    def validate_user_recommendation(self, user) -> bool:
+        if user.username in self.seen_users:
+            return False
+        if user.username == self.current_username:
+            return False 
+        for like in self.likes:
+            if like.liked == user.username:
+                return False
+        for match in self.matches:
+            if match.user1 == user.username and match.user2 == self.current_username:
+                return False 
+            if match.user2 == user.username and match.user1 == self.current_username:
+                return False
+        if self.get_user_by_username(self.current_username).preferences.check_user(user) != True:
+            return False
+
+        return True
 
 
 
