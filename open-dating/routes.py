@@ -3,11 +3,6 @@ from .util import random_hex_color
 from .db import DB, Chat, Message
 
 def configure_page_routes(app, db: DB):
-    @app.route("/")
-    def home():
-        user = db.get_recommended_user()
-        return render_template("pages/index.html", user=user, title="Recommended") 
-
     @app.route("/community")
     def community(): 
         return render_template("pages/community.html", messages=db.messages2, get_user_by_username=db.get_user_by_username, current_username=db.current_username, title="Community")
@@ -16,19 +11,15 @@ def configure_page_routes(app, db: DB):
     def announcements(): 
         return render_template("pages/announcements.html", title="Announcements")
 
-    @app.route("/matches")
-    def matches():
-        return render_template("pages/matches.html", title="Matches", matches=db.get_current_user_matches())
-
     @app.route("/messages")
     def messages():
-        return render_template("pages/messages.html", title="Messages",chats=db.get_user_chats())
+        return render_template("pages/messages.html", title="Messages",chats=db.get_match_chats())
 
     @app.route("/messages/<user>")
     def chat(user):
         db_user = db.get_user_by_username(user)
         if db_user != None:
-            return render_template("pages/chat.html", title="Chat with " + db_user.name, user=db_user, chat=db.get_user_chat(db_user.username)) 
+            return render_template("pages/chat.html", title="Chat with " + db_user.name, user=db_user, chat=db.get_chat(db_user.username)) 
         else: 
             return "User not found"
 
@@ -54,7 +45,7 @@ def configure_api_and_processors(app, db: DB):
 
     @app.route("/messages/<user>/send", methods=['POST', 'GET']) 
     def send_message(user):
-        chat = db.get_user_chat(user)
+        chat = db.get_chat(user)
         message = request.form['message']
         if chat != None:
             chat.messages.append(Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message))

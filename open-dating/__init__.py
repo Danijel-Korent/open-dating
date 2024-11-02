@@ -8,6 +8,7 @@ import logging
 from .db import DB 
 from .routes import configure_api_and_processors, configure_page_routes
 from .config import Config
+from .dating import routes
 
 load_dotenv()
 
@@ -19,6 +20,9 @@ def create_app():
     add_cmdline_options(app)
 
     database = DB(app.config.get("DATABASE_FILE"))
+    # Dating route (/, /matches)
+    dating.routes.register_routes(database)
+    app.register_blueprint(dating.routes.dating_bp)
 
     configure_page_routes(app, database)
     configure_api_and_processors(app, database)

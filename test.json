@@ -1,23 +1,5 @@
 {
-    "users": [
-        {
-            "username": "tony_bryant",
-            "name": "Tony Bryant",
-            "age": 23,
-            "gender": "male",
-            "location": "Detroit, MI",
-            "bio": "I love doggies",
-            "likes": [],
-            "pictures": [],
-            "preferences": {
-                "gender": "female",
-                "age_max": 25,
-                "age_min": 18,
-                "distance_meters": 50000
-            },
-            "seen_users": []
-        }
-    ],
+    "users": [],
     "current_username": "",
     "matches": [],
     "likes": [],
