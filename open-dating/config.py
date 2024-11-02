@@ -1,2 +1,5 @@
+import os
+
+
 class Config:
-    TEMPLATES_AUTO_RELOAD=True
+    DATABASE_FILE = os.getenv("DATABASE_FILE", "database.json")

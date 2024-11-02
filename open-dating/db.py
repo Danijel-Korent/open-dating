@@ -1,4 +1,5 @@
 import json
+import os
 import sys
 from typing import Dict
 from dataclasses import dataclass, asdict
@@ -29,6 +30,7 @@ class User:
     likes: list["Like"]
     pictures: list[str]
     preferences: Preferences
+    seen_users: list[str]
 
 @dataclass
 class Like:
@@ -63,25 +65,24 @@ class DB:
     matches: list[Match]
     likes: list[Like]
     chats: list[Chat]
-    seen_users: list[str]
 
-    def __init__(self, filename="mock_database.json"):
+    def __init__(self, filename):
         self.filename=filename
         self.current_username = ""
-        self.users = []
+        self.users  =  []
         self.likes = []
-        self.seen_users = []
         self.matches = []
-        self.chawts = [] 
-        self.load() 
+        self.chats = [] 
+
+        if not os.path.exists(self.filename):
+            self.save()
+        self.load()
 
     def load(self):
+        with open(self.filename, "r") as file:
+            self.from_json(json.load(file))
         print("Loaded DB")
-        with open(self.filename) as db:
-            d = json.load(db)
-            self.from_json(d)
-            db.close()
-    
+
     def from_json(self, json_dict: dict):
         self.current_username = json_dict['current_username']
         for user in json_dict['users']:
@@ -100,7 +101,8 @@ class DB:
                         age_min=user['preferences']['age_min'],
                         age_max=user['preferences']['age_max'],
                         distance_meters=user['preferences']['distance_meters']
-                    )
+                    ),
+                    seen_users=[]
                 )
                 for user in json_dict["users"]
             ]
@@ -131,18 +133,22 @@ class DB:
             ]
 
     def save(self):
-        with open(self.filename,"r+") as db:
-            db.seek(0)
-            db.truncate()
+        with open(self.filename, "w+") as file:
             new_db = asdict(self)
             new_db.pop('filename')
-            json.dump(new_db, db, indent=4)
+            json_str = json.dumps(new_db, indent=4)
+            file.write(json_str)
 
-    def get_user_by_username(self,username) -> User | None:
+    def get_user_by_username(self,username) -> User:
         for user in self.users:
             if user.username == username:
                 return user
-        return None
+
+        return User(username="user_missing", name="User Missing", age=0, gender="", location="", bio="", preferences=Preferences(age_min=0, age_max=0, gender="", distance_meters=0), likes=[], pictures=[], seen_users=[])
+
+    def get_current_user(self) -> User:
+        return self.get_user_by_username(self.current_username)
+
 
     def get_current_user_matches(self):
         matches = []
@@ -187,7 +193,7 @@ class DB:
                 return user
 
     def validate_user_recommendation(self, user) -> bool:
-        if user.username in self.seen_users:
+        if user.username in self.get_current_user().seen_users:
             return False
         if user.username == self.current_username:
             return False 
@@ -203,6 +209,17 @@ class DB:
             return False
 
         return True
+
+    def swipe_user(self, user: str, action_type: int) -> bool:
+        self.get_current_user().seen_users.append(user)
+        if action_type == 1:
+            self.get_user_by_username(user).likes.append(Like(liker=self.current_username, liked=user, timestamp=""))
+            for like in self.get_current_user().likes:
+                if like.liker == user:
+                    return True
+
+        return False
+
 
 
 
