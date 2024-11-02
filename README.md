@@ -1,9 +1,10 @@
 # Flask Dating App
 
-## Running the app
+## Usage 
 
-- If desired, create a virtual environment and activate it.
+- If desired, create a virtual environment and activate it. (Highly recommended)
 - Install the requirements with `pip install -r requirements.txt`.
+- Select a database file by running `flask db select-database <path>` or edit `DATABASE_FILE` in the `.env`
 - Run `npm run dev`
 
 ## Code structure

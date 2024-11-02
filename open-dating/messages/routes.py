@@ -18,12 +18,7 @@ def register_routes(db: DB):
 
     @messages_bp.route("/community")
     def community(user):
-        db_user = db.get_user_by_username(user)
-        if db_user != None:
-            return render_template("chat.html", title="Chat with " + db_user.name, user=db_user, chat=db.get_chat(db_user.username)) 
-        else: 
-            return "User not found"
-
+        return render_template("community.html") 
 
 
 
