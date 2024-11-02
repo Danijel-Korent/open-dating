@@ -16,10 +16,10 @@
     </span>
   </div>
   <nav class="flex flex-row md:flex-col flex-1 md:gap-4 justify-between md:justify-normal">
-    {{nav_link('Profiles', '/', 'home')}}
-    {{nav_link('Matches', '/matches', 'heart')}}
-    {{nav_link('Messages', '/messages', 'send')}}
-    {{nav_link('Community', '/community', 'users')}}
+    {{nav_link('Profiles', url_for('dating.index'), 'home')}}
+    {{nav_link('Matches', url_for('dating.matches'), 'heart')}}
+    {{nav_link('Messages', url_for('messages.messages'), 'send')}}
+    {{nav_link('Community', url_for('messages.community'), 'users')}}
     <div class="md:hidden">
       {{nav_link('Profile', '/profile', 'circle')}}
     </div>

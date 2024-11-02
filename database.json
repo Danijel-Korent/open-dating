@@ -17,7 +17,8 @@
                 "age_max": 32,
                 "age_min": 24,
                 "distance_meters": 50
-            }
+            },
+            "seen_users": []
         },
         {
             "username": "jane_smith",
@@ -36,7 +37,8 @@
                 "age_max": 30,
                 "age_min": 25,
                 "distance_meters": 100
-            }
+            },
+            "seen_users": []
         },
         {
             "username": "sam_wilson",
@@ -55,7 +57,8 @@
                 "age_max": 35,
                 "age_min": 26,
                 "distance_meters": 75
-            }
+            },
+            "seen_users": []
         },
         {
             "username": "emily_jones",
@@ -74,7 +77,8 @@
                 "age_max": 33,
                 "age_min": 27,
                 "distance_meters": 50
-            }
+            },
+            "seen_users": []
         },
         {
             "username": "michael_brown",
@@ -93,7 +97,8 @@
                 "age_max": 35,
                 "age_min": 28,
                 "distance_meters": 50
-            }
+            },
+            "seen_users": []
         },
         {
             "username": "sarah_lee",
@@ -112,7 +117,8 @@
                 "age_max": 30,
                 "age_min": 25,
                 "distance_meters": 75
-            }
+            },
+            "seen_users": []
         }
     ],
     "current_username": "john_doe",

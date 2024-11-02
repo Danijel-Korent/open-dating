@@ -164,14 +164,14 @@ class DB:
     def get_match_chats(self):
         matches = self.get_match_users()  
 
-        chats: list[Chat] = []
+        chats = []
 
         for match in matches:
             chat = self.get_chat(match.username)
             if chat == None:
                 chat = {}
             else:
-                chats.append(chat)
+                chats.append({"user": match, "chat": chat})
 
         return chats
 

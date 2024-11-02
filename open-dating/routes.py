@@ -7,24 +7,7 @@ def configure_page_routes(app, db: DB):
     def community(): 
         return render_template("pages/community.html", messages=db.messages2, get_user_by_username=db.get_user_by_username, current_username=db.current_username, title="Community")
 
-    @app.route("/announcements")
-    def announcements(): 
-        return render_template("pages/announcements.html", title="Announcements")
-
-    @app.route("/messages")
-    def messages():
-        return render_template("pages/messages.html", title="Messages",chats=db.get_match_chats())
-
-    @app.route("/messages/<user>")
-    def chat(user):
-        db_user = db.get_user_by_username(user)
-        if db_user != None:
-            return render_template("pages/chat.html", title="Chat with " + db_user.name, user=db_user, chat=db.get_chat(db_user.username)) 
-        else: 
-            return "User not found"
-
-
-
+   
         
 def configure_api_and_processors(app, db: DB):
     @app.route("/active_user", methods=['GET' ,'POST'])
