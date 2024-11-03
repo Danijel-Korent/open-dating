@@ -8,8 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/feather.min.js')}}"></script>
+    <script type="module" src="{{url_for('static', filename='js/index.js')}}"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">    
     <script>
     $SCRIPT_ROOT = {{ request.script_root|tojson }};
@@ -23,12 +24,10 @@
       {% block header %}
       {% endblock header %}
     </header>
-    <main class="flex flex-col-reverse md:flex-row h-full">
+    <main id="pagemain" class="flex flex-col-reverse md:flex-row h-full">
       {% include("_nav.html")%}
       <section class="flex flex-col grow">
-        <div class="overflow-scroll grow md:bg-light-50">
           {% block content %}{% endblock content %}
-        </div>
       </section>
       {{ mobile_header() }}
     </main>

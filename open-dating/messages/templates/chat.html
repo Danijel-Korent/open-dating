@@ -1,5 +1,5 @@
+{% from "message-macros.html" import message_display,message_box with context %}
 {% extends "base.html" %}
-{% from "macros.html" import message_display,message_box with context %}
 
 {% block content %}
 <div class="flex flex-col h-full">
@@ -7,13 +7,12 @@
     <div class="w-8 h-8 block bg-light-100 rounded-full"></div>
         <p>{{user.name}}</p>
 </div>
-<div class="flex flex-col grow gap-4 p-8">
+<div id="messageDisplay" class="flex flex-col grow gap-4 p-8 overflow-scroll">
 {% for message in chat.messages %}
         {{message_display(message, active_user)}}
 {% endfor %}
 </div>
 {{message_box(user, active_user)}}
 </div>
-
 {% endblock %}
 

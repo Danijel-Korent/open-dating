@@ -36,30 +36,45 @@
 
 {% macro message_box(user, active_user) %}
 <div class="mx-4 my-2 rounded-lg shadow-md w-full md:w-4/5 h-16 mx-auto bg-white overflow-clip">
-  <form id="messageboxform" class="flex flex-row gap-2 w-full h-full">
+  <form  x-data="{
+    message: '',
+    loading: false,
+    messages: [],
+    
+    async submitForm(event) {
+        event.preventDefault();
+        this.loading = true;
+        
+        try {
+            // Send the form data
+            const response = await fetch('/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: this.message })
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            // Clear the form
+            this.message = '';
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to send message');
+        } finally {
+            this.loading = false;
+        }
+    }}" 
+    id="messageboxform" class="flex flex-row gap-2 w-full h-full">
     <input name="message" id="message" class="h-full grow px-4 focus:outline-none" type="text" placeholder="Send a message...">
       <button type="submit" class="p-4 bg-orange-500 text-light-50"><i data-feather="send"></i></button>
   </form>
 </div>
-
 <script>
-  document.getElementById("messageboxform").addEventListener("submit", submitMessage)
-  function submitMessage(e) {
-    e.preventDefault();
-    form = $(e.target);
-    data = form.serialize();
 
-    $.ajax({
-      url: "/messages/" + "{{user.username}}" + "/send",
-      type: "post",
-      data: data,
-      success: function() {
-        window.location.reload();
-      }
-
-
-    })
-}
 </script>
 {% endmacro %}
 

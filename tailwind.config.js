@@ -2,8 +2,8 @@
 module.exports = {
   mode: 'jit',
   content: [
-    "open-dating/templates/**/*.html",
-    "open-dating/static/src/**/*.js"
+    "open-dating/**/*.html",
+    "open-dating/**/*.js"
   ],
   theme: {
     extend: {

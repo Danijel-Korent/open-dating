@@ -6,7 +6,7 @@ import click
 import logging
 
 from .db import DB 
-from .routes import configure_api_and_processors, configure_page_routes
+from .routes import configure_api_and_processors
 from .config import Config
 from .dating import routes
 from .messages import routes
@@ -21,14 +21,14 @@ def create_app():
     add_cmdline_options(app)
 
     database = DB(app.config.get("DATABASE_FILE"))
-    # Dating route (/, /matches)
+   
     dating.routes.register_routes(database)
     app.register_blueprint(dating.routes.dating_bp)
-    # Messages route
     messages.routes.register_routes(database)
     app.register_blueprint(messages.routes.messages_bp, url_prefix="/messages")
 
-    configure_page_routes(app, database)
+
+    
     configure_api_and_processors(app, database)
 
     return app

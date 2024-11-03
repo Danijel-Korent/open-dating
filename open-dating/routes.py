@@ -2,18 +2,14 @@ from flask import render_template, request
 from .util import random_hex_color
 from .db import DB, Chat, Message
 
-def configure_page_routes(app, db: DB):
-    @app.route("/community")
-    def community(): 
-        return render_template("pages/community.html", messages=db.messages2, get_user_by_username=db.get_user_by_username, current_username=db.current_username, title="Community")
-
-   
-        
+       
 def configure_api_and_processors(app, db: DB):
     @app.route("/active_user", methods=['GET' ,'POST'])
     def active_user():
         if request.method == "POST":
-            db.current_username = request.form['id']
+            data = request.get_json()
+            print(data)
+            db.current_username = data['id']
             db.save()
             return {}, 200 
         elif request.method=="GET":

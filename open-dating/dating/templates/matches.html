@@ -1,4 +1,4 @@
-{% from "includes/users.html" import match with context %}
+{% import "dating-macros.html" as macros %}
 
 {% extends 'base.html' %}
 
@@ -11,7 +11,7 @@
 <div class="flex flex-row flex-wrap gap-4">
     {% for curr_match in matches %}
 
-    {{match(curr_match)}}
+    {{macros.match(curr_match)}}
 
     {% endfor %}
 </div>
