@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template
-from ..db import DB
+from flask import Blueprint, render_template, request
+from ..db import DB, Message, Chat
 
 messages_bp = Blueprint("messages", __name__, template_folder="templates")
 
@@ -16,10 +16,27 @@ def register_routes(db: DB):
         else: 
             return "User not found"
 
+    @messages_bp.route("/<user>/send", methods=['POST']) 
+    def send_message(user):
+        chat = db.get_chat(user)
+        body = request.get_json()
+        message = body['message']
+        print(message, " sent!")
+        if chat != None:
+            chat.messages.append(Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message))
+            db.save()
+        else:
+            db.chats.append(Chat(user1=user,user2=db.current_username,messages=[Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message)]))
+        return {},200
+
+
+
+
     @messages_bp.route("/community")
     def community(user):
         return render_template("community.html") 
 
+    
 
 
  

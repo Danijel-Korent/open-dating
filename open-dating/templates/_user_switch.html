@@ -17,7 +17,7 @@
                 focusAfter && focusAfter.focus()
             },
             async selectUser(username) {
-              const response = await fetch('/active_user', {
+            const response = await fetch('{{url_for('active_user')}}', {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',

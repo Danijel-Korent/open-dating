@@ -22,18 +22,7 @@ def configure_api_and_processors(app, db: DB):
             db.load()
             return {}, 200 
 
-    @app.route("/messages/<user>/send", methods=['POST', 'GET']) 
-    def send_message(user):
-        chat = db.get_chat(user)
-        message = request.form['message']
-        if chat != None:
-            chat.messages.append(Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message))
-            db.save()
-        else:
-            db.chats.append(Chat(user1=user,user2=db.current_username,messages=[Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message)]))
-        return {},200
-
-
+    
 
     @app.context_processor
     def inject_users():
