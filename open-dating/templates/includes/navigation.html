@@ -22,27 +22,17 @@
 
 {% macro nav_btn(label, href, icon, number="") %}
 <form x-data="{
-    async submitData() {
-        this.loading = true;
-        try {
-            // Using Alpine's $fetch magic method
-            this.data = await this.$fetch('/api/endpoint', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            body: {}
-        });
-            
-            // Handle successful response
-           window.location.reload(); 
-        } catch (error) {
-            console.error('Error:', error);
-        } finally {
-            this.loading = false;
-        }
+    async submitReload() {
+      const response = await fetch('{{url_for('reload_json')}}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: {}
+      });
+      window.location.reload()
     }
-  }">
+    }" @submit.prevent="submitReload">
 <button type="submit" class="block hover:bg-orange-500 hover:text-white transition-all p-2  rounded-md">
   <span class="flex flex-row gap-2 items-center">
     <i data-feather={{icon}} class="h-6 w-6"></i>
