@@ -29,12 +29,9 @@ def register_routes(db: DB):
             db.chats.append(Chat(user1=user,user2=db.current_username,messages=[Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message)]))
         return {},200
 
-
-
-
     @messages_bp.route("/community")
-    def community(user):
-        return render_template("community.html") 
+    def community():
+        return render_template("community.html", title="Community") 
 
     
 

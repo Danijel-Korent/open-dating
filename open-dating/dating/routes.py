@@ -11,6 +11,6 @@ def register_routes(db: DB):
 
     @dating_bp.route("/matches")
     def matches():
-        return render_template("matches.html", matches=db.get_match_users()) 
+        return render_template("matches.html", matches=db.get_match_users(), title="Matches") 
 
 

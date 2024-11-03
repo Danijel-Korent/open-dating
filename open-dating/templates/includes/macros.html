@@ -1,11 +1,41 @@
+{% import "components/forms.html" as forms %}
 
 {% macro preferences() %}
-  <button class="p-2">
-  <i data-feather="sliders"></i>
-
-</button>
+<div x-data="{modalOpen: false}">
+  <button @click="modalOpen = true" class="p-2">
+    <i data-feather="sliders"></i>
+  </button>
+  <div 
+    role="dialog"
+    x-show="modalOpen"
+    @click.away="modalOpen = false"
+    class="flex items-center justify-center fixed z-10 w-full h-full top-0 left-0 bg-light-950/30"
+    style="display: none;"
+  >
+    <div class="bg-light-50 p-8 rounded-md w-full m-8 md:w-96 md:m-0">
+      <span class="flex flex-row items-center justify-between">
+        <h1 class="text-2xl font-bold mb-2">Preferences</h1>
+        <button @click="modalOpen=false">
+          <i data-feather="x"></i>
+        </button>
+      </span>
+      <form>
+        <h2 class="block text-lg font-semibold mb-1">Gender</h2>
+        <div class="flex flex-col gap-4 mb-4">
+          {{forms.checkbox("Male", "male")}}
+          {{forms.checkbox("Female", "female")}}
+          {{forms.checkbox("Non-binary", "nonbinary")}}
+        </div>
+        <h2 class="text-lg font-semibold mb-1">Age</h2>
+        <div class="flex flex-col gap-4 mb-4">
+          {{forms.number_input("age-min", "Minimum Age", 18)}}
+          {{forms.number_input("age-max", "Maximum Age", 99)}}
+        <div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endmacro %}
-
 
 
 

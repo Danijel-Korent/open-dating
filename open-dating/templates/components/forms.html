@@ -1,0 +1,41 @@
+{% macro text_input() %}
+
+{% endmacro %}
+
+{% macro checkbox(label, name) %}
+<div class="inline-flex items-center">
+  <label class="flex items-center cursor-pointer relative" for="{{name}}">
+    <input type="checkbox"
+      checked
+      class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-accent-300 checked:bg-accent-500 checked:border-accent-500"
+      id="{{name}}" />
+    <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <i class="p-1" data-feather="check"></i> 
+    </span>
+  </label>
+  <label class="cursor-pointer ml-2 text-light-950 text-sm" for="{{name}}">
+    {{label}} 
+  </label>
+</div>
+{% endmacro %}
+
+{% macro range_input(min, max, default_min, default_max, name, label) %}
+<div x-data="min-value: 18, max-value:99">
+  <input class="hidden" min={{min}} max={{max}} type="range" x-model="age"></input>
+  <input class="hidden" min={{min}} max={{max}} type="range" x-model="age"></input>
+</div>
+{% endmacro %}
+
+{% macro number_input(name, label, default) %}
+<div class="w-full max-w-sm relative">
+  <label class="block mb-1 text-sm text-light-600" for="{{name}}">{{label}}</label>
+    <input
+      name="{{name}}"
+      id="{{name}}"
+      type="number"
+      value="{{default}}"
+      class="w-full bg-transparent text-light-900 text-sm border border-light-300 rounded-md px-2 py-2 transition duration-300 ease focus:outline-none focus:border-accent-500 hover:border-light-400 shadow-sm focus:shadow-md appearance-none "
+    />
+  </div>
+{% endmacro %}
+

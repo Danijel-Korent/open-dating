@@ -6,7 +6,7 @@
     <p class="overflow-ellipsis">{{chat.messages[chat.messages|length-1].message}}</p>
     </span>
     {% if chat.messages[chat.messages|length-1].sender_id == user.username %}
-      <span class="bg-orange-500 rounded-md text-light-50 text-sm px-2 py-1">
+      <span class="bg-accent-500 rounded-md text-light-50 text-sm px-2 py-1">
         Your Move
       </span>
     {% endif %}
@@ -18,7 +18,7 @@
   {% if message.sender_id == active_user.username %}
   <div class="ml-auto w-fit">
     <span class="flex flex-row items-start gap-2">
-    <p class="bg-orange-500 text-light-50 p-2 rounded-md max-w-64">
+    <p class="bg-accent-500 text-light-50 p-2 rounded-md max-w-64">
     {{message.message}}
     </p>
     </span>

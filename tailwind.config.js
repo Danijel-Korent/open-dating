@@ -11,7 +11,7 @@ module.exports = {
         'sans': ['Raleway', 'sans-serif']
       },
       colors: {
-        'orange': {
+        'accent': {
           '50': '#fff6ed',
           '100': '#ffebd4',
           '200': '#ffd3a8',
