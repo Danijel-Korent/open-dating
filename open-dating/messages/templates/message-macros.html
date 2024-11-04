@@ -35,7 +35,7 @@
 {% endmacro %}
 
 {% macro message_box(user, active_user) %}
-<div x-data="messageBox" class="mx-4 my-2 rounded-lg shadow-md w-full md:w-4/5 h-16 mx-auto bg-white overflow-clip">
+<div x-data="messageBox" class="mx-4 my-2 rounded-lg shadow-md overflow-clip">
   <form @submit.prevent="sendMessage" id="messageboxform" class="flex flex-row gap-2 w-full h-full">
     <input x-model="message" @keydown.enter="sendMessage" name="message" id="message" class="resize-none grow py-2 px-4 focus:outline-none" type="text" placeholder="Send a message">
     <button type="submit" class="p-4 bg-orange-500 text-light-50"><i data-feather="send"></i></button>

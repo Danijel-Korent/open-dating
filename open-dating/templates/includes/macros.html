@@ -41,5 +41,53 @@
 </div>
 {% endmacro %}
 
+{% macro profile(user, close_button=False) %}
+<div class="flex h-full w-full flex-col rounded-3xl overflow-y-scroll text-white">
+  <div class="relative flex flex-col h-full w-full bg-gradient-to-t from-light-950/60 to-60% shadow-md">
+    <img class="absolute flex flex-col h-full w-full -z-10 object-cover" src="{{get_image_path(user.username, user.pictures[0])}}"/>
+    <div class="p-4 mt-auto">
+      <span class="flex flex-row items-center gap-4">
+        <h2 class="font-bold text-3xl">{{user['name']}}</h2>
+        <p class="text-xl">{{user['age']}}</p>
+      </span>
+      <p>{{user['location']}}</p>
+    </div>
+  </div>
+  <div class="min-h-fit max-h-72 px-4 py-4 overflow-y-scroll bg-light-50 text-light-950">
+    {% call profile_section("Bio", False) %}
+    <p>
+      Lorem ipsum odor amet, consectetuer adipiscing elit. Primis ornare sagittis commodo lacus torquent. Nibh nullam ex purus accumsan cubilia laoreet nisl. 
+    </p>
+
+    {% endcall %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro profile_section(title, has_divider=True) %}
+<div>
+  <h3 class="text-2xl font-semibold mb-1">{{title}}</h3>
+  {{caller()}}
+  {% if has_divider == True %}
+  <hr class="my-4 border-light-300">
+  {% endif %}
+</div>
+{% endmacro %}
+
+{% macro profile_buttons() %}
+<div class="flex mb-4 px-4 flex-row items-center gap-4 font-bold text-white ">
+  <button class="py-4 bg-red-500 hover:bg-red-600 flex flex-row items-center justify-center gap-1 rounded-lg w-full">
+    <i data-feather="x-circle" class="h-6 w-6"/></i>
+    <p class="w-fit">Nope</p>
+  </button>
+  <button class="py-4 bg-green-500 hover:bg-green-600 flex flex-row items-center rounded-lg w-full justify-center gap-1 ">
+    <i data-feather="heart" class="h-6 w-6"/></i>
+    <p>Like</p>
+  </button>
+</div>
+{% endmacro %}
+
+
+
 
 
