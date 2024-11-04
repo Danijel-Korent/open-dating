@@ -41,11 +41,16 @@
 </div>
 {% endmacro %}
 
-{% macro profile(user, close_button=False) %}
+{% macro profile(user, featherIcon=None, click="") %}
 <div class="flex h-full w-full flex-col rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
   <div class="relative flex z-10 flex-col h-full w-full  shadow-md">
     <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
     <img class="absolute flex -z-10 flex-col h-full w-full object-cover " src="{{get_image_path(user.username, user.pictures[0])}}"/>
+    {% if featherIcon %}
+    <button @click="{{click}}" class="ml-auto z-10 m-4 p-2 rounded-full bg-accent-500">
+    <i class="w-4 h-4" data-feather={{featherIcon}}></i>
+    {% endif %}
+    </button>
     <div class="p-4 mt-auto z-10">
       <span class="flex flex-row items-center gap-4">
         <h2 class="font-bold text-3xl">{{user['name']}}</h2>

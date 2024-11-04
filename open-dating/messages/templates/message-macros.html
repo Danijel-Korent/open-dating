@@ -26,7 +26,7 @@
   {% else %}
   <div class="w-fit">
     <span class="flex flex-row items-start gap-2">
-    <p class="bg-neutral-800 p-2 rounded-md max-w-64">
+    <p class="bg-neutral-50 dark:bg-neutral-800 p-2 rounded-md max-w-64">
     {{message.message}}
     </p>
     </span>
@@ -37,7 +37,7 @@
 {% macro message_box(user, active_user) %}
 <div x-data="messageBox" class="mx-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg shadow-md overflow-clip">
   <form @submit.prevent="sendMessage" id="messageboxform" class="flex flex-row gap-2 w-full h-full">
-    <input x-model="message" @keydown.enter="sendMessage" name="message" id="message" class="resize-none bg-neutral-50 dark:bg-neutral-800 grow py-2 px-4 focus:outline-none" type="text" placeholder="Send a message">
+    <input x-model="message" @keydown.enter="sendMessage" name="message" id="message" class="resize-none bg-neutral-50 dark:bg-neutral-800 placeholder:text-neutral-400 grow py-2 px-4 focus:outline-none" type="text" placeholder="Send a message">
     <button type="submit" class="p-4 bg-accent-500 text-neutral-50"><i data-feather="send"></i></button>
   </form>
 </div>

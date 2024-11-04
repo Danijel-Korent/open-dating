@@ -3,14 +3,12 @@
 
 <div class="bg-neutral-50 dark:bg-neutral-800 h-fit md:h-screen w-full md:w-80 static p-4 md:p-8 flex flex-col">
   <div class="w-full hidden md:block">
-    <span class="flex flex-row items-center">
-      <h1 class="font-light text-3xl">Dating App</h1>
-    </span>
+    <h1 class="font-light text-3xl mb-2">Dating App</h1>
     <hr class="border"/>
-    <span class="flex flex-row items-center justify-between py-4 gap-8 max-w-full overflow-wrap">
+    <span class="flex flex-row items-center justify-between py-4 gap-4 max-w-full overflow-wrap">
       <span class="flex flex-row items-center gap-1">
         <a href="{{url_for('dating.profile')}}" >
-          <img class="rounded-full h-6 w-6" src="{{get_image_path(active_user.username, active_user.pictures[0])}}"/>
+          <img class="rounded-full h-8 w-8 object-cover" src="{{get_image_path(active_user.username, active_user.pictures[0])}}"/>
         </a>
         {% include "_user_switch.html" %}
       </span>
