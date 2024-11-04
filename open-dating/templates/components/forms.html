@@ -2,13 +2,12 @@
 
 {% endmacro %}
 
-{% macro checkbox(label, name) %}
+{% macro checkbox(label, name, checked=False) %}
 <div class="inline-flex items-center">
   <label class="flex items-center cursor-pointer relative" for="{{name}}">
-    <input type="checkbox"
-      checked
+    <input type="checkbox" {{'checked=checked' if checked else ''}} 
       class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-accent-300 checked:bg-accent-500 checked:border-accent-500"
-      id="{{name}}" />
+      id="{{name}}" >
     <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <i class="p-1" data-feather="check"></i> 
     </span>
@@ -19,10 +18,14 @@
 </div>
 {% endmacro %}
 
-{% macro range_input(min, max, default_min, default_max, name, label) %}
-<div x-data="min-value: 18, max-value:99">
-  <input class="hidden" min={{min}} max={{max}} type="range" x-model="age"></input>
-  <input class="hidden" min={{min}} max={{max}} type="range" x-model="age"></input>
+{% macro range_input(min, max, name, label, suffix="", default=None) %}
+<div x-data="{ {{name}}Value: 50}">
+  <label class="text-sm text-light-600 "for={{name}}>Show me people up to <span class="font-bold "x-text="{{name}}Value"></span><span class="font-bold">km </span>away.</label>
+  <input class="w-full bg-accent-500 accent-accent-500 rounded-lg border-transparent appearance-none h-1 " x-model="{{name}}Value" name="{{name}}" min={{min}} max={{max}} type="range" value={{default or min}}></input>
+  <span class="w-full flex flex-row items-center justify-between ">
+    <p class="text-xs text-light-600">{{min ~ suffix}}</p>
+    <p class="text-xs text-light-600">{{max ~ suffix}}</p>
+  </span>
 </div>
 {% endmacro %}
 
