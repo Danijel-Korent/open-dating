@@ -8,7 +8,6 @@
 
         <p>{{user.name}}</p>
     </div>
-</div>
 <div id="messageDisplay" class="flex flex-col grow gap-4 p-8 overflow-scroll">
 {% for message in chat.messages %}
         {{message_display(message, active_user)}}

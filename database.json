@@ -9,7 +9,7 @@
             "bio": "Love hiking and outdoor adventures.",
             "likes": [],
             "pictures": [
-                "/static/images/avatar2.png",
+                "image1.jpg",
                 "/static/images/avatar.png"
             ],
             "preferences": {
@@ -49,7 +49,7 @@
             "bio": "Musician and foodie. Always looking for the next great dish.",
             "likes": [],
             "pictures": [
-                "/static/images/avatar2.png",
+                "image1.jpg",
                 "/static/images/avatar.png"
             ],
             "preferences": {
@@ -69,7 +69,7 @@
             "bio": "Fitness enthusiast and amateur photographer.",
             "likes": [],
             "pictures": [
-                "/static/images/avatar2.png",
+                "image1.jpg",
                 "/static/images/avatar.png"
             ],
             "preferences": {
@@ -89,7 +89,7 @@
             "bio": "Tech geek and movie buff. Always up for a sci-fi film.",
             "likes": [],
             "pictures": [
-                "/static/images/avatar2.png",
+                "image1.jpg",
                 "/static/images/avatar.png"
             ],
             "preferences": {
@@ -109,7 +109,7 @@
             "bio": "Nature lover and painter. Find me in a gallery or a forest.",
             "likes": [],
             "pictures": [
-                "/static/images/avatar2.png",
+                "image1.jpg",
                 "/static/images/avatar.png"
             ],
             "preferences": {
@@ -121,7 +121,7 @@
             "seen_users": []
         }
     ],
-    "current_username": "jane_smith",
+    "current_username": "john_doe",
     "matches": [
         {
             "user1": "john_doe",
@@ -217,6 +217,12 @@
                     "receiver_id": "john_doe",
                     "timestamp": "",
                     "message": "Good luck finding someone."
+                },
+                {
+                    "sender_id": "jane_smith",
+                    "receiver_id": "john_doe",
+                    "timestamp": "",
+                    "message": "You are a weirdo."
                 }
             ]
         },
