@@ -22,6 +22,9 @@ def configure_api_and_processors(app, db: DB):
             db.load()
             return {}, 200 
 
+    @app.context_processor
+    def inject_get_image_path():
+        return dict(get_image_path=db.get_image_path) 
     
 
     @app.context_processor

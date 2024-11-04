@@ -4,8 +4,10 @@
 {% block content %}
 <div class="flex flex-col h-full">
 <div class="flex flex-row items-center bg-white w-full p-4 gap-2">
-    <div class="w-8 h-8 block bg-light-100 rounded-full"></div>
+        <img src="{{get_image_path(user.username, user.pictures[0])}}" class="w-8 h-8 block bg-light-100 rounded-full"/>
+
         <p>{{user.name}}</p>
+    </div>
 </div>
 <div id="messageDisplay" class="flex flex-col grow gap-4 p-8 overflow-scroll">
 {% for message in chat.messages %}

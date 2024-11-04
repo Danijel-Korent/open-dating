@@ -29,8 +29,8 @@
             "bio": "Avid reader and coffee enthusiast.",
             "likes": [],
             "pictures": [
-                "/static/images/avatar2.png",
-                "/static/images/avatar.png"
+                "image1.jpg",
+                "image2.png"
             ],
             "preferences": {
                 "gender": "male",

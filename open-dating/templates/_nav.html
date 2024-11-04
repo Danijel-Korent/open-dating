@@ -9,7 +9,7 @@
     <hr class="border"/>
     <span class="flex flex-row items-center justify-between py-4 gap-8 max-w-full overflow-wrap">
       <span class="flex flex-row items-center gap-1">
-        <div class="bg-light-300 rounded-full h-6 w-6"></div>
+        <a href={{url_for("dating.profile")}} class="bg-light-300 rounded-full h-6 w-6"></a>
         {% include "_user_switch.html" %}
       </span>
       {{preferences()}}

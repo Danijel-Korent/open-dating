@@ -1,0 +1,7 @@
+{% import "dating-macros.html" as macros %}
+{% extends 'base.html' %}
+
+
+{% block content %}
+{{macros.profile(current_user)}}
+{% endblock %}

@@ -13,4 +13,8 @@ def register_routes(db: DB):
     def matches():
         return render_template("matches.html", matches=db.get_match_users(), title="Matches") 
 
+    @dating_bp.route("/profile")
+    def profile():
+        return render_template("profile.html", title="Profile", current_user=db.get_current_user())
+
 

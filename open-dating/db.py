@@ -216,7 +216,11 @@ class DB:
                     return True
 
         return False
-
+    
+    def get_image_path(self, user: str, image_name: str):
+        user_obj = self.get_user_by_username(user)
+        pictures = user_obj.pictures
+        return os.path.join("/static/images/", user_obj.username, image_name)
 
 
 
