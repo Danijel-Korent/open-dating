@@ -9,10 +9,10 @@
     role="dialog"
     x-show="modalOpen"
     @click.away="modalOpen = false"
-    class="flex items-center justify-center fixed z-10 w-full h-full top-0 left-0 bg-light-950/30"
+    class="flex items-center justify-center fixed z-20 w-full h-full top-0 left-0 bg-neutral-950/30"
     style="display: none;"
   >
-    <div class="bg-light-50 p-8 rounded-md w-full m-8 md:w-96 md:m-0">
+    <div class="bg-neutral-50 p-8 rounded-md w-full m-8 md:w-96 md:m-0">
       <span class="flex flex-row items-center justify-between">
         <h1 class="text-2xl font-bold mb-2">Preferences</h1>
         <button @click="modalOpen=false">
@@ -42,10 +42,11 @@
 {% endmacro %}
 
 {% macro profile(user, close_button=False) %}
-<div class="flex h-full w-full flex-col rounded-3xl overflow-y-scroll text-white">
-  <div class="relative flex flex-col h-full w-full bg-gradient-to-t from-light-950/60 to-60% shadow-md">
-    <img class="absolute flex flex-col h-full w-full -z-10 object-cover" src="{{get_image_path(user.username, user.pictures[0])}}"/>
-    <div class="p-4 mt-auto">
+<div class="flex h-full w-full flex-col rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
+  <div class="relative flex z-10 flex-col h-full w-full  shadow-md">
+    <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
+    <img class="absolute flex -z-10 flex-col h-full w-full object-cover " src="{{get_image_path(user.username, user.pictures[0])}}"/>
+    <div class="p-4 mt-auto z-10">
       <span class="flex flex-row items-center gap-4">
         <h2 class="font-bold text-3xl">{{user['name']}}</h2>
         <p class="text-xl">{{user['age']}}</p>
@@ -53,7 +54,7 @@
       <p>{{user['location']}}</p>
     </div>
   </div>
-  <div class="min-h-fit max-h-72 px-4 py-4 overflow-y-scroll bg-light-50 text-light-950">
+  <div class="min-h-fit max-h-72 px-4 py-4 overflow-y-scroll bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-100">
     {% call profile_section("Bio", False) %}
     <p>
       Lorem ipsum odor amet, consectetuer adipiscing elit. Primis ornare sagittis commodo lacus torquent. Nibh nullam ex purus accumsan cubilia laoreet nisl. 
@@ -65,7 +66,7 @@
 {% endmacro %}
 
 {% macro profile_section(title, has_divider=True) %}
-<div>
+<div class="text-neutral-900 dark:text-neutral-100 ">
   <h3 class="text-2xl font-semibold mb-1">{{title}}</h3>
   {{caller()}}
   {% if has_divider == True %}

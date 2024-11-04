@@ -3,8 +3,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div x-data="{modalOpen: true}" class="relative grow flex flex-col h-full">
-    <button @click="modalOpen=!modalOpen" class="flex flex-row items-center bg-white w-full p-4 gap-2">
+<div x-data="{modalOpen: false}" class="relative grow flex flex-col h-full">
+    <button @click="modalOpen=!modalOpen" class="flex flex-row items-center bg-neutral-50 dark:bg-neutral-800 w-full p-4 gap-2">
         <img src="{{get_image_path(user.username, user.pictures[0])}}" class="w-8 h-8 block bg-light-100 rounded-full"/>
 
         <p>{{user.name}}</p>
@@ -20,7 +20,7 @@
     </div>
 
     </div>
-    <span x-show="!modalOpen" class="w-full md:w-4/5 h-16 mx-auto">
+    <span x-show="!modalOpen" class="w-full md:w-4/5 mb-8 mx-auto">
     {{message_box(user, active_user)}}
     </span>
     

@@ -1,7 +1,7 @@
-{% import "dating-macros.html" as macros with context %}
+{% import "includes/macros.html" as macros with context %}
 {% extends 'base.html' %}
 
 
 {% block content %}
-{{macros.new_profile(current_user)}}
+{{macros.profile(current_user)}}
 {% endblock %}
