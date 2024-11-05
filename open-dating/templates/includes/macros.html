@@ -41,13 +41,20 @@
 </div>
 {% endmacro %}
 
-{% macro profile(user, featherIcon=None, click="") %}
-<div class="flex h-full w-full flex-col rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
-  <div class="relative flex z-10 flex-col h-full w-full  shadow-md">
+{% macro no_profiles() %}
+<div class="flex h-full w-full flex-col items-center justify-center md:rounded-3xl overflow-y-scroll bg-neutral-50 ">
+  <h2 class="text-3xl font-bold text-accent-500 mb-2">You've seen everyone!</h2>
+  <p class="text-sm font-semibold">Why not adjust your filters?</p>
+</div>
+{% endmacro %}
+
+{% macro profile(user, featherIcon=None, buttonClick="") %}
+<div class="flex h-full w-full flex-col md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
+  <div class="relative flex z-10 flex-col h-full w-full shadow-md">
     <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
     <img class="absolute flex -z-10 flex-col h-full w-full object-cover " src="{{get_image_path(user.username, user.pictures[0])}}"/>
     {% if featherIcon %}
-    <button @click="{{click}}" class="ml-auto z-10 m-4 p-2 rounded-full bg-accent-500">
+    <button @click="{{buttonClick}}"  class="ml-auto z-10 m-4 p-2 rounded-full bg-accent-500">
     <i class="w-4 h-4" data-feather={{featherIcon}}></i>
     {% endif %}
     </button>
@@ -68,6 +75,30 @@
     {% endcall %}
   </div>
 </div>
+{% endmacro %}
+
+{% macro edit_profile(user, closeButton="") %}
+<form class="flex flex-col bg-neutral-50 p-4 rounded-lg shadow-md">
+  <span class="w-full flex flex-row items-center justify-between">
+  <h2 class="text-3xl font-bold">Edit Profile</h2>
+  <button class="p-2 w-fit bg-accent-500 text-neutral-50 rounded-full" @click={{closeButton}}>
+    <i class="w-4 h-4" data-feather="x"></i>
+  </button>
+  </span>
+
+  <h3 class="text-2xl font-semibold mb-2 mt-4">Images</h3>
+  <div class="grid grid-cols-3 gap-8">
+    {% for img in user['pictures']  %}
+    <img class="w-48 h-48 object-cover rounded-md" src="{{get_image_path(user.username, img)}}">
+    {% endfor %}
+    {% for i in range(6-user['pictures']|length) %}
+    <div class="w-48 h-48 rounded-md bg-neutral-100 flex items-center justify-center"><i class="w-8 h-8" data-feather="plus-circle"></i></div>
+    {% endfor %}
+  </div>
+
+  <h3 class="text-2xl font-semibold mb-2 mt-4">Bio</h3>
+  <p contenteditable>{{user['bio']}}</p>
+</form>
 {% endmacro %}
 
 {% macro profile_section(title, has_divider=True) %}
