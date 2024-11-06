@@ -9,7 +9,7 @@
 {% endmacro %}
 
 {% macro like(user) %}
-<a class="relative flex flex-col text-neutral-50 z-10 h-64 w-full max-w-96 md:h-[200px] md:w-[150px] rounded-md overflow-clip bg-gradient-to-t from-black/30 to-40% shadow-md" href={{url_for('messages.chat', user=user.username)}} >
+<a class="relative flex flex-col text-neutral-50 z-10 h-64 w-full max-w-96 md:h-[200px] md:w-[150px] rounded-md overflow-clip bg-gradient-to-t from-black/30 to-40% shadow-md" href={{url_for('dating.user', user=user.username)}} >
    <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
   <img src="{{get_image_path(user.username, user.pictures[0])}}" class="absolute h-full w-full object-cover -z-10 top-0 left-0"/>
     <p class="mt-auto z-10 p-2">

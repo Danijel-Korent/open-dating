@@ -12,6 +12,11 @@ def register_routes(db: DB):
         user = db.get_recommended_user()
         return render_template("index.html", user=user, title="Profiles") 
 
+    @dating_bp.route("/<user>")
+    def user(user):
+        user = db.get_user_by_username(user)
+        return render_template("user.html", user=user, title=user.name)
+
     @dating_bp.route("/<user>/react", methods=["POST"])
     def react_user(user):
         data = request.get_json()
