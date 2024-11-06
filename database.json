@@ -78,10 +78,7 @@
                 "age_min": 27,
                 "distance_meters": 50
             },
-            "seen_users": [
-                "john_doe",
-                "michael_brown"
-            ]
+            "seen_users": []
         },
         {
             "username": "michael_brown",
@@ -124,7 +121,7 @@
             "seen_users": []
         }
     ],
-    "current_username": "michael_brown",
+    "current_username": "john_doe",
     "matches": [
         {
             "user1": "john_doe",
