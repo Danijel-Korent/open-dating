@@ -13,6 +13,8 @@
     <script>
     $SCRIPT_ROOT = {{ request.script_root|tojson }};
     </script>
+    {% block head %}
+    {% endblock head %}
     <style>
         @font-face {
                 font-family: "Raleway";
