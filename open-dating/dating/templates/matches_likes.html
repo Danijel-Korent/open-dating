@@ -10,19 +10,27 @@
 
 {% block content %}
     <div class="p-8">
-    {% call components.details("Matches", matches|length) %}
-        <div class="flex flex-row w-full flex-wrap w-fit gap-8 ">
+    {% if matches|length > 0 %}
+    {% call components.details("Matches", matches|length, "true") %}
+        <div class="flex flex-row w-full flex-wrap w-fit gap-8 max-h-96 overflow-y-scroll ">
             {% for curr_match in matches %}
                 {{macros.match(curr_match)}}
             {% endfor %}
         </div>
     {% endcall %}
+    {% endif %}
     {% call components.details("Likes", likes|length) %}
-        <div class="flex flex-row w-full flex-wrap w-fit gap-8 ">
+        {% if likes|length > 0 %}
+        <div class="flex flex-row w-full flex-wrap w-fit gap-8 max-h-96 overflow-y-scroll ">
             {% for like in likes %}
                 {{macros.like(like)}}
             {% endfor %}
         </div>
+        {% else %}
+        <div>
+            <h3 class="text-2xl font-semibold">No likes yet</h3>
+        </div>
+        {% endif %}
     {% endcall %}
     </div>
 

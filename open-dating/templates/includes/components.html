@@ -1,12 +1,10 @@
-{% macro details(title, num=None) %}
-<details x-data="{isOpen: false}" :open="isOpen" @click.outside="isOpen = false" class="group open:mb-8">
+{% macro details(title, num=0, defaultOpen="false") %}
+<details x-data="{isOpen: {{defaultOpen}}}" :open="isOpen"  class="group open:mb-8">
   <summary @click.prevent="isOpen = !isOpen" class="cursor-pointer list-none">
     <span class="flex flex-row items-center gap-2">
       <i class="group-open:rotate-90 transition-all duration-100" data-feather="chevron-right"></i>
       <h2 class="text-3xl font-bold inline-block">{{title}}</h2>
-      {% if num %}
       <p class="text-sm font-semibold px-2 rounded-full text-neutral-50 bg-accent-500">{{num}}</p>
-      {% endif %}
     </span>
     <hr class="border-t border-t-neutral-300 mt-2 mb-4">
   </summary>
@@ -23,3 +21,4 @@
   </div>
 </details>
 {% endmacro %}
+
