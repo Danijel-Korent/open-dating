@@ -7,7 +7,7 @@
 <div x-show="!editingProfile" class="h-full w-full md:w-[450px] grow md:max-h-[750px] md:shadow-md">
 {{macros.profile(current_user, "edit-2", "editingProfile = true")}}
 </div>
-<div x-show="editingProfile" style="display: none;">
+<div x-show="editingProfile" class="h-full overflow-y-scroll" style="display: none;">
 {{macros.edit_profile(current_user, "editingProfile=false")}}
 </div>
 </div>

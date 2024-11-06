@@ -42,3 +42,75 @@
   </div>
 {% endmacro %}
 
+{% macro textarea(name, label, default, max=None) %}
+<div class="w-full relative" x-data="{content: '{{default}}', limit: $refs.{{name}}TextArea.maxLength}">
+  <label class="block mb-1 text-sm text-light-600" for="{{name}}">{{label}}</label>
+  <textarea
+      x-model="content"
+      x-ref="{{name}}TextArea"
+      maxlength="{{max}}"
+      name="{{name}}"
+      id="{{name}}"
+      type="text"
+      value="{{default}}"
+      class="resize-none w-full bg-transparent text-light-900 text-sm border border-light-300 px-4 py-2 h-fit rounded-md transition duration-300 ease focus:outline-none focus:border-accent-500 hover:border-light-400 shadow-sm focus:shadow-md appearance-none "
+    >{{default}}</textarea>
+  {% if max %}
+  <p ><span x-text="limit - content.length"></span> characters remaining</p>
+  {% endif %}
+  </div>
+{% endmacro %}
+
+{% macro text_input(name, label, default) %}
+<div class="w-full relative">
+  <label class="block mb-1 text-sm text-light-600" for="{{name}}">{{label}}</label>
+  <input
+      name="{{name}}"
+      id="{{name}}"
+      type="text"
+      value="{{default}}"
+      class="w-full bg-transparent text-light-900 text-sm border border-light-300 rounded-md px-2 py-2 transition duration-300 ease focus:outline-none focus:border-accent-500 hover:border-light-400 shadow-sm focus:shadow-md appearance-none "
+    />
+  </div>
+{% endmacro %}
+
+{% macro image_dropzone(name) %}
+<div class="flex items-center justify-center w-full">
+  <label for="{{name}}" class="flex flex-col items-center justify-center w-48 h-48 border-2 border-neutral-300 border-dashed rounded-md cursor-pointer bg-neutral-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500 dark:hover:bg-neutral-600">
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <i class="text-neutral-500" data-feather="upload"></i>
+        </div>
+      <input id="{{name}}" x-ref="imageInput" @change="previewFile" type="file" accept=".jpg,.png,.webp" class="hidden" />
+    </label>
+</div> 
+
+{% endmacro %}
+
+{% macro image_replace(name) %}
+<div class="flex flex-col items-center justify-center w-full">
+  <label for="{{name}}" class="relative group flex flex-col items-center justify-center w-48 h-48 rounded-md cursor-pointer">
+    <img class="absolute rounded-md -z-5 w-48 h-48 object-cover" :src="imgsrc">
+        
+        <div class="absolute peer-hover:pointer-events-none flex flex-col hidden justify-center items-center group-hover:flex bg-neutral-950/30 w-full h-full">
+                        <i class="text-neutral-50" data-feather="edit-2"></i>
+        </div>
+      <input x-ref="imageInput" @change="previewFile" id="{{name}}" accept=".jpg,.png,.webp" type="file" class="hidden" />
+    </label>
+</div> 
+{% endmacro %}
+
+{% macro profile_image(name, img=None) %}
+<div x-data="imgPreview('{{img }}')">
+  <p x-html="imgsrc"></p>
+  <template x-if="imgsrc">
+    {{image_replace(name)}}
+  </template>
+  <template x-if="!imgsrc">
+    {{image_dropzone(name)}}
+  </template>
+</div>
+{% endmacro %}
+
+
+
+

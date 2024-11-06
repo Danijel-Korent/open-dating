@@ -4,6 +4,9 @@ import sys
 from typing import Dict
 from dataclasses import dataclass, asdict
 from enum import Enum
+from flask import url_for
+from werkzeug.utils import secure_filename
+    
 
 @dataclass
 class Preferences:
@@ -106,6 +109,14 @@ class DB:
                 )
                 for user in json_dict["users"]
             ]
+        self.likes = [
+            Like(
+                liker=like['liker'],
+                liked=like['liked'],
+                timestamp=""
+            )
+            for like in json_dict['likes']
+        ]
         self.matches = [
             Match(
                 user1=match['user1'],
@@ -160,6 +171,13 @@ class DB:
 
 
         return matches
+
+    def get_like_users(self) -> list[User]:
+        likes: list[User] = []
+        for like in self.likes:
+            if like.liker != self.current_username and like.liked == self.current_username:
+                likes.append(self.get_user_by_username(like.liker))
+        return likes
 
     def get_match_chats(self):
         matches = self.get_match_users()  
@@ -218,9 +236,20 @@ class DB:
         return False
     
     def get_image_path(self, user: str, image_name: str):
+        if image_name == None:
+            return ""
         user_obj = self.get_user_by_username(user)
         pictures = user_obj.pictures
-        return os.path.join("/static/images/", user_obj.username, image_name)
+        return url_for("static", filename=os.path.join("images", user_obj.username, image_name))
+
+    def set_user_image(self, image, index: int):
+        filename = secure_filename(image.filename)
+        path = self.get_image_path(self.current_username, filename)
+        image.save(os.path.join(path, filename))
+        if index > len(self.get_user_by_username(self.current_username).pictures)-1:
+            self.get_user_by_username(self.current_username).pictures.append(filename)
+        else: 
+            self.get_user_by_username(self.current_username).pictures[index] = filename
 
 
 

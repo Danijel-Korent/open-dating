@@ -78,7 +78,7 @@
 {% endmacro %}
 
 {% macro edit_profile(user, closeButton="") %}
-<form class="flex flex-col bg-neutral-50 p-4 rounded-lg shadow-md">
+<div class="flex flex-col bg-neutral-50 p-8 rounded-lg shadow-md">
   <span class="w-full flex flex-row items-center justify-between">
   <h2 class="text-3xl font-bold">Edit Profile</h2>
   <button class="p-2 w-fit bg-accent-500 text-neutral-50 rounded-full" @click={{closeButton}}>
@@ -88,17 +88,16 @@
 
   <h3 class="text-2xl font-semibold mb-2 mt-4">Images</h3>
   <div class="grid grid-cols-3 gap-8">
-    {% for img in user['pictures']  %}
-    <img class="w-48 h-48 object-cover rounded-md" src="{{get_image_path(user.username, img)}}">
-    {% endfor %}
-    {% for i in range(6-user['pictures']|length) %}
-    <div class="w-48 h-48 rounded-md bg-neutral-100 flex items-center justify-center"><i class="w-8 h-8" data-feather="plus-circle"></i></div>
+    {% for i in range(6) %}
+      {{forms.profile_image("profileImage" + i|string, get_image_path(user.username, user['pictures'][i] or None))}}
     {% endfor %}
   </div>
-
-  <h3 class="text-2xl font-semibold mb-2 mt-4">Bio</h3>
-  <p contenteditable>{{user['bio']}}</p>
-</form>
+  <hr class="border-t-neutral-300 my-8"/>
+  <h3 class="text-2xl font-semibold mb-2">Bio</h3>
+  {{ forms.textarea("bio", "", user['bio'], 400)}}
+  <hr class="border-t-neutral-300 my-8"/>
+  <button class="text-sm font-bold px-4 py-2 rounded-md border-accent-500 border-2 w-fit text-accent-500 hover:bg-accent-500 hover:text-neutral-50 transition-all">Save changes</button>
+</div>
 {% endmacro %}
 
 {% macro profile_section(title, has_divider=True) %}

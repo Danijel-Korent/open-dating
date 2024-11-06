@@ -121,7 +121,7 @@
             "seen_users": []
         }
     ],
-    "current_username": "michael_brown",
+    "current_username": "john_doe",
     "matches": [
         {
             "user1": "john_doe",
@@ -134,7 +134,13 @@
             "match_date": "2024-06-28T14:45:00Z"
         }
     ],
-    "likes": [],
+    "likes": [
+        {
+            "liker": "michael_brown",
+            "liked": "sarah_lee",
+            "timestamp": ""
+        }
+    ],
     "chats": [
         {
             "user1": "john_doe",

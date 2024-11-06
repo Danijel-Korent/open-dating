@@ -5,9 +5,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="" rel="stylesheet">
     <script type="text/javascript" src="{{url_for('static', filename='js/feather.min.js')}}"></script>
     <script type="module" src="{{url_for('static', filename='js/index.js')}}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -15,11 +13,27 @@
     <script>
     $SCRIPT_ROOT = {{ request.script_root|tojson }};
     </script>
+    <style>
+        @font-face {
+                font-family: "Raleway";
+                src: url("{{url_for('static', filename='fonts/Raleway-VariableFont_wght.ttf')}}");
+                font-variant-numeric: normal;
+                font-display: swap;
+        }
+
+        @font-face {
+                font-family: "Raleway";
+                src: url("{{url_for('static', filename='fonts/Raleway-Italic-VariableFont_wght.ttf')}}");
+                font-variant-numeric: normal;
+                font-style: italic;
+                font-display: swap;
+        }
+    </style>
 
     
     <title>{{title}} - Dating App</title>
   </head>
-  <body class="h-full w-full flex flex-col bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100 font-sans">
+  <body class="h-full w-full flex flex-col bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100 font-sans tabular-nums">
     <header>
       {% block header %}
       {% endblock header %}

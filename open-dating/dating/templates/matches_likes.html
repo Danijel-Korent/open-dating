@@ -1,0 +1,34 @@
+{% import "dating-macros.html" as macros with context %}
+{% import "includes/components.html" as components with context %}
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Matches 
+{% endblock title%}
+
+
+{% block content %}
+    <div class="p-8">
+    {% call components.details("Matches", matches|length) %}
+        <div class="flex flex-row w-full flex-wrap w-fit gap-8 ">
+            {% for curr_match in matches %}
+                {{macros.match(curr_match)}}
+            {% endfor %}
+        </div>
+    {% endcall %}
+    {% call components.details("Likes", likes|length) %}
+        <div class="flex flex-row w-full flex-wrap w-fit gap-8 ">
+            {% for like in likes %}
+                {{macros.like(like)}}
+            {% endfor %}
+        </div>
+    {% endcall %}
+    </div>
+
+{% endblock content %}
+
+
+
+
+
