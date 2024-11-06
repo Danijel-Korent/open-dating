@@ -1,7 +1,8 @@
 from dataclasses import asdict
 from typing import Any
-from flask import Blueprint, render_template, request
+from flask import Blueprint, Response, jsonify, render_template, request
 from ..db import DB, Like, Match, User
+import json
 
 dating_bp = Blueprint("dating", __name__, template_folder="templates")
 
@@ -20,19 +21,26 @@ def register_routes(db: DB):
                     db.matches.append(Match(user1=db.current_username, user2=user, match_date=""))
                     db.get_user_by_username(db.current_username).seen_users.append(user)
                     db.save()
-                    return {"match": True}, 200
+                    return Response(
+                        response=json.dumps({"match": True}),
+                        status=200,
+                        mimetype='application/json'
+                    ) 
 
 
             db.get_user_by_username(db.current_username).seen_users.append(user)
             db.likes.append(Like(liker=db.current_username, liked=user, timestamp=""))
             db.save()
-            return {"match": False}, 200
+            return jsonify({"match": False}), 200
         if data['type'] == "nope":
             db.get_user_by_username(db.current_username).seen_users.append(user)
             db.save()
-            return {}, 200
+            return Response(
+                        response=json.dumps({"match": False}),
+                        status=200,
+                        mimetype='application/json'
+                    )
         return {}, 400
-
 
     @dating_bp.route("/likes")
     def likes():
