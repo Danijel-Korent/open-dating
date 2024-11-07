@@ -48,6 +48,24 @@
 </div>
 {% endmacro %}
 
+{% macro profile_section(title, has_divider=True, image=None, height="auto") %}
+<div class="text-neutral-900 dark:text-neutral-100 my-4">
+  {% if image %} 
+  <div class="h-{{height}} w-full mb-4">
+    <img class="w-full h-full object-cover" src="{{image}}">
+  </div>
+  {% endif %}
+  <div class="px-4 py-2">
+  <h3 class="text-2xl font-semibold mb-1">{{title}}</h3>
+  {{caller()}}
+    </div>
+</div>
+{% if has_divider == True %}
+  <hr class="my-1 border-light-300">
+{% endif %}
+{% endmacro %}
+
+
 {% macro profile(user, featherIcon=None, buttonClick="", hasButtons=False) %}
 <div x-ref="profileWrapper" x-data="userProfile" x-init="initHeight" class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
   <div :style="`height: ${profileHeight}px`" class="relative flex z-10 flex-col w-full shadow-md">
@@ -66,13 +84,16 @@
       <p>{{user['location']}}</p>
     </div>
   </div>
-  <div class="px-4 py-4 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-100">
+  <div class="bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-100">
     {% call profile_section("Bio", False) %}
     <p>
       {{user['bio']}}
     </p>
-
     {% endcall %}
+    {% call profile_section("Interests", False, get_image_path(user.username, user.pictures[1]), "72") %}
+      {{interests()}}
+    {% endcall %}
+
   </div>
   {% if hasButtons %}
     <div 
@@ -140,6 +161,14 @@ document.addEventListener('alpine:init', () => {
 </script>
 {% endmacro %}
 
+{% macro interests() %}
+<div class="flex flex-row flex-wrap gap-2">
+{% for interest in ["Rock climbing", "Gym", "Nightlife", "Surfing", "Writing"] %}
+<p class="text-neutral-900 px-4 py-2 text-sm bg-neutral-100 rounded-full">{{interest}}</p>
+{% endfor %}
+</div>
+{% endmacro %}
+
 {% macro edit_profile(user, closeButton="") %}
 <div class="flex flex-col bg-neutral-50 p-8 rounded-lg shadow-md">
   <span class="w-full flex flex-row items-center justify-between">
@@ -163,15 +192,6 @@ document.addEventListener('alpine:init', () => {
 </div>
 {% endmacro %}
 
-{% macro profile_section(title, has_divider=True) %}
-<div class="text-neutral-900 dark:text-neutral-100 ">
-  <h3 class="text-2xl font-semibold mb-1">{{title}}</h3>
-  {{caller()}}
-  {% if has_divider == True %}
-  <hr class="my-4 border-light-300">
-  {% endif %}
-</div>
-{% endmacro %}
 
 {% macro profile_buttons(user, request_url="") %}
 <div 

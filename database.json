@@ -70,7 +70,7 @@
             "likes": [],
             "pictures": [
                 "image1.jpg",
-                "/static/images/avatar.png"
+                "image2.jpg"
             ],
             "preferences": {
                 "gender": "male",
