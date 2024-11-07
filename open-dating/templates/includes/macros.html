@@ -49,8 +49,8 @@
 {% endmacro %}
 
 {% macro profile(user, featherIcon=None, buttonClick="", hasButtons=False) %}
-<div x-data="userProfile" class="flex h-full w-full flex-col md:rounded-3xl overflow-clip bg-neutral-50 text-neutral-50">
-  <div class="relative flex z-10 flex-col h-full w-full shadow-md">
+<div x-ref="profileWrapper" x-data="userProfile" x-init="initHeight" class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
+  <div :style="`height: ${profileHeight}px`" class="relative flex z-10 flex-col w-full shadow-md">
     <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
     <img class="absolute flex -z-10 flex-col h-full w-full object-cover " src="{{get_image_path(user.username, user.pictures[0])}}"/>
     {% if featherIcon %}
@@ -66,7 +66,7 @@
       <p>{{user['location']}}</p>
     </div>
   </div>
-  <div class="max-h-72 h-fit overflow-y-scroll px-4 py-4 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-100">
+  <div class="px-4 py-4 bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-100">
     {% call profile_section("Bio", False) %}
     <p>
       {{user['bio']}}
@@ -88,21 +88,71 @@
 </div>
   {% endif %}
 </div>
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('userProfile', (user_react) => ({
+    hasButtons: false,
+    matchPopup: false,
+    profileHeight: 0,
+
+    initHeight() {
+      this.profileHeight = this.$refs.profileWrapper.getBoundingClientRect().height;
+
+      window.addEventListener('resize', () => {
+        this.profileHeight = this.$refs.profileWrapper.getBoundingClientRect().height;
+      });
+    },
+    async like() {
+      let res = await fetch(user_react, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ type: 'like' })
+      })
+
+      let data = await res.json();
+      if (data.match) {
+        this.matchPopup = true
+      }
+    },
+
+    async nope() {
+      let res = await fetch('{{url_for('dating.react_user', user=user.username)}}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          type: 'nope'
+        })
+      })
+
+      window.location.reload();
+    }
+
+
+
+
+  }));
+})
+</script>
 {% endmacro %}
 
 {% macro edit_profile(user, closeButton="") %}
 <div class="flex flex-col bg-neutral-50 p-8 rounded-lg shadow-md">
   <span class="w-full flex flex-row items-center justify-between">
-  <h2 class="text-3xl font-bold">Edit Profile</h2>
-  <button class="p-2 w-fit bg-accent-500 text-neutral-50 rounded-full" @click={{closeButton}}>
-    <i class="w-4 h-4" data-feather="x"></i>
-  </button>
+    <h2 class="text-3xl font-bold">Edit Profile</h2>
+    <button class="p-2 w-fit bg-accent-500 text-neutral-50 rounded-full" @click={{closeButton}}>
+      <i class="w-4 h-4" data-feather="x"></i>
+    </button>
   </span>
 
   <h3 class="text-2xl font-semibold mb-2 mt-4">Images</h3>
   <div class="grid grid-cols-3 gap-8">
     {% for i in range(6) %}
-      {{forms.profile_image("profileImage" + i|string, get_image_path(user.username, user['pictures'][i] or None))}}
+    {{forms.profile_image("profileImage" + i|string, get_image_path(user.username, user['pictures'][i] or None))}}
     {% endfor %}
   </div>
   <hr class="border-t-neutral-300 my-8"/>
