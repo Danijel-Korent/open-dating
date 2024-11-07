@@ -65,6 +65,24 @@
 {% endif %}
 {% endmacro %}
 
+{% macro profile_facts(user) %}
+<div class="px-4 py-2">
+    <ul class="flex flex-col  space-y-2 bg-neutral-100 text-neutral-900 p-2 rounded-md divide-y">
+  <li class="flex flex-row items-center gap-1 font-semibold">
+    <i class="w-4 h-4" data-feather="user"></i>
+      <p>{{user["gender"]}}</p>
+  </li>
+<li class="flex flex-row items-center gap-1 font-semibold">
+    <i class="w-4 h-4" data-feather="map-pin"></i>
+      <p>{{user["location"]}}</p>
+  </li>
+
+
+
+  </ul>
+</div>
+{% endmacro %}
+
 
 {% macro profile(user, featherIcon=None, buttonClick="", hasButtons=False) %}
 <div x-ref="profileWrapper" x-data="userProfile" x-init="initHeight" class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
@@ -152,10 +170,6 @@ document.addEventListener('alpine:init', () => {
 
       window.location.reload();
     }
-
-
-
-
   }));
 })
 </script>
