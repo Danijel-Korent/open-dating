@@ -29,8 +29,5 @@ socket.on('connect', function() {
 })
 
 
-feather.replace()
-/* document.addEventListener("DOMContentLoaded", function() {
-	console.log(feather)
-	feather.replace();
-}); */
+feather.replace({ "stroke-width": 2.5 });
+

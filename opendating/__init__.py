@@ -6,6 +6,7 @@ from dotenv import load_dotenv, set_key
 import click
 import logging
 from flask_socketio import SocketIO
+from flask_compress import Compress
 import uuid
 
 from .db import DB 
@@ -19,6 +20,7 @@ load_dotenv()
 logging.basicConfig(level=logging.DEBUG)
 
 socketio = SocketIO()
+compress = Compress()
 
 def create_app():
     app = Flask(__name__)
@@ -39,6 +41,7 @@ def create_app():
     configure_api_and_processors(app, database)
 
     socketio.init_app(app)
+    compress.init_app(app)
     
     return app
 
