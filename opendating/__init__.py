@@ -27,7 +27,7 @@ def create_app():
    
     dating.routes.register_routes(database)
     app.register_blueprint(dating.routes.dating_bp)
-    messages.routes.register_routes(database)
+    messages.routes.register_routes(database, socketio)
     app.register_blueprint(messages.routes.messages_bp, url_prefix="/messages")
 
 

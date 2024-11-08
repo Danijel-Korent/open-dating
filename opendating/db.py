@@ -194,13 +194,15 @@ class DB:
         return chats
 
     def get_chat(self, with_username: str) -> Chat | None:
+        return self.get_chat_between(self.current_username, with_username) 
+
+    def get_chat_between(self, user1: str, user2: str) -> Chat | None:
         for chat in self.chats:
-               if chat.user1 == with_username and chat.user2 == self.current_username:
+            if chat.user1 == user1 and chat.user2 == user2:
                     return chat
-               if chat.user1 == self.current_username and chat.user2 == with_username:
+            if chat.user1 == user2 and chat.user2 == user1:
                     return chat
 
-        return None
 
     def get_recommended_user(self):
         for user in self.users:

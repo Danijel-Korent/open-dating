@@ -1,4 +1,3 @@
-import Alpine from 'alpine'
 
 document.addEventListener('alpine:init', () => {
 	Alpine.data('imgPreview', (initialImg) => ({
@@ -16,4 +15,11 @@ document.addEventListener('alpine:init', () => {
 			reader.readAsDataURL(file)
 		}
 	}))
+})
+
+
+var socket = io()
+socket.on('connect', function() {
+	socket.emit('connectedEvent', { data: "Connection established" })
+	console.log("Connection established")
 })

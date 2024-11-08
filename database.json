@@ -239,6 +239,12 @@
                     "receiver_id": "john_doe",
                     "timestamp": "",
                     "message": "You are a weirdo."
+                },
+                {
+                    "sender_id": "jane_smith",
+                    "receiver_id": "john_doe",
+                    "timestamp": "",
+                    "message": "test"
                 }
             ]
         },

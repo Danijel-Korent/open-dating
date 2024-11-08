@@ -35,6 +35,10 @@
     </span>
     
 </div>
-
+<script>
+    socket.on("messagereceived", () => {
+        window.location.reload()
+    })
+</script>
 {% endblock %}
 
