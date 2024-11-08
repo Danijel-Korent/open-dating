@@ -1,6 +1,10 @@
 {% from "message-macros.html" import chat_display with context %}
-
+{% from "includes/navigation.html" import mobile_header %}
 {% extends 'base.html' %}
+
+{% block mobile_header %}
+    {{mobile_header()}}
+    {% endblock %}
 
 {% block content %}
 {% if chats|length > 0 %}

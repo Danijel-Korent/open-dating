@@ -1,5 +1,6 @@
 {% from "includes/macros.html" import profile,profile_buttons,no_profiles with context %}
 {% from "dating-macros.html" import match_popup with context %}
+{% from "includes/navigation.html" import mobile_header with context %}
 
 {% extends 'base.html' %}
 
@@ -10,6 +11,10 @@
 {% block header %}
 
 {% endblock header %}
+
+{% block mobile_header %}
+  {{mobile_header()}}
+{% endblock %}
 
 {% block content %}
   <div x-data="{showMatch: false}" class="flex flex-col w-full h-full justify-center items-center">
