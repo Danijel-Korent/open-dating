@@ -33,23 +33,8 @@ def configure_api_and_processors(app, db: DB):
 
     @app.context_processor
     def inject_users():
-        return {'users': db.users, 'active_user': db.get_user_by_username(db.current_username)}
-
-    @app.context_processor
-    def inject_chat_users():
-        message_users = [] 
-        for user in db.users: 
-            active = False
-            if user.username == db.current_username: 
-                active = True
-            
-            color = random_hex_color(['#FFFFFF', '#F5F5F5', '#E0E7FF', '#F4F4F4', '#efffaf','#00fef4'])
-            message_users.append({"user": user, "color": color, "active": active, "initial": user.name[0]})
-
-        return {'msg_users': message_users}
-
-            
-        
+        return {'users': db.users, 'active_user': db.get_user_by_username(session['username'])}
+   
 
 
 

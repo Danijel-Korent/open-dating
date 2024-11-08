@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, make_response
 from flask.sansio.app import App
 from flask.cli import AppGroup
@@ -21,6 +22,7 @@ socketio = SocketIO()
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+    app.config["SECRET_KEY"] = os.getenv("SECRET")
     add_cmdline_options(app)
 
     database = DB(app.config.get("DATABASE_FILE"))

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 from ..db import DB, Message, Chat
 from flask_socketio import SocketIO, send, emit
 from typing import Dict
@@ -23,12 +23,13 @@ def register_routes(db: DB, socketio: SocketIO):
         chat = db.get_chat(user)
         body = request.get_json()
         message = body['message']
+        curr_user = session['username']
         print(message, " sent!")
         if chat != None:
-            chat.messages.append(Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message))
+            chat.messages.append(Message(sender_id=curr_user, receiver_id=user, timestamp="", message=message))
             db.save()
         else:
-            db.chats.append(Chat(user1=user,user2=db.current_username,messages=[Message(sender_id=db.current_username, receiver_id=user, timestamp="", message=message)]))
+            db.chats.append(Chat(user1=user,user2=curr_user,messages=[Message(sender_id=curr_user, receiver_id=user, timestamp="", message=message)]))
         return {},200
 
     @socketio.on('chatmessage')

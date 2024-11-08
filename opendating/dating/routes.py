@@ -1,6 +1,6 @@
 from dataclasses import asdict
 from typing import Any
-from flask import Blueprint, Response, jsonify, render_template, request
+from flask import Blueprint, Response, jsonify, render_template, request, session
 from ..db import DB, Like, Match, User
 import json
 
@@ -19,13 +19,14 @@ def register_routes(db: DB):
 
     @dating_bp.route("/<user>/react", methods=["POST"])
     def react_user(user):
+        current_user = session['username']
         data = request.get_json()
         if data['type'] == "like":
             for like in db.likes:
-                if like.liked==db.current_username and like.liker==user:
+                if like.liked==current_user and like.liker==user:
                     db.likes.remove(like)
-                    db.matches.append(Match(user1=db.current_username, user2=user, match_date=""))
-                    db.get_user_by_username(db.current_username).seen_users.append(user)
+                    db.matches.append(Match(user1=current_user, user2=user, match_date=""))
+                    db.get_user_by_username(current_user).seen_users.append(user)
                     db.save()
                     return Response(
                         response=json.dumps({"match": True}),
@@ -34,12 +35,12 @@ def register_routes(db: DB):
                     ) 
 
 
-            db.get_user_by_username(db.current_username).seen_users.append(user)
-            db.likes.append(Like(liker=db.current_username, liked=user, timestamp=""))
+            db.get_user_by_username(current_user).seen_users.append(user)
+            db.likes.append(Like(liker=current_user, liked=user, timestamp=""))
             db.save()
             return jsonify({"match": False}), 200
         if data['type'] == "nope":
-            db.get_user_by_username(db.current_username).seen_users.append(user)
+            db.get_user_by_username(current_user).seen_users.append(user)
             db.save()
             return Response(
                         response=json.dumps({"match": False}),

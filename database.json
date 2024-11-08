@@ -121,7 +121,7 @@
             "seen_users": []
         }
     ],
-    "current_username": "emily_jones",
+    "default_username": "john_doe",
     "matches": [
         {
             "user1": "john_doe",
@@ -257,6 +257,18 @@
                     "receiver_id": "jane_smith",
                     "timestamp": "",
                     "message": "funny"
+                },
+                {
+                    "sender_id": "jane_smith",
+                    "receiver_id": "john_doe",
+                    "timestamp": "",
+                    "message": "go away"
+                },
+                {
+                    "sender_id": "john_doe",
+                    "receiver_id": "jane_smith",
+                    "timestamp": "",
+                    "message": "no"
                 }
             ]
         },
