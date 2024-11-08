@@ -6,10 +6,7 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href="" rel="stylesheet">
-      <script type="text/javascript" src="{{url_for('static', filename='js/feather.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="{{url_for('static', filename='js/index.js')}}"></script>
-      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      <script type="module" src="{{url_for('static', filename='dist/js/main.js')}}"></script>
       <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">    
       <script>
       $SCRIPT_ROOT = {{ request.script_root|tojson }};
@@ -55,9 +52,6 @@
       </footer>
     </body>
 
-  <script>
-        feather.replace();
-  </script>
-  </html> 
+    </html> 
 
 

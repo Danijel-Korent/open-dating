@@ -47,7 +47,9 @@ document.addEventListener('alpine:init', () => {
                 message: '',
             
                 sendMessage() {
+                  if(this.message.length > 0) {
             socket.emit("chatmessage", {sender_id: "{{active_user.username}}", receiver_id: "{{user.username}}", message:this.message}) 
+      }
                 }
             }));
         });

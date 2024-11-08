@@ -1,3 +1,7 @@
+// This file is loaded at the start of the HTML and is the entry point for webpack
+import Alpine from 'alpinejs'
+import io from 'socket.io-client'
+import feather from 'feather-icons'
 
 document.addEventListener('alpine:init', () => {
 	Alpine.data('imgPreview', (initialImg) => ({
@@ -23,3 +27,10 @@ socket.on('connect', function() {
 	socket.emit('connectedEvent', { data: "Connection established" })
 	console.log("Connection established")
 })
+
+
+feather.replace()
+/* document.addEventListener("DOMContentLoaded", function() {
+	console.log(feather)
+	feather.replace();
+}); */

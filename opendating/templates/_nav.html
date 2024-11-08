@@ -21,7 +21,7 @@
     {{nav_link('Messages', url_for('messages.messages'), 'send')}}
     {{nav_link('Community', url_for('messages.communities'), 'users')}}
     <div class="md:hidden ">
-      {% call nav_link('Profile', '/profile', 'circle') %}
+      {% call nav_link('Profile', '/profile', 'fe:circle') %}
       <img class="rounded-full w-6 h-6" src="{{get_image_path(active_user.username, active_user.pictures[0])}}">
       {% endcall %}
     </div>
@@ -32,4 +32,4 @@
     </div>
 
   </nav>
-</div>
+  </div>

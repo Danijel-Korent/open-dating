@@ -6,6 +6,7 @@ from dotenv import load_dotenv, set_key
 import click
 import logging
 from flask_socketio import SocketIO
+import uuid
 
 from .db import DB 
 from .routes import configure_api_and_processors
@@ -51,6 +52,13 @@ def add_cmdline_options(app: App):
         set_key(".env", "DATABASE_FILE", path)
         print("Set DATABASE_FILE in .env to ", path)
 
+    @click.command("gen-secret")
+    def gen_secret():
+        load_dotenv()
+        set_key(".env", "SECRET", uuid.uuid4().hex)
+        print("Generated secret key and set in .env")
+
     app.cli.add_command(db_cli)
+    app.cli.add_command(gen_secret)
 
 

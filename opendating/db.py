@@ -87,7 +87,7 @@ class DB:
         print("Loaded DB")
 
     def from_json(self, json_dict: dict):
-        self.default_username = json_dict['default_user']
+        self.default_username = json_dict['default_username']
         for user in json_dict['users']:
             self.users = [
                 User(

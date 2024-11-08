@@ -2,7 +2,11 @@
 {% from "dating-macros.html" import match_popup with context %}
 {% from "includes/navigation.html" import mobile_header with context %}
 
-{% extends 'base.html' %}
+{% extends 'basic.html' %}
+
+{% block hello %}
+<h1>Hello</h1>
+  {% endblock %}
 
 {% block title %}
   Home
