@@ -245,6 +245,18 @@
                     "receiver_id": "john_doe",
                     "timestamp": "",
                     "message": "test"
+                },
+                {
+                    "sender_id": "john_doe",
+                    "receiver_id": "jane_smith",
+                    "timestamp": "",
+                    "message": "hello"
+                },
+                {
+                    "sender_id": "john_doe",
+                    "receiver_id": "jane_smith",
+                    "timestamp": "",
+                    "message": "funny"
                 }
             ]
         },
@@ -275,6 +287,12 @@
                     "receiver_id": "sarah_lee",
                     "timestamp": "",
                     "message": "that's great"
+                },
+                {
+                    "sender_id": "john_doe",
+                    "receiver_id": "sarah_lee",
+                    "timestamp": "",
+                    "message": "this is for sarah lee"
                 }
             ]
         }

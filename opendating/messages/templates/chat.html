@@ -12,7 +12,11 @@
     {% endblock %}
 
 {% block content %}
-<div x-data="{modalOpen: false}" class="relative grow flex flex-col h-full">
+<div x-data="{modalOpen: false, 
+    scroll() {
+        var el = this.$refs.messageScroll;
+        el.scrollTo(0, el.scrollHeight);
+    }}" x-init="scroll" class="relative grow flex flex-col h-full">
 <button @click="modalOpen=!modalOpen" class="hidden md:flex flex-row items-center bg-neutral-50 dark:bg-neutral-800 w-full p-4 gap-2">
     <img src="{{get_image_path(user.username, user.pictures[0])}}" class="w-8 h-8 block bg-light-100 rounded-full"/>
 
@@ -20,7 +24,7 @@
 </button>
 
         <div class="flex flex-col overflow-scroll h-full">
-    <div x-show="!modalOpen" id="messageDisplay" class="flex flex-col grow gap-4 p-8 overflow-scroll">
+    <div x-show="!modalOpen" x-ref="messageScroll" id="messageDisplay" class="flex flex-col grow gap-4 p-8 overflow-scroll">
         {% for message in chat.messages %}
             {{message_display(message, active_user)}}
         {% endfor %}

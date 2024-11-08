@@ -51,8 +51,16 @@ def register_routes(db: DB, socketio: SocketIO):
         
 
     @messages_bp.route("/community")
-    def community():
+    def communities():
         return render_template("community.html", title="Community") 
+
+    @messages_bp.route("/community/categories/<category>")
+    def category(category):
+        pass
+
+    @messages_bp.route("/community/<community>")
+    def community(community):
+        pass
 
     
 
