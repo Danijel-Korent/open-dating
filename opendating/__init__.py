@@ -4,6 +4,7 @@ from flask.cli import AppGroup
 from dotenv import load_dotenv, set_key
 import click
 import logging
+from flask_socketio import SocketIO
 
 from .db import DB 
 from .routes import configure_api_and_processors
@@ -14,6 +15,8 @@ from .messages import routes
 load_dotenv()
 
 logging.basicConfig(level=logging.DEBUG)
+
+socketio = SocketIO()
 
 def create_app():
     app = Flask(__name__)
@@ -28,10 +31,14 @@ def create_app():
     app.register_blueprint(messages.routes.messages_bp, url_prefix="/messages")
 
 
+
     
     configure_api_and_processors(app, database)
 
+    socketio.init_app(app)
+    
     return app
+
 
 def add_cmdline_options(app: App):
     db_cli = AppGroup('db')
@@ -43,4 +50,5 @@ def add_cmdline_options(app: App):
         print("Set DATABASE_FILE in .env to ", path)
 
     app.cli.add_command(db_cli)
+
 

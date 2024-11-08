@@ -18,9 +18,7 @@
                 "age_min": 24,
                 "distance_meters": 50
             },
-            "seen_users": [
-                "emily_jones"
-            ]
+            "seen_users": []
         },
         {
             "username": "jane_smith",
@@ -80,9 +78,7 @@
                 "age_min": 27,
                 "distance_meters": 50
             },
-            "seen_users": [
-                "john_doe"
-            ]
+            "seen_users": []
         },
         {
             "username": "michael_brown",
@@ -125,7 +121,7 @@
             "seen_users": []
         }
     ],
-    "current_username": "john_doe",
+    "current_username": "jane_smith",
     "matches": [
         {
             "user1": "john_doe",
@@ -152,11 +148,6 @@
         {
             "liker": "emily_jones",
             "liked": "michael_brown",
-            "timestamp": ""
-        },
-        {
-            "liker": "emily_jones",
-            "liked": "john_doe",
             "timestamp": ""
         }
     ],

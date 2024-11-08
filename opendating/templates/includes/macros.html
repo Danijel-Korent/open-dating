@@ -84,7 +84,7 @@
 {% endmacro %}
 
 
-{% macro profile(user, featherIcon=None, buttonClick="", hasButtons=False) %}
+{% macro profile(user, featherIcon=None, buttonClick="", hasButtons=False, shownValueKey="") %}
 <div x-ref="profileWrapper" x-data="userProfile" x-init="initHeight" class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
   <div :style="`height: ${profileHeight}px`" class="relative flex z-10 flex-col w-full shadow-md">
     <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>

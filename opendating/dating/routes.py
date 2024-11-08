@@ -23,6 +23,7 @@ def register_routes(db: DB):
         if data['type'] == "like":
             for like in db.likes:
                 if like.liked==db.current_username and like.liker==user:
+                    db.likes.remove(like)
                     db.matches.append(Match(user1=db.current_username, user2=user, match_date=""))
                     db.get_user_by_username(db.current_username).seen_users.append(user)
                     db.save()
