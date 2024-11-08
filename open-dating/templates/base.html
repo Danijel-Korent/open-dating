@@ -42,7 +42,7 @@
     </header>
     <main id="pagemain" class="flex flex-col-reverse md:flex-row h-full">
       {% include("_nav.html")%}
-      <section class="flex flex-col grow bg-neutral-100 dark:bg-neutral-900">
+      <section class="flex flex-col grow max-h-full bg-neutral-100 dark:bg-neutral-900">
           {% block content %}{% endblock content %}
       </section>
       {{ mobile_header() }}

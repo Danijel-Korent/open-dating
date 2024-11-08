@@ -2,17 +2,20 @@
 
 {% macro nav_link(label, href, icon, number="") %}
 {% if request.path == href %}
+{% if caller %} 
+<a href="{{href}}">
+    {{caller()}}
+</a>
+{% else %}
 <a href="{{href}}" class="block bg-accent-500 text-neutral-50 transition-all p-2 rounded-md">
   <span class="flex flex-row gap-2 items-center">
-    {% if caller %}
-    {{caller()}}
-    {% else %}
-    <i data-feather={{icon}} class="h-6 w-6"></i>
-    {% endif %}
+        <i data-feather={{icon}} class="h-6 w-6"></i>
   <p class="hidden md:inline font-semibold font-sans text-lg">{{label}}</p>
   </span>
   <p class="hidden md:inline">{{number}}</p>
 </a>
+
+{% endif %}
 {% else %}
 <a href="{{href}}" class="block hover:bg-accent-500 hover:text-neutral-50 transition-all p-2  rounded-md">
   <span class="flex flex-row gap-2 items-center">

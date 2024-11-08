@@ -12,16 +12,16 @@
 {% endblock header %}
 
 {% block content %}
-  <div x-data="{showMatch: true}" class="flex flex-col w-full h-full justify-center items-center">
+  <div x-data="{showMatch: false}" class="flex flex-col w-full h-full justify-center items-center">
   <div class="absolute" x-show="showMatch" style="display: none;">
   {{match_popup(user)}}
   </div>
-    <div x-show="!showMatch" class="h-full w-full grow md:max-h-[750px] md:w-[450px] md:shadow-lg rounded-3xl  ">
-      <!-- {% if user %} -->
-      <!-- {{profile(user, hasButtons=True)}} -->
-      <!-- {% else %} -->
-      <!-- {{no_profiles()}} -->
-      <!-- {% endif %} -->
+    <div x-show="!showMatch" class="h-full w-full md:max-h-[750px] md:max-w-[450px] md:shadow-lg md:rounded-3xl  ">
+      {% if user %}
+      {{profile(user, hasButtons=True)}}
+      {% else %}
+      {{no_profiles()}}
+      {% endif %}
     </div>
   </div>
 {% endblock content%}

@@ -20,9 +20,9 @@
     {{nav_link('Likes', url_for('dating.likes'), 'heart')}}
     {{nav_link('Messages', url_for('messages.messages'), 'send')}}
     {{nav_link('Community', url_for('messages.community'), 'users')}}
-    <div class="md:hidden">
+    <div class="md:hidden ">
       {% call nav_link('Profile', '/profile', 'circle') %}
-      <img class="h-8 w-8 rounded-full" src="{{get_image_path(active_user.username, active_user.pictures[0])}}">
+      <img class="rounded-full w-6 h-6" src="{{get_image_path(active_user.username, active_user.pictures[0])}}">
       {% endcall %}
     </div>
 
