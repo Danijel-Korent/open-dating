@@ -74,6 +74,25 @@
   </div>
 {% endmacro %}
 
+{% macro text_input_btn(name, label, default,  placeholder="", btn_icon="arrow-right" ) %}
+
+<div class="w-full relative">
+  <label class="block w-fit mb-1 text-sm text-neutral-600" for="{{name}}">{{label}}</label>
+  <span class="h-8 flex flex-row text-light-900 text-sm transition duration-300 ease shadow-sm focus:shadow-md ">
+  <input
+      name="{{name}}"
+      id="{{name}}"
+      type="text"
+      placeholder="{{placeholder}}"
+      value="{{default}}"
+      class="border-y border-l border-neutral-300 focus:outline-none rounded-l-md focus:border-accent-500 hover:border-neutral-400 box-border  w-full px-2 bg-transparent appearance-none focus:outline-none"
+    />
+  <button class="flex items-center justify-center bg-accent-500 rounded-r-md text-neutral-100 block px-2"><i class="w-4 h-4" data-feather="{{btn_icon}}"></i></button>
+  </span>
+  </div>
+{% endmacro %}
+
+
 {% macro image_dropzone(name) %}
 <div class="flex items-center justify-center w-full">
   <label for="{{name}}" class="flex flex-col items-center justify-center w-48 h-48 border-2 border-neutral-300 border-dashed rounded-md cursor-pointer bg-neutral-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-neutral-100 dark:border-neutral-600 dark:hover:border-neutral-500 dark:hover:bg-neutral-600">
