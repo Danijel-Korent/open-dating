@@ -114,24 +114,12 @@
 
   </div>
   {% if hasButtons %}
-    <div 
-  class="fixed flex mb-4 px-4 border-t border-t-neutral-300 justify-between pt-4 flex-row items-center gap-4 font-bold text-white ">
-  <button @click="nope" class="p-2 w-fit bg-red-500 hover:bg-red-600 flex flex-row items-center justify-center gap-1 rounded-lg">
-    <i data-feather="x-circle" class="h-4 w-4"/></i>
-    <p class="w-fit text-sm">Nope</p>
-  </button>
-  <button @click="like" class="p-2 w-fit bg-green-500 hover:bg-green-600 flex flex-row items-center rounded-lg justify-center gap-1 ">
-    <i data-feather="heart" class="h-4 w-4"/></i>
-    <p class="w-fit text-sm">Like</p>
-  </button>
-</div>
-  {% endif %}
+      {% endif %}
 </div>
 
 <script>
 document.addEventListener('alpine:init', () => {
-  Alpine.data('userProfile', (user_react) => ({
-    hasButtons: false,
+  Alpine.data('userProfile', () => ({
     profileHeight: 0,
 
     initHeight() {
@@ -141,34 +129,7 @@ document.addEventListener('alpine:init', () => {
         this.profileHeight = this.$refs.profileWrapper.getBoundingClientRect().height;
       });
     },
-    async like() {
-      let res = await fetch(user_react, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ type: 'like' })
-      })
-
-      let data = await res.json();
-      if (data.match) {
-        this.showMatch = true
-      }
-    },
-
-    async nope() {
-      let res = await fetch('{{url_for('dating.react_user', user=user.username)}}', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          type: 'nope'
-        })
-      })
-
-      window.location.reload();
-    }
+    
   }));
 })
 </script>
@@ -208,7 +169,7 @@ document.addEventListener('alpine:init', () => {
 
 {% macro profile_buttons(user, request_url="") %}
 <div 
-  class="flex mb-4 px-4 border-t border-t-neutral-300 justify-between pt-4 flex-row items-center gap-4 font-bold text-white ">
+  class="fixed flex mb-4 px-4 border-t border-t-neutral-300 justify-between pt-4 flex-row items-center gap-4 font-bold text-white ">
   <button @click="nope" class="p-2 w-fit bg-red-500 hover:bg-red-600 flex flex-row items-center justify-center gap-1 rounded-lg">
     <i data-feather="x-circle" class="h-4 w-4"/></i>
     <p class="w-fit text-sm">Nope</p>
