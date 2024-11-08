@@ -4,9 +4,9 @@
 
 		"dev": "npm-run-all --parallel flask tw",
 
-		"flask": "flask run",
+		"flask": "python run.py",
 
-		"tw": "tailwindcss -i open-dating/static/css/input.css -o open-dating/static/dist/css/output.css --watch"
+		"tw": "tailwindcss -i opendating/static/css/input.css -o opendating/static/dist/css/output.css --watch"
 
 	},
 

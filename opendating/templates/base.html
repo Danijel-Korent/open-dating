@@ -1,62 +1,69 @@
 {% from "includes/navigation.html" import mobile_header with context %} 
 
-<!DOCTYPE html>
-<html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="" rel="stylesheet">
-    <script type="text/javascript" src="{{url_for('static', filename='js/feather.min.js')}}"></script>
-    <script type="module" src="{{url_for('static', filename='js/index.js')}}"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">    
-    <script>
-    $SCRIPT_ROOT = {{ request.script_root|tojson }};
+  <!DOCTYPE html>
+  <html lang="en" class="h-full">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="" rel="stylesheet">
+      <script type="text/javascript" src="{{url_for('static', filename='js/feather.min.js')}}"></script>
+      <script type="module" src="{{url_for('static', filename='js/index.js')}}"></script>
+      <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+        socket.on('connect', function() {
+            socket.emit('connected-event', {data: 'Socket connection established'});
+        });
     </script>
-    {% block head %}
-    {% endblock head %}
-    <style>
-        @font-face {
-                font-family: "Raleway";
-                src: url("{{url_for('static', filename='fonts/Raleway-VariableFont_wght.ttf')}}");
-                font-variant-numeric: normal;
-                font-display: swap;
-        }
+      <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">    
+      <script>
+      $SCRIPT_ROOT = {{ request.script_root|tojson }};
+      </script>
+      {% block head %}
+      {% endblock head %}
+      <style>
+          @font-face {
+                  font-family: "Raleway";
+                  src: url("{{url_for('static', filename='fonts/Raleway-VariableFont_wght.ttf')}}");
+                  font-variant-numeric: normal;
+                  font-display: swap;
+          }
 
-        @font-face {
-                font-family: "Raleway";
-                src: url("{{url_for('static', filename='fonts/Raleway-Italic-VariableFont_wght.ttf')}}");
-                font-variant-numeric: normal;
-                font-style: italic;
-                font-display: swap;
-        }
-    </style>
+          @font-face {
+                  font-family: "Raleway";
+                  src: url("{{url_for('static', filename='fonts/Raleway-Italic-VariableFont_wght.ttf')}}");
+                  font-variant-numeric: normal;
+                  font-style: italic;
+                  font-display: swap;
+          }
+      </style>
 
-    
-    <title>{{title}} - Dating App</title>
-  </head>
-  <body class="h-full w-full flex flex-col bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100 font-sans tabular-nums">
-    <header>
-      {% block header %}
-      {% endblock header %}
-    </header>
-    <main id="pagemain" class="flex flex-col-reverse md:flex-row h-full">
-      {% include("_nav.html")%}
-      <section class="flex flex-col grow overflow-y-scroll max-h-full bg-neutral-100 dark:bg-neutral-900">
-          {% block content %}{% endblock content %}
-      </section>
-      <section>
-          {% block mobile_header%}{% endblock mobile_header%}
-      </section>
-          </main>
-    <footer>
-      {% block footer %}{%endblock footer%}
-    </footer>
-  </body>
+      
+      <title>{{title}} - Dating App</title>
+    </head>
+    <body class="h-full w-full flex flex-col bg-neutral-50 text-neutral-900 dark:bg-neutral-900 dark:text-neutral-100 font-sans tabular-nums">
+      <header>
+        {% block header %}
+        {% endblock header %}
+      </header>
+      <main id="pagemain" class="flex flex-col-reverse md:flex-row h-full">
+        {% include("_nav.html")%}
+        <section class="flex flex-col grow overflow-y-scroll max-h-full bg-neutral-100 dark:bg-neutral-900">
+            {% block content %}{% endblock content %}
+        </section>
+        <section>
+            {% block mobile_header%}{% endblock mobile_header%}
+        </section>
+            </main>
+      <footer>
+        {% block footer %}{%endblock footer%}
+      </footer>
+    </body>
 
-<script>
-      feather.replace();
-</script>
-</html> 
+  <script>
+        feather.replace();
+  </script>
+  </html> 
 
 

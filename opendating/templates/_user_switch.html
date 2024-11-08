@@ -34,14 +34,14 @@
              }" 
   class="flex flex-col md:flex-row md:justify-end" @click.outside="open = false">
   <div  class="relative">
-    <button x-ref="button" x-on:click="toggle()" id="dropdown-btn" class="px-2 py-1 rounded-md flex flex-row items-center gap-1 hover:bg-gray-200">
+    <button x-ref="button" x-on:click="toggle()" id="dropdown-btn" class="px-2 py-1 rounded-md flex flex-row items-center gap-1 hover:bg-neutral-200 dark:hover:bg-neutral-700">
       <p class="font-semibold">{{active_user['name']}}</p> 
       <i class="w-4 h-4" data-feather="chevron-down"></i> 
     </button>
     <div x-transition.origin.top.left x-show="open" style="display: none;" class="absolute w-48 mt-2">
-      <div class="bg-white rounded-md border border-solid border-gray-200">
+      <div class="bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-100 rounded-md border border-solid border-neutral-200 dark:border-neutral-600">
         {% for user in users %}
-        <button x-on:click="selectUser('{{user['username']}}')" class="text-left hover:bg-gray-200 rounded-sm block w-full px-4 py-2">{{user['name']}}</button>
+        <button x-on:click="selectUser('{{user['username']}}')" class="text-left hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-sm block w-full px-4 py-2">{{user['name']}}</button>
         {% endfor %}
       </div>
     </div>
