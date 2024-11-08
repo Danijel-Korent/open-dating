@@ -1,19 +1,24 @@
-from flask import render_template, request
+from flask import render_template, request, session
 from .util import random_hex_color
 from .db import DB, Chat, Message
 
        
 def configure_api_and_processors(app, db: DB):
+    @app.before_request
+    def ensure_current_user():
+        if 'username' not in session:
+            session['username'] = db.default_username
+
     @app.route("/active_user", methods=['GET' ,'POST'])
     def active_user():
         if request.method == "POST":
             data = request.get_json()
             print(data)
-            db.current_username = data['id']
+            session['username'] = data['id']
             db.save()
             return {}, 200 
         elif request.method=="GET":
-            return {id: db.current_username}
+            return {id: session['username']}
 
     @app.route("/reload_json", methods=['POST']) 
     def reload_json():

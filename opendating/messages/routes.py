@@ -37,8 +37,6 @@ def register_routes(db: DB, socketio: SocketIO):
         recipient = message['receiver_id']
         message = message['message']
 
-        print(sender, recipient, message)
-
         chat = db.get_chat_between(sender, recipient)
         if chat != None and message != None:
             chat.messages.append(Message(sender_id=sender, receiver_id=recipient, message=message, timestamp=""))

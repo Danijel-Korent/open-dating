@@ -4,7 +4,7 @@ import sys
 from typing import Dict
 from dataclasses import dataclass, asdict
 from enum import Enum
-from flask import url_for
+from flask import url_for,session
 from werkzeug.utils import secure_filename
     
 
@@ -64,14 +64,14 @@ class Chat:
 class DB: 
     filename: str
     users: list[User]
-    current_username: str
+    default_username: str
     matches: list[Match]
     likes: list[Like]
     chats: list[Chat]
 
     def __init__(self, filename):
         self.filename=filename
-        self.current_username = ""
+        self.default_username = ""
         self.users  =  []
         self.likes = []
         self.matches = []
@@ -87,7 +87,7 @@ class DB:
         print("Loaded DB")
 
     def from_json(self, json_dict: dict):
-        self.current_username = json_dict['current_username']
+        self.default_username = json_dict['default_user']
         for user in json_dict['users']:
             self.users = [
                 User(
@@ -158,15 +158,15 @@ class DB:
         return User(username="user_missing", name="User Missing", age=0, gender="", location="", bio="", preferences=Preferences(age_min=0, age_max=0, gender="", distance_meters=0), likes=[], pictures=[], seen_users=[])
 
     def get_current_user(self) -> User:
-        return self.get_user_by_username(self.current_username)
+        return self.get_user_by_username(session['username'])
 
 
     def get_match_users(self):
         matches: list[User] = []
         for match in self.matches:
-            if match.user1 == self.current_username:
+            if match.user1 == session['username']: 
                 matches.append(self.get_user_by_username(match.user2))
-            if match.user2 == self.current_username:
+            if match.user2 == session['username']:
                 matches.append(self.get_user_by_username(match.user1))
 
 
@@ -175,7 +175,7 @@ class DB:
     def get_like_users(self) -> list[User]:
         likes: list[User] = []
         for like in self.likes:
-            if like.liker != self.current_username and like.liked == self.current_username:
+            if like.liker != session['username'] and like.liked == session['username']:
                 likes.append(self.get_user_by_username(like.liker))
         return likes
 
@@ -194,7 +194,7 @@ class DB:
         return chats
 
     def get_chat(self, with_username: str) -> Chat | None:
-        return self.get_chat_between(self.current_username, with_username) 
+        return self.get_chat_between(session['username'], with_username) 
 
     def get_chat_between(self, user1: str, user2: str) -> Chat | None:
         for chat in self.chats:
@@ -212,17 +212,17 @@ class DB:
     def validate_user_recommendation(self, user) -> bool:
         if user.username in self.get_current_user().seen_users:
             return False
-        if user.username == self.current_username:
+        if user.username == session['username']:
             return False 
         for like in self.likes:
             if like.liked == user.username:
                 return False
         for match in self.matches:
-            if match.user1 == user.username and match.user2 == self.current_username:
+            if match.user1 == user.username and match.user2 == session['username']:
                 return False 
-            if match.user2 == user.username and match.user1 == self.current_username:
+            if match.user2 == user.username and match.user1 == session['username']:
                 return False
-        if self.get_user_by_username(self.current_username).preferences.check_user(user) != True:
+        if self.get_user_by_username(session['username']).preferences.check_user(user) != True:
             return False
 
         return True
@@ -230,7 +230,7 @@ class DB:
     def swipe_user(self, user: str, action_type: int) -> bool:
         self.get_current_user().seen_users.append(user)
         if action_type == 1:
-            self.get_user_by_username(user).likes.append(Like(liker=self.current_username, liked=user, timestamp=""))
+            self.get_user_by_username(user).likes.append(Like(liker=session['username'], liked=user, timestamp=""))
             for like in self.get_current_user().likes:
                 if like.liker == user:
                     return True
@@ -246,12 +246,12 @@ class DB:
 
     def set_user_image(self, image, index: int):
         filename = secure_filename(image.filename)
-        path = self.get_image_path(self.current_username, filename)
+        path = self.get_image_path(session['username'], filename)
         image.save(os.path.join(path, filename))
-        if index > len(self.get_user_by_username(self.current_username).pictures)-1:
-            self.get_user_by_username(self.current_username).pictures.append(filename)
+        if index > len(self.get_user_by_username(session['username']).pictures)-1:
+            self.get_user_by_username(session['username']).pictures.append(filename)
         else: 
-            self.get_user_by_username(self.current_username).pictures[index] = filename
+            self.get_user_by_username(session['username']).pictures[index] = filename
 
 
 
