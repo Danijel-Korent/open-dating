@@ -3,6 +3,8 @@ import Alpine from 'alpinejs'
 import io from 'socket.io-client'
 import feather from 'feather-icons'
 
+import './components/base'
+
 document.addEventListener('alpine:init', () => {
 	Alpine.data('imgPreview', (initialImg) => ({
 		imgsrc: initialImg || null,
