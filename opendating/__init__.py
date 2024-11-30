@@ -9,11 +9,12 @@ from flask_socketio import SocketIO
 from flask_compress import Compress
 import uuid
 
-from .db import DB 
+from .db import DB
 from .routes import configure_api_and_processors
 from .config import Config
-from .dating import routes
-from .messages import routes
+from .dating import routes as dating
+from .messages import routes as messages
+from .community import routes as community
 
 load_dotenv()
 
@@ -22,6 +23,7 @@ logging.basicConfig(level=logging.DEBUG)
 socketio = SocketIO()
 compress = Compress()
 
+
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
@@ -29,25 +31,25 @@ def create_app():
     add_cmdline_options(app)
 
     database = DB(app.config.get("DATABASE_FILE"))
-   
-    dating.routes.register_routes(database)
-    app.register_blueprint(dating.routes.dating_bp)
-    messages.routes.register_routes(database, socketio)
-    app.register_blueprint(messages.routes.messages_bp, url_prefix="/messages")
 
+    dating.register_routes(database)
+    app.register_blueprint(dating.dating_bp)
+    messages.register_routes(database, socketio)
+    app.register_blueprint(messages.messages_bp, url_prefix="/messages")
+    community.register_routes(database)
+    app.register_blueprint(community.community_bp, url_prefix="/community")
 
-
-    
     configure_api_and_processors(app, database)
 
     socketio.init_app(app)
     compress.init_app(app)
-    
+
     return app
 
 
 def add_cmdline_options(app: App):
-    db_cli = AppGroup('db')
+    db_cli = AppGroup("db")
+
     @db_cli.command("select-database")
     @click.argument("path")
     def select_database(path):
@@ -63,5 +65,3 @@ def add_cmdline_options(app: App):
 
     app.cli.add_command(db_cli)
     app.cli.add_command(gen_secret)
-
-
