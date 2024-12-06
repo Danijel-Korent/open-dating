@@ -4,29 +4,12 @@
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="" rel="stylesheet">
       <script type="module" src="{{url_for('static', filename='dist/main.js')}}"></script>
       <link rel="stylesheet" href="{{url_for('static',filename='dist/main.css')}}">    
       <script>
       </script>
       {% block head %}
       {% endblock head %}
-      <style>
-          @font-face {
-                  font-family: "Raleway";
-                  src: url("{{url_for('static', filename='fonts/Raleway-VariableFont_wght.ttf')}}");
-                  font-variant-numeric: normal;
-                  font-display: swap;
-          }
-
-          @font-face {
-                  font-family: "Raleway";
-                  src: url("{{url_for('static', filename='fonts/Raleway-Italic-VariableFont_wght.ttf')}}");
-                  font-variant-numeric: normal;
-                  font-style: italic;
-                  font-display: swap;
-          }
-      </style>
       <title>{{title}} - Dating App</title>
     </head>
     {% block body %}
