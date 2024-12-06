@@ -1,9 +1,8 @@
 // This file is loaded at the start of the HTML and is the entry point for webpack
-import Alpine from 'alpinejs'
-import io from 'socket.io-client'
-import feather from 'feather-icons'
+import Alpine from 'alpinejs';
 
-import './components/base'
+import { ChevronDown, createIcons, Group, Heart, Home, RotateCcw, Send, Settings, Sliders, User, Users, X } from "lucide";
+import './components/base';
 
 document.addEventListener('alpine:init', () => {
   Alpine.data('imgPreview', (initialImg) => ({
@@ -23,13 +22,14 @@ document.addEventListener('alpine:init', () => {
   }))
 })
 
+window.Alpine = Alpine
 
-var socket = io()
-socket.on('connect', function () {
-  socket.emit('connectedEvent', { data: "Connection established" })
-  console.log("Connection established")
+Alpine.start()
+
+
+
+createIcons({
+  icons: {
+    Home, Heart, User, Group, Settings, Sliders, ChevronDown, Send, RotateCcw, Users, X
+  }
 })
-
-
-feather.replace({ "stroke-width": 2.5 });
-

@@ -11,7 +11,7 @@ const plugins = [
     filename: devMode ? "[name].css" : "[name].[contenthash].css",
     chunkFilename: devMode ? "[id].css" : "[id].[contenthash].css",
   }),
-  new WebpackManifestPlugin({})
+  new WebpackManifestPlugin({}),
 ];
 
 module.exports = {
@@ -27,7 +27,7 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
-          "scss-loader",
+          "css-loader",
           "postcss-loader",
         ],
       },

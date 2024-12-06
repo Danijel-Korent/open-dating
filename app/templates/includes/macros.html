@@ -3,7 +3,7 @@
 {% macro preferences() %}
 <div x-data="{modalOpen: false}">
   <button @click="modalOpen = true" class="p-2">
-    <i data-feather="sliders"></i>
+    <i data-lucide="sliders"></i>
   </button>
   <div 
     role="dialog"
@@ -16,7 +16,7 @@
       <span class="flex flex-row items-center justify-between">
         <h1 class="text-2xl font-bold mb-2">Preferences</h1>
         <button @click="modalOpen=false">
-          <i data-feather="x"></i>
+          <i data-lucide="x"></i>
         </button>
       </span>
       <form>
@@ -69,11 +69,11 @@
 <div class="px-4 py-2">
     <ul class="flex flex-col  space-y-2 bg-neutral-100 text-neutral-900 p-2 rounded-md divide-y">
   <li class="flex flex-row items-center gap-1 font-semibold">
-    <i class="w-4 h-4" data-feather="user"></i>
+    <i class="w-4 h-4" data-lucide="user"></i>
       <p>{{user["gender"]}}</p>
   </li>
 <li class="flex flex-row items-center gap-1 font-semibold">
-    <i class="w-4 h-4" data-feather="map-pin"></i>
+    <i class="w-4 h-4" data-lucide="map-pin"></i>
       <p>{{user["location"]}}</p>
   </li>
 
@@ -84,14 +84,14 @@
 {% endmacro %}
 
 
-{% macro profile(user, featherIcon=None, buttonClick="", hasButtons=False, shownValueKey="") %}
+{% macro profile(user, lucideIcon=None, buttonClick="", hasButtons=False, shownValueKey="") %}
 <div x-ref="profileWrapper" x-data="userProfile" x-init="initHeight" class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
   <div :style="`height: ${profileHeight}px`" class="relative flex z-10 flex-col w-full shadow-md">
     <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
     <img class="absolute flex -z-10 flex-col h-full w-full object-cover " src="{{get_image_path(user.username, user.pictures[0])}}"/>
-    {% if featherIcon %}
+    {% if lucideIcon %}
     <button @click="{{buttonClick}}"  class="ml-auto z-10 m-4 p-2 rounded-full bg-accent-500">
-    <i class="w-4 h-4" data-feather={{featherIcon}}></i>
+    <i class="w-4 h-4" data-lucide={{featherIcon}}></i>
     {% endif %}
     </button>
     <div class="p-4 mt-auto z-10">
@@ -148,7 +148,7 @@ document.addEventListener('alpine:init', () => {
   <span class="w-full flex flex-row items-center justify-between">
     <h2 class="text-3xl font-bold">Edit Profile</h2>
     <button class="p-2 w-fit bg-accent-500 text-neutral-50 rounded-full" @click={{closeButton}}>
-      <i class="w-4 h-4" data-feather="x"></i>
+      <i class="w-4 h-4" data-lucide="x"></i>
     </button>
   </span>
 
@@ -171,11 +171,11 @@ document.addEventListener('alpine:init', () => {
 <div 
   class="fixed flex mb-4 px-4 border-t border-t-neutral-300 justify-between pt-4 flex-row items-center gap-4 font-bold text-white ">
   <button @click="nope" class="p-2 w-fit bg-red-500 hover:bg-red-600 flex flex-row items-center justify-center gap-1 rounded-lg">
-    <i data-feather="x-circle" class="h-4 w-4"/></i>
+    <i data-lucide="x-circle" class="h-4 w-4"/></i>
     <p class="w-fit text-sm">Nope</p>
   </button>
   <button @click="like" class="p-2 w-fit bg-green-500 hover:bg-green-600 flex flex-row items-center rounded-lg justify-center gap-1 ">
-    <i data-feather="heart" class="h-4 w-4"/></i>
+    <i data-lucide="heart" class="h-4 w-4"/></i>
     <p class="w-fit text-sm">Like</p>
   </button>
 </div>
