@@ -1,6 +1,4 @@
-from app import create_app, socketio, add_cmdline_options
-
-app = create_app()
+from app import app, socketio, add_cmdline_options
 
 
 def main():

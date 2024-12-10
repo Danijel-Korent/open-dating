@@ -65,3 +65,6 @@ def add_cmdline_options(app: App):
 
     app.cli.add_command(db_cli)
     app.cli.add_command(gen_secret)
+
+
+app = create_app()
