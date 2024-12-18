@@ -1,7 +1,7 @@
 // This file is loaded at the start of the HTML and is the entry point for webpack
 import Alpine from 'alpinejs';
 
-import { ChevronDown, createIcons, Group, Heart, Home, RotateCcw, Send, Settings, Sliders, User, Users, X } from "lucide";
+import { ChevronDown, createIcons, Group, Check, Heart, Home, RotateCcw, Send, Settings, Sliders, User, Users, X } from "lucide";
 import './components/base';
 
 document.addEventListener('alpine:init', () => {
@@ -30,6 +30,6 @@ Alpine.start()
 
 createIcons({
   icons: {
-    Home, Heart, User, Group, Settings, Sliders, ChevronDown, Send, RotateCcw, Users, X
+    Home, Heart, User, Group, Settings, Check, Sliders, ChevronDown, Send, RotateCcw, Users, X
   }
 })

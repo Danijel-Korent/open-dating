@@ -1,14 +1,13 @@
 {% import "components/forms.html" as forms %}
 
 {% macro preferences() %}
-<div x-data="{modalOpen: false}">
+<div x-data="{modalOpen: false}" >
   <button @click="modalOpen = true" class="p-2">
     <i data-lucide="sliders"></i>
   </button>
   <div 
     role="dialog"
     x-show="modalOpen"
-    @click.away="modalOpen = false"
     class="flex items-center justify-center fixed z-20 w-full h-full top-0 left-0 bg-neutral-950/30"
     style="display: none;"
   >
