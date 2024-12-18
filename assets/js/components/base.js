@@ -7,14 +7,16 @@ document.addEventListener('alpine:init', () => {
   }))
   Alpine.data('userProfile', () => ({
     profileHeight: 0,
-
+    shown: true,
     initHeight() {
-      this.profileHeight = this.$refs.profileWrapper.getBoundingClientRect().height;
-
       window.addEventListener('resize', () => {
         this.profileHeight = this.$refs.profileWrapper.getBoundingClientRect().height;
       });
     },
+    init() {
+      this.initHeight()
+    },
+
 
   }));
 })
