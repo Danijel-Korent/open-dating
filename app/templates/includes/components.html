@@ -1,14 +1,15 @@
 {% macro details(title, num=0, defaultOpen="false") %}
-<details x-data="{isOpen: {{defaultOpen}}}" :open="isOpen"  class="group open:mb-8">
+<details x-data="{isOpen: {{defaultOpen}}}" :open="isOpen"  class="group open:mb-8 bg-neutral-50 p-4 rounded-lg mb-4">
   <summary @click.prevent="isOpen = !isOpen" class="cursor-pointer list-none">
     <span class="flex flex-row items-center gap-2">
       <i class="group-open:rotate-90 transition-all duration-100" data-feather="chevron-right"></i>
       <h2 class="text-3xl font-bold inline-block">{{title}}</h2>
       <p class="text-sm font-semibold px-2 rounded-full text-neutral-50 bg-accent-500">{{num}}</p>
     </span>
-    <hr class="border-t border-t-neutral-300 mt-2 mb-4">
+    <hr class="border-t border-t-neutral-300 mt-2">
   </summary>
-  <div x-show="isOpen"
+  <div x-show="isOpen "
+    class="mt-4"
     x-transition:enter="transition ease-out duration-200" 
     x-transition:enter-start="opacity-0 max-h-0" 
     x-transition:enter-end="opacity-100 max-h-screen" 
