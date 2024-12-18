@@ -4,10 +4,6 @@
 
 {% extends 'basic.html' %}
 
-{% block hello %}
-<h1>Hello</h1>
-  {% endblock %}
-
 {% block title %}
   Home
 {% endblock title%}
@@ -27,7 +23,7 @@
   {{match_popup(user)}}
   </div>
   {% endif %}
-    <div x-show="!showMatch" class="h-full w-full md:max-h-[750px] md:max-w-[450px] md:shadow-lg md:rounded-3xl  ">
+    <div x-show="!showMatch" class="mb-8 h-full w-full md:max-h-[750px] md:max-w-[450px] md:shadow-lg md:rounded-3xl  ">
       {% if user %}
       {{profile(user, hasButtons=True)}}
       {{profile_buttons()}}

@@ -1,3 +1,5 @@
+{% from "includes/navigation.html" import mobile_header %}
+
 {% extends 'basic.html' %}
 
 {% block title %}
@@ -7,6 +9,11 @@
 {% block header %}
 
 {% endblock header %}
+
+{% block mobile_header %}
+    {{mobile_header()}}
+    {% endblock %}
+
 
 {% block content %}
   <div class="w-full h-full p-8 ">

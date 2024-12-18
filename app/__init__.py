@@ -14,7 +14,7 @@ from .routes import configure_api_and_processors
 from .config import Config
 from .dating import routes as dating
 from .messages import routes as messages
-from .community import routes as community
+from .communities import routes as communities
 
 load_dotenv()
 
@@ -36,8 +36,8 @@ def create_app():
     app.register_blueprint(dating.dating_bp)
     messages.register_routes(database, socketio)
     app.register_blueprint(messages.messages_bp, url_prefix="/messages")
-    community.register_routes(database)
-    app.register_blueprint(community.community_bp, url_prefix="/community")
+    communities.register_routes(database)
+    app.register_blueprint(communities.communities_bp, url_prefix="/communities")
 
     configure_api_and_processors(app, database)
 
