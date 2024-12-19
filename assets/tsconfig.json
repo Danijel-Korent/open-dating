@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "target": "ES2016",
+    "module": "ES2022",
+    "outDir": "../app/static/dist",
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "include": [
+    "ts/**/*.ts"
+  ]
+}

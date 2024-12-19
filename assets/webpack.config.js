@@ -17,7 +17,7 @@ const plugins = [
 module.exports = {
   plugins,
   mode: 'development',
-  entry: ['./js/index.js', './css/main.css'],
+  entry: ['./ts/index.ts', './css/main.css'],
   output: {
     path: path.resolve(__dirname, '..', 'app', 'static', 'dist')
   },
@@ -31,6 +31,11 @@ module.exports = {
           "postcss-loader",
         ],
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: '/node_modules/'
+      }
     ],
   }
 }

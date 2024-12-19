@@ -10,26 +10,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./js/components/base.js":
-/*!*******************************!*\
-  !*** ./js/components/base.js ***!
-  \*******************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/.pnpm/alpinejs@3.14.6/node_modules/alpinejs/dist/module.esm.js\");\n// This file defines basic AlpineJS components for common patterns. These are usually parent containers for things like modals\n\n\ndocument.addEventListener('alpine:init', () => {\n  alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].data('modal', () => ({\n    modalOpen: false\n  }))\n  alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].data('userProfile', () => ({\n    profileHeight: 0,\n    shown: true,\n    initHeight() {\n      window.addEventListener('resize', () => {\n        this.profileHeight = this.$refs.profileWrapper.getBoundingClientRect().height;\n      });\n    },\n    init() {\n      this.initHeight()\n    },\n\n\n  }));\n})\n\n\n//# sourceURL=webpack:///./js/components/base.js?");
-
-/***/ }),
-
-/***/ "./js/index.js":
-/*!*********************!*\
-  !*** ./js/index.js ***!
-  \*********************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/.pnpm/alpinejs@3.14.6/node_modules/alpinejs/dist/module.esm.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/lucide.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/house.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/heart.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/user.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/group.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/settings.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/check.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/sliders-vertical.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/chevron-down.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/send.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/rotate-ccw.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/users.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/x.js\");\n/* harmony import */ var _components_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/base */ \"./js/components/base.js\");\n// This file is loaded at the start of the HTML and is the entry point for webpack\n\n\n\n\n\ndocument.addEventListener('alpine:init', () => {\n  alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].data('imgPreview', (initialImg) => ({\n    imgsrc: initialImg || null,\n    previewFile() {\n      let file = this.$refs.imageInput.files[0]\n      if (!file || file.type.indexOf('image/') === -1) return;\n      this.imgsrc = null;\n      let reader = new FileReader();\n\n      reader.onload = e => {\n        this.imgsrc = e.target.result;\n      }\n\n      reader.readAsDataURL(file)\n    }\n  }))\n})\n\nwindow.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n\nalpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].start()\n\n\n\n;(0,lucide__WEBPACK_IMPORTED_MODULE_2__.createIcons)({\n  icons: {\n    Home: lucide__WEBPACK_IMPORTED_MODULE_3__[\"default\"], Heart: lucide__WEBPACK_IMPORTED_MODULE_4__[\"default\"], User: lucide__WEBPACK_IMPORTED_MODULE_5__[\"default\"], Group: lucide__WEBPACK_IMPORTED_MODULE_6__[\"default\"], Settings: lucide__WEBPACK_IMPORTED_MODULE_7__[\"default\"], Check: lucide__WEBPACK_IMPORTED_MODULE_8__[\"default\"], Sliders: lucide__WEBPACK_IMPORTED_MODULE_9__[\"default\"], ChevronDown: lucide__WEBPACK_IMPORTED_MODULE_10__[\"default\"], Send: lucide__WEBPACK_IMPORTED_MODULE_11__[\"default\"], RotateCcw: lucide__WEBPACK_IMPORTED_MODULE_12__[\"default\"], Users: lucide__WEBPACK_IMPORTED_MODULE_13__[\"default\"], X: lucide__WEBPACK_IMPORTED_MODULE_14__[\"default\"]\n  }\n})\n\n\n//# sourceURL=webpack:///./js/index.js?");
-
-/***/ }),
-
 /***/ "./node_modules/.pnpm/alpinejs@3.14.6/node_modules/alpinejs/dist/module.esm.js":
 /*!*************************************************************************************!*\
   !*** ./node_modules/.pnpm/alpinejs@3.14.6/node_modules/alpinejs/dist/module.esm.js ***!
@@ -15538,6 +15518,46 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./css/main.css?");
 
+/***/ }),
+
+/***/ "./ts/components/base.ts":
+/*!*******************************!*\
+  !*** ./ts/components/base.ts ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/.pnpm/alpinejs@3.14.6/node_modules/alpinejs/dist/module.esm.js\");\n// This file defines basic AlpineJS components for common patterns. These are usually parent containers for things like modals\n\ndocument.addEventListener('alpine:init', () => {\n    alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].data('modal', () => ({\n        modalOpen: false\n    }));\n    alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].data('userProfile', () => ({\n        profileHeight: 0,\n        shown: true,\n        initHeight() {\n            window.addEventListener('resize', () => {\n                this.profileHeight = this.$refs.profileWrapper.getBoundingClientRect().height;\n            });\n        },\n        init() {\n            this.initHeight();\n        },\n    }));\n});\n\n\n//# sourceURL=webpack:///./ts/components/base.ts?");
+
+/***/ }),
+
+/***/ "./ts/components/forms.ts":
+/*!********************************!*\
+  !*** ./ts/components/forms.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/.pnpm/alpinejs@3.14.6/node_modules/alpinejs/dist/module.esm.js\");\n\ndocument.addEventListener('alpine:init', () => {\n    alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].data('checkbox', (checked) => ({\n        checked: checked,\n        toggle() {\n            this.checked = !this.checked;\n        }\n    }));\n});\n\n\n//# sourceURL=webpack:///./ts/components/forms.ts?");
+
+/***/ }),
+
+/***/ "./ts/components/preferences.ts":
+/*!**************************************!*\
+  !*** ./ts/components/preferences.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/.pnpm/alpinejs@3.14.6/node_modules/alpinejs/dist/module.esm.js\");\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\n\ndocument.addEventListener('alpine:init', () => {\n    alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].data('preferenceModal', () => ({\n        modalOpen: true,\n        submit(preferences) {\n            return __awaiter(this, void 0, void 0, function* () {\n                yield fetch(\"/api/preferences\", { method: \"POST\", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(preferences) });\n            });\n        }\n    }));\n});\n\n\n//# sourceURL=webpack:///./ts/components/preferences.ts?");
+
+/***/ }),
+
+/***/ "./ts/index.ts":
+/*!*********************!*\
+  !*** ./ts/index.ts ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ \"./node_modules/.pnpm/alpinejs@3.14.6/node_modules/alpinejs/dist/module.esm.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/lucide.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/house.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/heart.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/user.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/group.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/settings.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/check.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/sliders-vertical.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/chevron-down.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/send.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/rotate-ccw.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/users.js\");\n/* harmony import */ var lucide__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! lucide */ \"./node_modules/.pnpm/lucide@0.468.0/node_modules/lucide/dist/esm/icons/x.js\");\n/* harmony import */ var _components_base_ts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/base.ts */ \"./ts/components/base.ts\");\n/* harmony import */ var _components_preferences_ts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/preferences.ts */ \"./ts/components/preferences.ts\");\n/* harmony import */ var _components_forms_ts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/forms.ts */ \"./ts/components/forms.ts\");\n// This file is loaded at the start of the HTML and is the entry point for webpack\n\n\n\n\n\ndocument.addEventListener('alpine:init', () => {\n    alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].data('imgPreview', (initialImg) => ({\n        imgsrc: initialImg || null,\n        previewFile() {\n            const files = this.$refs.imageInput.files;\n            if (files) {\n                const file = files[0];\n                if (!file || file.type.indexOf('image/') === -1)\n                    return;\n                this.imgsrc = null;\n                let reader = new FileReader();\n                reader.onload = e => {\n                    if (e.target) {\n                        this.imgsrc = e.target.result;\n                    }\n                };\n                reader.readAsDataURL(file);\n            }\n        }\n    }));\n});\nwindow.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"];\nalpinejs__WEBPACK_IMPORTED_MODULE_0__[\"default\"].start();\n(0,lucide__WEBPACK_IMPORTED_MODULE_4__.createIcons)({\n    icons: {\n        Home: lucide__WEBPACK_IMPORTED_MODULE_5__[\"default\"], Heart: lucide__WEBPACK_IMPORTED_MODULE_6__[\"default\"], User: lucide__WEBPACK_IMPORTED_MODULE_7__[\"default\"], Group: lucide__WEBPACK_IMPORTED_MODULE_8__[\"default\"], Settings: lucide__WEBPACK_IMPORTED_MODULE_9__[\"default\"], Check: lucide__WEBPACK_IMPORTED_MODULE_10__[\"default\"], Sliders: lucide__WEBPACK_IMPORTED_MODULE_11__[\"default\"], ChevronDown: lucide__WEBPACK_IMPORTED_MODULE_12__[\"default\"], Send: lucide__WEBPACK_IMPORTED_MODULE_13__[\"default\"], RotateCcw: lucide__WEBPACK_IMPORTED_MODULE_14__[\"default\"], Users: lucide__WEBPACK_IMPORTED_MODULE_15__[\"default\"], X: lucide__WEBPACK_IMPORTED_MODULE_16__[\"default\"]\n    }\n});\n\n\n//# sourceURL=webpack:///./ts/index.ts?");
+
 /***/ })
 
 /******/ 	});
@@ -15600,7 +15620,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	__webpack_require__("./js/index.js");
+/******/ 	__webpack_require__("./ts/index.ts");
 /******/ 	var __webpack_exports__ = __webpack_require__("./css/main.css");
 /******/ 	
 /******/ })()

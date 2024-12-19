@@ -3,13 +3,13 @@
 {% endmacro %}
 
 {% macro checkbox(label, name, checked="false") %}
-<div class="inline-flex items-center" x-data="{checked:{{checked}}}">
-  <label class="flex items-center cursor-pointer relative" for="{{name}}" @click="checked = !checked">
-    <input type="checkbox" :checked="checked" 
+<div class="inline-flex items-center" x-data="{checkbox({{checked}})}">
+  <label class="flex items-center cursor-pointer relative" for="{{name}}" @click="toggle()">
+    <input type="checkbox" :checked="checked"
       class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-accent-300 checked:bg-accent-500 checked:border-accent-500"
       id="{{name}}" >
-    <span class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      <i class="p-1" data-lucide="check"></i> 
+    <span class="h-5 w-5 absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <i class="p-1 h-5 w-5" data-lucide="check"></i> 
     </span>
   </label>
   <label class="cursor-pointer ml-2 text-light-950 text-sm" for="{{name}}">

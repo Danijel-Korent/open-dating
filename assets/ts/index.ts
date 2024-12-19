@@ -2,25 +2,37 @@
 import Alpine from 'alpinejs';
 
 import { ChevronDown, createIcons, Group, Check, Heart, Home, RotateCcw, Send, Settings, Sliders, User, Users, X } from "lucide";
-import './components/base';
+import './components/base.ts';
+import "./components/preferences.ts";
+import "./components/forms.ts"
 
 document.addEventListener('alpine:init', () => {
   Alpine.data('imgPreview', (initialImg) => ({
     imgsrc: initialImg || null,
     previewFile() {
-      let file = this.$refs.imageInput.files[0]
-      if (!file || file.type.indexOf('image/') === -1) return;
-      this.imgsrc = null;
-      let reader = new FileReader();
+      const files = (this.$refs.imageInput as HTMLInputElement).files
+      if (files) {
+        const file = files[0]
+        if (!file || file.type.indexOf('image/') === -1) return;
+        this.imgsrc = null;
+        let reader = new FileReader();
 
-      reader.onload = e => {
-        this.imgsrc = e.target.result;
+        reader.onload = e => {
+          if (e.target) {
+            this.imgsrc = e.target.result;
+          }
+        }
+
+        reader.readAsDataURL(file)
+
       }
-
-      reader.readAsDataURL(file)
     }
   }))
 })
+
+declare global {
+  interface Window { Alpine: any }
+}
 
 window.Alpine = Alpine
 

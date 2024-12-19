@@ -1,7 +1,11 @@
 {
   "scripts": {
-    "build": "webpack",
-    "watch": "webpack --watch"
+    "build": "run-s build:tw build:assets",
+    "build:watch": "run-p watch:tw watch:assets",
+    "build:tw": "tailwindcss -c tailwind.config.js -w",
+    "watch:tw": "tailwindcss -c tailwind.config.js -w",
+    "build:assets": "webpack",
+    "watch:assets": "webpack -w"
   },
   "devDependencies": {
     "@types/alpinejs": "^3.13.11",
@@ -16,6 +20,8 @@
     "sass-loader": "^16.0.4",
     "style-loader": "^4.0.0",
     "tailwindcss": "^3.4.14",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.2",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
     "webpack-manifest-plugin": "^5.0.0"
