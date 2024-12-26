@@ -11,6 +11,9 @@ importers:
       alpinejs:
         specifier: ^3.14.3
         version: 3.14.6
+      htmx.org:
+        specifier: ^1.9.12
+        version: 1.9.12
       lucide:
         specifier: ^0.468.0
         version: 0.468.0
@@ -856,6 +859,9 @@ packages:
 
   hosted-git-info@2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
+
+  htmx.org@1.9.12:
+    resolution: {integrity: sha512-VZAohXyF7xPGS52IM8d1T1283y+X4D+Owf3qY1NZ9RuBypyu9l8cGsxUMAG5fEAb/DhT7rDoJ9Hpu5/HxFD3cw==}
 
   icss-utils@5.1.0:
     resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
@@ -2848,6 +2854,8 @@ snapshots:
       function-bind: 1.1.2
 
   hosted-git-info@2.8.9: {}
+
+  htmx.org@1.9.12: {}
 
   icss-utils@5.1.0(postcss@8.4.49):
     dependencies:

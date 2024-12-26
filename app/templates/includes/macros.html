@@ -1,6 +1,6 @@
 {% import "components/forms.html" as forms %}
 
-{% macro preferences() %}
+{% macro preferences(male, female, nonbinary, age-min, age-max, distance) %}
 <div x-data="preferenceModal" >
   <button @click="modalOpen = true" class="p-2">
     <i data-lucide="sliders"></i>
@@ -21,18 +21,18 @@
       <form>
         <h2 class="block text-lg font-semibold mb-1">Gender</h2>
         <div class="flex flex-col gap-4 mb-4">
-          {{forms.checkbox("Male", "male")}}
-          {{forms.checkbox("Female", "female")}}
-          {{forms.checkbox("Non-binary", "nonbinary")}}
+          {{forms.checkbox("Male", "male", male)}}
+          {{forms.checkbox("Female", "female", female)}}
+          {{forms.checkbox("Non-binary", "nonbinary", nonbinary)}}
         </div>
         <h2 class="text-lg font-semibold mb-1">Age</h2>
         <div class="flex flex-col gap-4 mb-4">
-          {{forms.number_input("age-min", "Minimum Age", 18)}}
-          {{forms.number_input("age-max", "Maximum Age", 99)}}
+          {{forms.number_input("age-min", "Minimum Age", age-min)}}
+          {{forms.number_input("age-max", "Maximum Age", age-max)}}
         </div>
         <h2 class="text-lg font-semibold mb-1">Distance</h2>
         <div class="flex flex-col gap-4 mb-4">
-          {{forms.range_input(1, 150, "distanceKms", "Distance (kms)", "km")}}
+          {{forms.range_input(1, 150, "distanceKms", "Distance (kms)", "km", distance)}}
         </div>
         <button type="submit" class="bg-accent-500 dark:bg-accent-300 rounded-md px-2 py-1 hover:bg-accent-600 dark:hover:bg-accent-300 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 text-neutral-50 dark:text-neutral-950">Save changes</button>
       </form>
