@@ -1,330 +1,350 @@
 {
-    "users": [
+  "users": [
+    {
+      "username": "john_doe",
+      "name": "John Doe",
+      "age": 28,
+      "gender": "male",
+      "location": "New York, NY",
+      "bio": "Love hiking and outdoor adventures.",
+      "likes": [],
+      "pictures": [
+        "image1.jpg",
+        "/static/images/avatar.png"
+      ],
+      "preferences": {
+        "gender": {
+          "female": true,
+          "male": false,
+          "nonbinary": true
+        },
+        "age_max": 32,
+        "age_min": 24,
+        "distance_meters": 50
+      },
+      "seen_users": []
+    },
+    {
+      "username": "jane_smith",
+      "name": "Jane Smith",
+      "age": 26,
+      "gender": "female",
+      "location": "Los Angeles, CA",
+      "bio": "Avid reader and coffee enthusiast.",
+      "likes": [],
+      "pictures": [
+        "image1.jpg",
+        "image2.png"
+      ],
+      "preferences": {
+        "gender": "male",
+        "age_max": 30,
+        "age_min": 25,
+        "distance_meters": 100
+      },
+      "seen_users": []
+    },
+    {
+      "username": "sam_wilson",
+      "name": "Sam Wilson",
+      "age": 30,
+      "gender": "male",
+      "location": "Chicago, IL",
+      "bio": "Musician and foodie. Always looking for the next great dish.",
+      "likes": [],
+      "pictures": [
+        "image1.jpg",
+        "/static/images/avatar.png"
+      ],
+      "preferences": {
+        "gender": {
+          "female": true,
+          "male": false,
+          "nonbinary": false
+        },
+        "age_max": 35,
+        "age_min": 26,
+        "distance_meters": 75
+      },
+      "seen_users": []
+    },
+    {
+      "username": "emily_jones",
+      "name": "Emily Jones",
+      "age": 27,
+      "gender": "female",
+      "location": "Houston, TX",
+      "bio": "Fitness enthusiast and amateur photographer.",
+      "likes": [],
+      "pictures": [
+        "image1.jpg",
+        "image2.jpg"
+      ],
+      "preferences": {
+        "gender": {
+          "male": true,
+          "female": false,
+          "nonbinary": false
+        },
+        "age_max": 33,
+        "age_min": 27,
+        "distance_meters": 50
+      },
+      "seen_users": []
+    },
+    {
+      "username": "michael_brown",
+      "name": "Michael Brown",
+      "age": 32,
+      "gender": "male",
+      "location": "San Francisco, CA",
+      "bio": "Tech geek and movie buff. Always up for a sci-fi film.",
+      "likes": [],
+      "pictures": [
+        "image1.jpg",
+        "/static/images/avatar.png"
+      ],
+      "preferences": {
+        "gender": {
+          "male": true,
+          "female": true,
+          "nonbinary": false
+        },
+        "age_max": 35,
+        "age_min": 28,
+        "distance_meters": 50
+      },
+      "seen_users": []
+    },
+    {
+      "username": "sarah_lee",
+      "name": "Sarah Lee",
+      "age": 25,
+      "gender": "female",
+      "location": "Seattle, WA",
+      "bio": "Nature lover and painter. Find me in a gallery or a forest.",
+      "likes": [],
+      "pictures": [
+        "image1.jpg",
+        "/static/images/avatar.png"
+      ],
+      "preferences": {
+        "gender": {
+          "male": true,
+          "female": false,
+          "nonbinary": false
+        },
+        "age_max": 30,
+        "age_min": 25,
+        "distance_meters": 75
+      },
+      "seen_users": []
+    }
+  ],
+  "default_username": "john_doe",
+  "matches": [
+    {
+      "user1": "john_doe",
+      "user2": "jane_smith",
+      "match_date": "2024-06-28T14:45:00Z"
+    },
+    {
+      "user1": "john_doe",
+      "user2": "sarah_lee",
+      "match_date": "2024-06-28T14:45:00Z"
+    },
+    {
+      "user1": "emily_jones",
+      "user2": "sam_wilson",
+      "match_date": ""
+    },
+    {
+      "user1": "john_doe",
+      "user2": "emily_jones",
+      "match_date": ""
+    }
+  ],
+  "likes": [
+    {
+      "liker": "emily_jones",
+      "liked": "michael_brown",
+      "timestamp": ""
+    }
+  ],
+  "chats": [
+    {
+      "user1": "john_doe",
+      "user2": "jane_smith",
+      "messages": [
         {
-            "username": "john_doe",
-            "name": "John Doe",
-            "age": 28,
-            "gender": "male",
-            "location": "New York, NY",
-            "bio": "Love hiking and outdoor adventures.",
-            "likes": [],
-            "pictures": [
-                "image1.jpg",
-                "/static/images/avatar.png"
-            ],
-            "preferences": {
-                "gender": "female",
-                "age_max": 32,
-                "age_min": 24,
-                "distance_meters": 50
-            },
-            "seen_users": []
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "Hey Jane, how are you?"
         },
         {
-            "username": "jane_smith",
-            "name": "Jane Smith",
-            "age": 26,
-            "gender": "female",
-            "location": "Los Angeles, CA",
-            "bio": "Avid reader and coffee enthusiast.",
-            "likes": [],
-            "pictures": [
-                "image1.jpg",
-                "image2.png"
-            ],
-            "preferences": {
-                "gender": "male",
-                "age_max": 30,
-                "age_min": 25,
-                "distance_meters": 100
-            },
-            "seen_users": []
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "Kind of nice that both our names start with j."
         },
         {
-            "username": "sam_wilson",
-            "name": "Sam Wilson",
-            "age": 30,
-            "gender": "male",
-            "location": "Chicago, IL",
-            "bio": "Musician and foodie. Always looking for the next great dish.",
-            "likes": [],
-            "pictures": [
-                "image1.jpg",
-                "/static/images/avatar.png"
-            ],
-            "preferences": {
-                "gender": "female",
-                "age_max": 35,
-                "age_min": 26,
-                "distance_meters": 75
-            },
-            "seen_users": []
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "I'm doing well, and I suppose that is interesting."
         },
         {
-            "username": "emily_jones",
-            "name": "Emily Jones",
-            "age": 27,
-            "gender": "female",
-            "location": "Houston, TX",
-            "bio": "Fitness enthusiast and amateur photographer.",
-            "likes": [],
-            "pictures": [
-                "image1.jpg",
-                "image2.jpg"
-            ],
-            "preferences": {
-                "gender": "male",
-                "age_max": 33,
-                "age_min": 27,
-                "distance_meters": 50
-            },
-            "seen_users": []
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "How are you doing?"
         },
         {
-            "username": "michael_brown",
-            "name": "Michael Brown",
-            "age": 32,
-            "gender": "male",
-            "location": "San Francisco, CA",
-            "bio": "Tech geek and movie buff. Always up for a sci-fi film.",
-            "likes": [],
-            "pictures": [
-                "image1.jpg",
-                "/static/images/avatar.png"
-            ],
-            "preferences": {
-                "gender": "female",
-                "age_max": 35,
-                "age_min": 28,
-                "distance_meters": 50
-            },
-            "seen_users": []
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "I'm doing very well."
         },
         {
-            "username": "sarah_lee",
-            "name": "Sarah Lee",
-            "age": 25,
-            "gender": "female",
-            "location": "Seattle, WA",
-            "bio": "Nature lover and painter. Find me in a gallery or a forest.",
-            "likes": [],
-            "pictures": [
-                "image1.jpg",
-                "/static/images/avatar.png"
-            ],
-            "preferences": {
-                "gender": "male",
-                "age_max": 30,
-                "age_min": 25,
-                "distance_meters": 75
-            },
-            "seen_users": []
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "That's good to hear."
+        },
+        {
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "Doing anything today?"
+        },
+        {
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "Uhmmm...Whether looks great outside."
+        },
+        {
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "I might go for a walk."
+        },
+        {
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "You spelled weather wrong..."
+        },
+        {
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "Oh sorry...*weather I mean."
+        },
+        {
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "Yeah...I don't think this is going to work out."
+        },
+        {
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "Good luck finding someone."
+        },
+        {
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "You are a weirdo."
+        },
+        {
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "test"
+        },
+        {
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "hello"
+        },
+        {
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "funny"
+        },
+        {
+          "sender_id": "jane_smith",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "go away"
+        },
+        {
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "no"
+        },
+        {
+          "sender_id": "john_doe",
+          "receiver_id": "jane_smith",
+          "timestamp": "",
+          "message": "dsadsa"
         }
-    ],
-    "default_username": "john_doe",
-    "matches": [
+      ]
+    },
+    {
+      "user1": "john_doe",
+      "user2": "sarah_lee",
+      "messages": [
         {
-            "user1": "john_doe",
-            "user2": "jane_smith",
-            "match_date": "2024-06-28T14:45:00Z"
+          "sender_id": "john_doe",
+          "receiver_id": "sarah_lee",
+          "timestamp": "",
+          "message": "hi there"
         },
         {
-            "user1": "john_doe",
-            "user2": "sarah_lee",
-            "match_date": "2024-06-28T14:45:00Z"
+          "sender_id": "john_doe",
+          "receiver_id": "sarah_lee",
+          "timestamp": "",
+          "message": "how are you"
         },
         {
-            "user1": "emily_jones",
-            "user2": "sam_wilson",
-            "match_date": ""
+          "sender_id": "sarah_lee",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "i'm good"
         },
         {
-            "user1": "john_doe",
-            "user2": "emily_jones",
-            "match_date": ""
+          "sender_id": "john_doe",
+          "receiver_id": "sarah_lee",
+          "timestamp": "",
+          "message": "that's great"
+        },
+        {
+          "sender_id": "john_doe",
+          "receiver_id": "sarah_lee",
+          "timestamp": "",
+          "message": "this is for sarah lee"
         }
-    ],
-    "likes": [
+      ]
+    },
+    {
+      "user1": "emily_jones",
+      "user2": "john_doe",
+      "messages": [
         {
-            "liker": "emily_jones",
-            "liked": "michael_brown",
-            "timestamp": ""
+          "sender_id": "emily_jones",
+          "receiver_id": "john_doe",
+          "timestamp": "",
+          "message": "hello bastard"
         }
-    ],
-    "chats": [
-        {
-            "user1": "john_doe",
-            "user2": "jane_smith",
-            "messages": [
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "Hey Jane, how are you?"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "Kind of nice that both our names start with j."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "I'm doing well, and I suppose that is interesting."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "How are you doing?"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "I'm doing very well."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "That's good to hear."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "Doing anything today?"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "Uhmmm...Whether looks great outside."
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "I might go for a walk."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "You spelled weather wrong..."
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "Oh sorry...*weather I mean."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "Yeah...I don't think this is going to work out."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "Good luck finding someone."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "You are a weirdo."
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "test"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "hello"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "funny"
-                },
-                {
-                    "sender_id": "jane_smith",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "go away"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "no"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "jane_smith",
-                    "timestamp": "",
-                    "message": "dsadsa"
-                }
-            ]
-        },
-        {
-            "user1": "john_doe",
-            "user2": "sarah_lee",
-            "messages": [
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "sarah_lee",
-                    "timestamp": "",
-                    "message": "hi there"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "sarah_lee",
-                    "timestamp": "",
-                    "message": "how are you"
-                },
-                {
-                    "sender_id": "sarah_lee",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "i'm good"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "sarah_lee",
-                    "timestamp": "",
-                    "message": "that's great"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "sarah_lee",
-                    "timestamp": "",
-                    "message": "this is for sarah lee"
-                }
-            ]
-        },
-        {
-            "user1": "emily_jones",
-            "user2": "john_doe",
-            "messages": [
-                {
-                    "sender_id": "emily_jones",
-                    "receiver_id": "john_doe",
-                    "timestamp": "",
-                    "message": "hello bastard"
-                }
-            ]
-        }
-    ]
+      ]
+    }
+  ]
 }

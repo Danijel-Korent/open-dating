@@ -9,8 +9,15 @@ from werkzeug.utils import secure_filename
 
 
 @dataclass
+class GenderPreference:
+    male: bool
+    female: bool
+    nonbinary: bool
+
+
+@dataclass
 class Preferences:
-    gender: str
+    gender: GenderPreference
     age_max: int
     age_min: int
     distance_meters: int
@@ -164,7 +171,12 @@ class DB:
             gender="",
             location="",
             bio="",
-            preferences=Preferences(age_min=0, age_max=0, gender="", distance_meters=0),
+            preferences=Preferences(
+                age_min=0,
+                age_max=0,
+                gender=GenderPreference(False, False, False),
+                distance_meters=0,
+            ),
             likes=[],
             pictures=[],
             seen_users=[],
@@ -220,7 +232,7 @@ class DB:
 
     def get_recommended_user(self):
         for user in self.users:
-            if self.validate_user_recommendation(user) == True:
+            if self.validate_user_recommendation(user):
                 return user
 
     def validate_user_recommendation(self, user) -> bool:

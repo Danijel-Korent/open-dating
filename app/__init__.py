@@ -40,7 +40,7 @@ def create_app():
     communities.register_routes(database)
     app.register_blueprint(communities.communities_bp, url_prefix="/communities")
     api.register_routes(database)
-    app.register_blueprint(api.api_bp)
+    app.register_blueprint(api.api_bp, url_prefix="/api")
 
     configure_api_and_processors(app, database)
 
