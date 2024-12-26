@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       alpinejs:
-        specifier: ^3.14.3
+        specifier: ^3.14.6
         version: 3.14.6
       htmx.org:
         specifier: ^1.9.12

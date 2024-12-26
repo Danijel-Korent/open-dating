@@ -1,48 +1,20 @@
 // This file is loaded at the start of the HTML and is the entry point for webpack
-import Alpine from 'alpinejs';
 import 'htmx.org'
 import * as htmx from "htmx.org"
-
-// @ts-expect-error
-window.htmx = htmx
-
 import { ChevronDown, createIcons, Group, Check, Heart, Home, RotateCcw, Send, Settings, Sliders, User, Users, X } from "lucide";
-import './components/base.ts';
-import "./components/preferences.ts";
-import "./components/forms.ts"
+import Alpine from 'alpinejs';
 
-document.addEventListener('alpine:init', () => {
-	Alpine.data('imgPreview', (initialImg) => ({
-		imgsrc: initialImg || null,
-		previewFile() {
-			const files = (this.$refs.imageInput as HTMLInputElement).files
-			if (files) {
-				const file = files[0]
-				if (!file || file.type.indexOf('image/') === -1) return;
-				this.imgsrc = null;
-				let reader = new FileReader();
-
-				reader.onload = e => {
-					if (e.target) {
-						this.imgsrc = e.target.result;
-					}
-				}
-
-				reader.readAsDataURL(file)
-
-			}
-		}
-	}))
-})
+import "./components/modal.ts"
+import "./components/checkbox.ts"
 
 declare global {
-	interface Window { Alpine: any }
+	interface Window { htmx: any, Alpine: any }
 }
 
 window.Alpine = Alpine
+window.htmx = htmx
 
 Alpine.start()
-
 
 
 createIcons({

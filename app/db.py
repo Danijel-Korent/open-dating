@@ -189,6 +189,9 @@ class DB:
         self.get_user_by_username(session["username"]).preferences = preferences
         self.save()
 
+    def get_preferences(self):
+        return self.get_user_by_username(session["username"]).preferences
+
     def get_match_users(self):
         matches: list[User] = []
         for match in self.matches:

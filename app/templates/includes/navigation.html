@@ -54,7 +54,7 @@
 </form>
 {% endmacro %}
 
-{% macro mobile_header() %}
+{% macro mobile_header(currentPreferences) %}
 <div class="block md:hidden px-8 py-4 top-0 bg-light-50 ">
   <div class="w-full flex flex-row items-center justify-between">
     {% if caller %}
@@ -64,7 +64,7 @@
       <h1 class="font-light text-3xl">Dating App</h1>
       <p>{{title}}</p>
     </span>
-    {{preferences()}}
+    {{preferences(currentPreferences)}}
     {% endif %}
   </div>
 </div>
