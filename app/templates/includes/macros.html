@@ -85,8 +85,8 @@
 
 
 {% macro profile(user, lucideIcon=None, buttonClick="", hasButtons=False, shown="true") %}
-<div x-ref="profileWrapper" x-data="userProfile" x-init="shown = {{shown}}; $watch('shown', initHeight())"  class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
-  <div :style="`height: ${profileHeight}px`" class="relative flex z-10 flex-col w-full shadow-md">
+<div x-ref="profileWrapper" x-data="userProfile('{{shown}}')" class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
+  <div :style="`height: ${height}px`" class="relative flex z-10 flex-col w-full shadow-md">
     <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
     <img class="absolute flex -z-10 flex-col h-full w-full object-cover " src="{{get_image_path(user.username, user.pictures[0])}}"/>
     {% if lucideIcon %}
