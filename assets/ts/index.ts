@@ -12,14 +12,14 @@ declare global {
 	interface Window { htmx: any, Alpine: any }
 }
 
-window.Alpine = Alpine
 window.htmx = htmx
+window.Alpine = Alpine
 
-Alpine.start()
 Alpine.data("userProfile", profile)
 Alpine.data("modal", modal)
 Alpine.data("checkbox", checkbox)
 
+Alpine.start()
 
 createIcons({
 	icons: {
