@@ -2,8 +2,8 @@
 
 {% endmacro %}
 
-{% macro checkbox(label, name, checked="false") %}
-<div class="inline-flex items-center" x-data="checkbox('checked')">
+{% macro checkbox(label, name, isChecked=False) %}
+<div class="inline-flex items-center" x-data="checkbox('{{isChecked}}')">
   <label class="flex items-center cursor-pointer relative">
     <input type="checkbox" 
 			x-model="checked"
@@ -19,10 +19,18 @@
 </div>
 {% endmacro %}
 
-{% macro range_input(min, max, name, label, suffix="", default=None) %}
-<div>
-  <label class="text-sm text-light-600 "for={{name}}>Show me people up to <span class="font-bold"></span><span class="font-bold">km </span>away.</label>
-  <input class="w-full bg-accent-500 accent-accent-500 rounded-lg border-transparent appearance-none h-1 " name="{{name}}" min={{min}} max={{max}} type="range" value={{default or min}}></input>
+{% macro range_input(min, max, name, label, suffix="", default=min) %}
+<div x-data="range({{default}})">
+  <label class="text-sm text-light-600 "for={{name}}>Show me people up to <span x-text="value" class="font-bold"></span><span class="font-bold">km </span>away.</label>
+	<div class="flex flex-row items-center gap-2 ">
+		<button type="button" class="p-1 leading-none transition-all font-bold hover:bg-accent-500 rounded-full hover:text-neutral-50" @click="decrement(2)">
+			<i height="12" width="12" data-lucide="minus"></i>
+		</button>
+		<input x-model="value" class="w-full bg-accent-500 accent-accent-500 rounded-lg border-transparent appearance-none h-1 " name="{{name}}" min={{min}} max={{max}} type="range" value={{default or min}}></input>
+		<button type="button" @click="increment(2)" class="p-1 leading-none transition-all hover:bg-accent-500 hover:text-neutral-50 rounded-full font-bold ">
+			<i height="12" width="12" data-lucide="plus"></i>
+		</button>
+	</div>
   <span class="w-full flex flex-row items-center justify-between ">
     <p class="text-xs text-light-600">{{min ~ suffix}}</p>
     <p class="text-xs text-light-600">{{max ~ suffix}}</p>

@@ -8,7 +8,7 @@ def register_routes(db: DB):
     @api_bp.route("/preferences", methods=["GET", "POST"])
     def preferences():
         if request.method == "GET":
-            return jsonify(db.get_current_user().preferences)
+            return jsonify(db.get_preferences())
         if request.method == "POST":
             preferences = request.form["preferences"]
             print(preferences)
