@@ -113,7 +113,11 @@ class DB:
                     likes=[],
                     pictures=user["pictures"],
                     preferences=Preferences(
-                        gender=user["preferences"]["gender"],
+                        gender=GenderPreference(
+                            male=user["preferences"]["gender"]["male"],
+                            female=user["preferences"]["gender"]["female"],
+                            nonbinary=user["preferences"]["gender"]["nonbinary"],
+                        ),
                         age_min=user["preferences"]["age_min"],
                         age_max=user["preferences"]["age_max"],
                         distance_meters=user["preferences"]["distance_meters"],
@@ -189,6 +193,9 @@ class DB:
         self.get_user_by_username(session["username"]).preferences = preferences
         self.save()
 
+    def get_preferences(self):
+        return self.get_user_by_username(session["username"]).preferences
+
     def get_match_users(self):
         matches: list[User] = []
         for match in self.matches:
@@ -229,6 +236,13 @@ class DB:
                 return chat
             if chat.user1 == user2 and chat.user2 == user1:
                 return chat
+
+    def get_valid_user_recommendations(self):
+        users = []
+        for user in self.users:
+            if self.validate_user_recommendation(user):
+                users.append(user)
+        return users
 
     def get_recommended_user(self):
         for user in self.users:

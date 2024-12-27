@@ -36,3 +36,9 @@ def configure_api_and_processors(app, db: DB):
             "users": db.users,
             "active_user": db.get_user_by_username(session["username"]),
         }
+
+    @app.context_processor
+    def inject_preferences():
+        return {
+            "currentPreferences": db.get_preferences(),
+        }

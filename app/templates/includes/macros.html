@@ -1,8 +1,8 @@
 {% import "components/forms.html" as forms %}
 
-{% macro preferences(male, female, nonbinary, age-min, age-max, distance) %}
-<div x-data="preferenceModal" >
-  <button @click="modalOpen = true" class="p-2">
+{% macro preferences(preferences) %}
+<div x-data="modal" >
+  <button @click="open()" class="p-2">
     <i data-lucide="sliders"></i>
   </button>
   <div 
@@ -14,25 +14,25 @@
     <div class="bg-neutral-50 dark:bg-neutral-800 p-8 rounded-md w-full m-8 md:w-96 md:m-0">
       <span class="flex flex-row items-center justify-between">
         <h1 class="text-2xl font-bold mb-2">Preferences</h1>
-        <button @click="modalOpen=false">
+        <button @click="close()">
           <i data-lucide="x"></i>
         </button>
       </span>
       <form>
         <h2 class="block text-lg font-semibold mb-1">Gender</h2>
         <div class="flex flex-col gap-4 mb-4">
-          {{forms.checkbox("Male", "male", male)}}
-          {{forms.checkbox("Female", "female", female)}}
-          {{forms.checkbox("Non-binary", "nonbinary", nonbinary)}}
+          {{forms.checkbox("Male", "male", preferences.gender.male)}}
+          {{forms.checkbox("Female", "female", preferences.gender.female)}}
+          {{forms.checkbox("Non-binary", "nonbinary", preferences.gender.nonbinary)}}
         </div>
         <h2 class="text-lg font-semibold mb-1">Age</h2>
         <div class="flex flex-col gap-4 mb-4">
-          {{forms.number_input("age-min", "Minimum Age", age-min)}}
-          {{forms.number_input("age-max", "Maximum Age", age-max)}}
+          {{forms.number_input("age-min", "Minimum Age", preferences.age_min)}}
+          {{forms.number_input("age-max", "Maximum Age", preferences.age_max)}}
         </div>
         <h2 class="text-lg font-semibold mb-1">Distance</h2>
         <div class="flex flex-col gap-4 mb-4">
-          {{forms.range_input(1, 150, "distanceKms", "Distance (kms)", "km", distance)}}
+          {{forms.range_input(1, 150, "distanceKms", "Distance (kms)", "km", preferences.distance_meters)}}
         </div>
         <button type="submit" class="bg-accent-500 dark:bg-accent-300 rounded-md px-2 py-1 hover:bg-accent-600 dark:hover:bg-accent-300 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 text-neutral-50 dark:text-neutral-950">Save changes</button>
       </form>
@@ -85,8 +85,8 @@
 
 
 {% macro profile(user, lucideIcon=None, buttonClick="", hasButtons=False, shown="true") %}
-<div x-ref="profileWrapper" x-data="userProfile" x-init="shown = {{shown}}; $watch('shown', initHeight())"  class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
-  <div :style="`height: ${profileHeight}px`" class="relative flex z-10 flex-col w-full shadow-md">
+<div x-ref="profileWrapper" x-data="userProfile('{{shown}}')" class="h-full w-full md:rounded-3xl overflow-y-scroll bg-neutral-50 text-neutral-50">
+  <div :style="`height: ${height}px`" class="relative flex z-10 flex-col w-full shadow-md">
     <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
     <img class="absolute flex -z-10 flex-col h-full w-full object-cover " src="{{get_image_path(user.username, user.pictures[0])}}"/>
     {% if lucideIcon %}

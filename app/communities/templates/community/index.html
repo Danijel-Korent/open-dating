@@ -11,8 +11,8 @@
 {% endblock header %}
 
 {% block mobile_header %}
-    {{mobile_header()}}
-    {% endblock %}
+    {{mobile_header(currentPreferences)}}
+{% endblock %}
 
 
 {% block content %}
@@ -27,8 +27,6 @@
     </div>
       <a class="flex flex-row items-center text-sm text-accent-500 gap-1 font-bold">See more<i data-lucide="arrow-right" class="w-4 h-4"></i></a>
     </div>
-
-
   </div>
 {% endblock content %}
 

@@ -9,5 +9,7 @@ htmlcov/
 docs/_build/
 .env
 
+app/static/dist
+
 node_modules/
 .DS_Store

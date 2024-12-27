@@ -1,52 +1,30 @@
 // This file is loaded at the start of the HTML and is the entry point for webpack
-import Alpine from 'alpinejs';
 import 'htmx.org'
 import * as htmx from "htmx.org"
+import { ChevronDown, createIcons, Minus, Plus, Group, Check, Heart, Home, RotateCcw, Send, Settings, Sliders, User, Users, X } from "lucide";
+import Alpine from 'alpinejs';
 
-// @ts-expect-error
-window.htmx = htmx
-
-import { ChevronDown, createIcons, Group, Check, Heart, Home, RotateCcw, Send, Settings, Sliders, User, Users, X } from "lucide";
-import './components/base.ts';
-import "./components/preferences.ts";
-import "./components/forms.ts"
-
-document.addEventListener('alpine:init', () => {
-	Alpine.data('imgPreview', (initialImg) => ({
-		imgsrc: initialImg || null,
-		previewFile() {
-			const files = (this.$refs.imageInput as HTMLInputElement).files
-			if (files) {
-				const file = files[0]
-				if (!file || file.type.indexOf('image/') === -1) return;
-				this.imgsrc = null;
-				let reader = new FileReader();
-
-				reader.onload = e => {
-					if (e.target) {
-						this.imgsrc = e.target.result;
-					}
-				}
-
-				reader.readAsDataURL(file)
-
-			}
-		}
-	}))
-})
+import modal from "./components/modal"
+import profile from "./components/profile"
+import checkbox from './components/checkbox';
+import range from './components/range';
 
 declare global {
-	interface Window { Alpine: any }
+	interface Window { htmx: any, Alpine: any }
 }
 
+window.htmx = htmx
 window.Alpine = Alpine
+
+Alpine.data("userProfile", profile)
+Alpine.data("modal", modal)
+Alpine.data("checkbox", checkbox)
+Alpine.data("range", range)
 
 Alpine.start()
 
-
-
 createIcons({
 	icons: {
-		Home, Heart, User, Group, Settings, Check, Sliders, ChevronDown, Send, RotateCcw, Users, X
+		Home, Heart, User, Group, Settings, Minus, Plus, Check, Sliders, ChevronDown, Send, RotateCcw, Users, X
 	}
 })
