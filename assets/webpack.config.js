@@ -33,6 +33,9 @@ module.exports = {
 	watchOptions: {
 		ignored: path.resolve(__dirname, '..', 'app')
 	},
+	resolve: {
+		extensions: ['.ts', '.js', '...']
+	},
 	entry: ['./ts/index.ts', './css/main.css'],
 	output: {
 		path: path.resolve(__dirname, '..', 'app', 'static', 'dist')

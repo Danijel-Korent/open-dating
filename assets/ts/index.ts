@@ -4,8 +4,9 @@ import * as htmx from "htmx.org"
 import { ChevronDown, createIcons, Group, Check, Heart, Home, RotateCcw, Send, Settings, Sliders, User, Users, X } from "lucide";
 import Alpine from 'alpinejs';
 
-import "./components/modal.ts"
-import "./components/checkbox.ts"
+import modal from "./components/modal"
+import profile from "./components/profile"
+import checkbox from './components/checkbox';
 
 declare global {
 	interface Window { htmx: any, Alpine: any }
@@ -15,6 +16,9 @@ window.Alpine = Alpine
 window.htmx = htmx
 
 Alpine.start()
+Alpine.data("userProfile", profile)
+Alpine.data("modal", modal)
+Alpine.data("checkbox", checkbox)
 
 
 createIcons({

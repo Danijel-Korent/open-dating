@@ -1,11 +1,11 @@
-import Alpine from "alpinejs";
+import { defineComponent, stringToBoolean } from "../utils";
 
-document.addEventListener("alpine:init", () => {
-	Alpine.data("checkbox", (checked: string) => ({
-		checked: checked === "true" || checked === "True" ? true : false,
+export default defineComponent((checked: string) => ({
+	checked: stringToBoolean(checked),
 
-		check() {
-			this.checked = !this.checked
-		}
-	}))
-})
+	check() {
+		this.checked = !this.checked
+	}
+}))
+
+
