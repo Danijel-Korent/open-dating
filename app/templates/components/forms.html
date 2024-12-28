@@ -5,7 +5,7 @@
 {% macro checkbox(label, name, isChecked=False) %}
 <div class="inline-flex items-center" x-data="checkbox('{{isChecked}}')">
   <label class="flex items-center cursor-pointer relative">
-    <input type="checkbox" 
+		<input name="{{name}}" type="checkbox" 
 			x-model="checked"
       class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-accent-300 checked:bg-accent-500 checked:border-accent-500"
       id="{{name}}" >

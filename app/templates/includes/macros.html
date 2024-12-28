@@ -1,11 +1,11 @@
 {% import "components/forms.html" as forms %}
 
 {% macro preferences(preferences) %}
-<div x-data="modal" >
-  <button @click="open()" class="p-2">
+<form x-data="modal" hx-post="/api/preferences" hx-swap="outerHTML">
+  <button type="button" @click="open()" class="p-2">
     <i data-lucide="sliders"></i>
   </button>
-  <div 
+  <div
     role="dialog"
     x-show="modalOpen"
     class="flex items-center justify-center fixed z-20 w-full h-full top-0 left-0 bg-neutral-950/30"
@@ -14,11 +14,11 @@
     <div class="bg-neutral-50 dark:bg-neutral-800 p-8 rounded-md w-full m-8 md:w-96 md:m-0">
       <span class="flex flex-row items-center justify-between">
         <h1 class="text-2xl font-bold mb-2">Preferences</h1>
-        <button @click="close()">
+        <button type="button" @click="close()">
           <i data-lucide="x"></i>
         </button>
       </span>
-      <form>
+      <div>
         <h2 class="block text-lg font-semibold mb-1">Gender</h2>
         <div class="flex flex-col gap-4 mb-4">
           {{forms.checkbox("Male", "male", preferences.gender.male)}}
@@ -32,13 +32,13 @@
         </div>
         <h2 class="text-lg font-semibold mb-1">Distance</h2>
         <div class="flex flex-col gap-4 mb-4">
-          {{forms.range_input(1, 150, "distanceKms", "Distance (kms)", "km", preferences.distance_meters)}}
+          {{forms.range_input(1, 150, "distanceKms", "Distance (kms)", "km", preferences.distance_meters/1000)}}
         </div>
         <button type="submit" class="bg-accent-500 dark:bg-accent-300 rounded-md px-2 py-1 hover:bg-accent-600 dark:hover:bg-accent-300 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2 text-neutral-50 dark:text-neutral-950">Save changes</button>
-      </form>
+      </div>
     </div>
   </div>
-</div>
+</form>
 {% endmacro %}
 
 {% macro no_profiles() %}
