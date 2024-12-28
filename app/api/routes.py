@@ -42,9 +42,13 @@ def register_routes(db: DB):
             db.save()
             return render_template_string(
                 """
-                 {% from "includes/macros.html" import preferences with context %}
+                 {% from "includes/macros.html" import preferences_form with context %}
             
-                 {{preferences(r_preferences)}}
+                 {{preferences_form(r_preferences)}}
+
+                 <script>
+                    window.lucide()
+                 </script>
             """,
                 r_preferences=r_preferences,
             )

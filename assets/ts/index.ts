@@ -10,11 +10,14 @@ import checkbox from './components/checkbox';
 import range from './components/range';
 
 declare global {
-	interface Window { htmx: any, Alpine: any }
+	interface Window { htmx: any, Alpine: any, lucide: () => void }
 }
 
 window.htmx = htmx
 window.Alpine = Alpine
+window.lucide = () => {
+	createIcons({ icons: { Home, Heart, User, Group, Settings, Minus, Plus, Check, Sliders, ChevronDown, Send, RotateCcw, Users, X } })
+}
 
 Alpine.data("userProfile", profile)
 Alpine.data("modal", modal)
@@ -22,9 +25,9 @@ Alpine.data("checkbox", checkbox)
 Alpine.data("range", range)
 
 Alpine.start()
+window.lucide()
 
-createIcons({
-	icons: {
-		Home, Heart, User, Group, Settings, Minus, Plus, Check, Sliders, ChevronDown, Send, RotateCcw, Users, X
-	}
-})
+document.addEventListener('htmx:afterRequest', function (evt) {
+	window.lucide()
+});
+
