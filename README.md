@@ -5,7 +5,7 @@
 - If desired, create a virtual environment and activate it. (Highly recommended)
 - Install the requirements with `pip install -r requirements.txt`.
 - Select a database file by running `flask db select-database <path>` or edit `DATABASE_FILE` in the `.env`
-- Run `python main.py` in the root directory
+- Run `python run.py` in the root directory
 - Run `npm run dev` in `/assets`
 
 ## Code structure
