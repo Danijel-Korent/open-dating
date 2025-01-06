@@ -36,7 +36,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.ts', '.js', '...']
 	},
-	entry: ['./ts/index.ts', './css/main.css'],
+	entry: ['./ts/index.ts', './css/index.css'],
 	output: {
 		path: path.resolve(__dirname, '..', 'app', 'static', 'dist')
 	},

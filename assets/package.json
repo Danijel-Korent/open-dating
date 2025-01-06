@@ -2,8 +2,8 @@
 	"scripts": {
 		"dev": "run-p watch:tw watch:assets",
 		"build": "run-s build:tw build:assets",
-		"build:tw": "tailwindcss -c tailwind.config.js",
-		"watch:tw": "tailwindcss -c tailwind.config.js -w",
+		"build:tw": "tailwindcss -c tailwind.config.js -o css/index.css",
+		"watch:tw": "tailwindcss -c tailwind.config.js -w -o css/index.css",
 		"build:assets": "webpack",
 		"watch:assets": "webpack -w"
 	},
