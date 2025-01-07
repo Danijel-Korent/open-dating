@@ -1,5 +1,4 @@
-{% from "includes/macros.html" import profile,profile_buttons,no_profiles with context %}
-{% from "dating-macros.html" import match_popup with context %}
+{% from "dating-macros.html" import full_profile with context %}
 {% from "includes/navigation.html" import mobile_header with context %}
 
 {% extends 'basic.html' %}
@@ -17,60 +16,6 @@
 {% endblock %}
 
 {% block content %}
-  <div x-data="matchButtons" class="flex flex-col w-full h-full justify-center items-center">
-  {% if user %}
-  <div class="absolute" x-show="showMatch" style="display: none;">
-  {{match_popup(user)}}
-  </div>
-  {% endif %}
-    <div x-show="!showMatch" class="mb-8 h-full w-full md:max-h-[750px] md:max-w-[450px] md:shadow-lg md:rounded-3xl  ">
-      {% if user %}
-      {{profile(user, hasButtons=True)}}
-      {{profile_buttons()}}
-      {% else %}
-      {{no_profiles()}}
-      {% endif %}
-    </div>
-  </div>
-
-<script>
-document.addEventListener('alpine:init', () => {
-  Alpine.data('matchButtons', () => ({
-    showMatch: false,
-
-    async like() {
-  let res = await fetch("{{url_for('dating.react_user', user=user.username)}}", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ type: 'like' })
-      })
-
-      let data = await res.json();
-      if (data.match) {
-        this.showMatch = true
-      }
-    },
-
-    async nope() {
-      let res = await fetch('{{url_for('dating.react_user', user=user.username)}}', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          type: 'nope'
-        })
-      })
-
-      window.location.reload();
-    }
-
-
-  }));
-})
-
-</script>
+	{{full_profile(user)}}
 {% endblock content%}
 

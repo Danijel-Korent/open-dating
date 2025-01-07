@@ -17,7 +17,7 @@
     <div class="p-8">
     {% if matches|length > 0 %}
     {% call components.details("Matches", matches|length, "true") %}
-        <div class="flex flex-row w-full flex-wrap w-fit gap-8 max-h-96 overflow-y-scroll ">
+        <div class="flex flex-row w-full p-4 flex-wrap gap-8 overflow-y-scroll ">
             {% for curr_match in matches %}
                 {{macros.match(curr_match)}}
             {% endfor %}

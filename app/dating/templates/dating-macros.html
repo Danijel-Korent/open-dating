@@ -1,14 +1,43 @@
 {% import "/components/forms.html" as forms %}
 
 {% macro match(user) %}
-<a class="relative flex flex-col text-neutral-50 z-10 h-32 w-32 md:h-[200px] md:w-[150px] rounded-md overflow-clip bg-gradient-to-t from-black/30 to-40% shadow-md" href={{url_for('messages.chat', user=user.username)}} >
+<div class="hover:scale-105 shadow-md rounded-md overflow-clip">
+<a class="relative flex flex-col text-neutral-50 z-10 h-32 w-32 md:h-[200px] md:w-[150px] bg-gradient-to-t from-black/30 to-40% " href={{url_for('messages.chat', user=user.username)}} >
    <div class="absolute h-full z-5 w-full object-cover bg-gradient-to-t from-neutral-950/60 to-40%"></div>
   <img src="{{get_image_path(user.username, user.pictures[0])}}" class="absolute h-full w-full object-cover -z-10 top-0 left-0"/>
     <p class="mt-auto z-10 p-2">
     {{user['name']}}
   </p>
 </a>
+</div>
 {% endmacro %}
+
+{% macro no_profiles() %}
+<div class="flex h-full w-full flex-col items-center justify-center md:rounded-3xl overflow-y-scroll bg-neutral-50 ">
+  <h2 class="text-3xl font-bold text-accent-500 mb-2">You've seen everyone!</h2>
+  <p class="text-sm font-semibold">Why not adjust your filters?</p>
+</div>
+{% endmacro %}
+
+
+{% macro full_profile(user, lucideIcon=None, buttonClick="", shown="true") %}
+<div class="flex flex-col w-full h-full justify-center items-center">
+	{% if user %}
+	<div class="absolute">
+		{{match_popup(user)}}
+	</div>
+	{% endif %}
+	<div class="mb-8 h-full w-full md:max-h-[750px] md:max-w-[450px] md:shadow-lg md:rounded-3xl">
+		{% if user %}
+		{{profile(user)}}
+		{{profile_buttons()}}
+		{% else %}
+		{{no_profiles()}}
+		{% endif %}
+	</div>
+</div>
+{% endmacro %}
+
 
 {% macro like(user) %}
 <a class="relative flex flex-col text-neutral-50 z-10 h-64 w-full max-w-96 md:h-[200px] md:w-[150px] rounded-md overflow-clip bg-gradient-to-t from-black/30 to-40% shadow-md" href={{url_for('dating.user', user=user.username)}} >

@@ -1,0 +1,20 @@
+{% macro community_tag(tag) %}
+	<p class="italic text-neutral-500 text-sm">#{{tag}}</p>
+
+{% endmacro %}
+
+{% macro community() %}
+<div class="bg-neutral-100 rounded p-4">
+	<div class="flex flex-row items-center gap-1">
+		<div class="w-6 h-6 rounded-full bg-neutral-500"></div>
+		<h2 class="font-sans text-2xl font-bold">Community</h2>
+	</div>
+	<p class="mt-2">This is an example community. This is where the description goes. Communities function as group chats.</p>
+	<div class="flex flex-row">
+		{{community_tag("Hello")}}
+	</div>
+</div>
+
+{% endmacro %}
+
+

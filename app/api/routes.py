@@ -53,3 +53,9 @@ def register_routes(db: DB):
                 r_preferences=r_preferences,
             )
         return make_response(400)
+
+    @api_bp.route("/next_user")
+    def next_user():
+        next_user = db.get_recommended_user()
+
+        return make_response(200)

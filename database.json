@@ -43,7 +43,7 @@
                     "nonbinary": true
                 },
                 "age_max": 30,
-                "age_min": 25,
+                "age_min": 18,
                 "distance_meters": 101000
             },
             "seen_users": []
