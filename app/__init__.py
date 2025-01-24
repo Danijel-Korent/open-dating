@@ -29,6 +29,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
     app.config["SECRET_KEY"] = os.getenv("SECRET")
+    app.secret_key = os.urandom(24)  # Generates a random 24-byte key
     add_cmdline_options(app)
 
     database = DB(app.config.get("DATABASE_FILE"))
