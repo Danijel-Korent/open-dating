@@ -21,4 +21,9 @@ def get_feed_recommendation(db: DB):
 def calculate_recommendation_score(currentUser: User, user: User, db: DB):
     score = 0
 
+    for int1 in currentUser.interests:
+        for int2 in user.interests:
+            if int1 == int2:
+                score += 0.05
+
     return score

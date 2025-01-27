@@ -200,6 +200,7 @@ class DB:
             likes=[],
             pictures=[],
             seen_users=[],
+            interests=[],
         )
 
     def get_current_user(self) -> User:

@@ -1,172 +1,176 @@
 {
-	"users": [
-		{
-			"username": "john_doe",
-			"name": "John Doe",
-			"age": 28,
-			"gender": "male",
-			"location": "New York, NY",
-			"bio": "Love hiking and outdoor adventures.",
-			"likes": [],
-			"pictures": [
-				"image1.jpg",
-				"/static/images/avatar.png"
-			],
-			"preferences": {
-				"gender": {
-					"male": false,
-					"female": true,
-					"nonbinary": true
-				},
-				"age_max": 32,
-				"age_min": 24,
-				"distance_meters": 50
-			},
-			"seen_users": [],
-			"interests": []
-		},
-		{
-			"username": "jane_smith",
-			"name": "Jane Smith",
-			"age": 26,
-			"gender": "female",
-			"location": "Los Angeles, CA",
-			"bio": "Avid reader and coffee enthusiast.",
-			"likes": [],
-			"pictures": [
-				"image1.jpg",
-				"image2.png"
-			],
-			"preferences": {
-				"gender": {
-					"male": true,
-					"female": false,
-					"nonbinary": true
-				},
-				"age_max": 30,
-				"age_min": 18,
-				"distance_meters": 101000
-			},
-			"seen_users": [],
-			"interests": []
-		},
-		{
-			"username": "sam_wilson",
-			"name": "Sam Wilson",
-			"age": 30,
-			"gender": "male",
-			"location": "Chicago, IL",
-			"bio": "Musician and foodie. Always looking for the next great dish.",
-			"likes": [],
-			"pictures": [
-				"image1.jpg",
-				"/static/images/avatar.png"
-			],
-			"preferences": {
-				"gender": {
-					"male": false,
-					"female": true,
-					"nonbinary": false
-				},
-				"age_max": 35,
-				"age_min": 26,
-				"distance_meters": 75
-			},
-			"seen_users": [],
-			"interests": []
-		},
-		{
-			"username": "emily_jones",
-			"name": "Emily Jones",
-			"age": 27,
-			"gender": "female",
-			"location": "Houston, TX",
-			"bio": "Fitness enthusiast and amateur photographer.",
-			"likes": [],
-			"pictures": [
-				"image1.jpg",
-				"image2.jpg"
-			],
-			"preferences": {
-				"gender": {
-					"male": true,
-					"female": false,
-					"nonbinary": false
-				},
-				"age_max": 33,
-				"age_min": 27,
-				"distance_meters": 50
-			},
-			"seen_users": [],
-			"interests": []
-		},
-		{
-			"username": "michael_brown",
-			"name": "Michael Brown",
-			"age": 32,
-			"gender": "male",
-			"location": "San Francisco, CA",
-			"bio": "Tech geek and movie buff. Always up for a sci-fi film.",
-			"likes": [],
-			"pictures": [
-				"image1.jpg",
-				"/static/images/avatar.png"
-			],
-			"preferences": {
-				"gender": {
-					"male": true,
-					"female": true,
-					"nonbinary": false
-				},
-				"age_max": 35,
-				"age_min": 28,
-				"distance_meters": 50
-			},
-			"seen_users": [],
-			"interests": []
-		},
-		{
-			"username": "sarah_lee",
-			"name": "Sarah Lee",
-			"age": 25,
-			"gender": "female",
-			"location": "Seattle, WA",
-			"bio": "Nature lover and painter. Find me in a gallery or a forest.",
-			"likes": [],
-			"pictures": [
-				"image1.jpg",
-				"/static/images/avatar.png"
-			],
-			"preferences": {
-				"gender": {
-					"male": true,
-					"female": false,
-					"nonbinary": false
-				},
-				"age_max": 30,
-				"age_min": 25,
-				"distance_meters": 75
-			},
-			"seen_users": [],
-			"interests": []
-		}
-	],
-	"default_username": "john_doe",
-	"matches": [],
-	"likes": [],
-	"chats": [],
-	"interests": [
-		{
-			"name": "Art"
-		},
-		{
-			"name": "Rock climbing"
-		},
-		{
-			"name": "Music"
-		},
-		{
-			"name": "Bar hopping"
-		}
-	]
+    "users": [
+        {
+            "username": "john_doe",
+            "name": "John Doe",
+            "age": 28,
+            "gender": "male",
+            "location": "New York, NY",
+            "bio": "Love hiking and outdoor adventures.",
+            "likes": [],
+            "pictures": [
+                "image1.jpg",
+                "/static/images/avatar.png"
+            ],
+            "interests": [],
+            "preferences": {
+                "gender": {
+                    "male": false,
+                    "female": true,
+                    "nonbinary": true
+                },
+                "age_max": 32,
+                "age_min": 24,
+                "distance_meters": 50
+            },
+            "seen_users": []
+        },
+        {
+            "username": "jane_smith",
+            "name": "Jane Smith",
+            "age": 26,
+            "gender": "female",
+            "location": "Los Angeles, CA",
+            "bio": "Avid reader and coffee enthusiast.",
+            "likes": [],
+            "pictures": [
+                "image1.jpg",
+                "image2.png"
+            ],
+            "interests": [],
+            "preferences": {
+                "gender": {
+                    "male": true,
+                    "female": false,
+                    "nonbinary": true
+                },
+                "age_max": 30,
+                "age_min": 18,
+                "distance_meters": 101000
+            },
+            "seen_users": []
+        },
+        {
+            "username": "sam_wilson",
+            "name": "Sam Wilson",
+            "age": 30,
+            "gender": "male",
+            "location": "Chicago, IL",
+            "bio": "Musician and foodie. Always looking for the next great dish.",
+            "likes": [],
+            "pictures": [
+                "image1.jpg",
+                "/static/images/avatar.png"
+            ],
+            "interests": [],
+            "preferences": {
+                "gender": {
+                    "male": false,
+                    "female": true,
+                    "nonbinary": false
+                },
+                "age_max": 35,
+                "age_min": 26,
+                "distance_meters": 75
+            },
+            "seen_users": []
+        },
+        {
+            "username": "emily_jones",
+            "name": "Emily Jones",
+            "age": 27,
+            "gender": "female",
+            "location": "Houston, TX",
+            "bio": "Fitness enthusiast and amateur photographer.",
+            "likes": [],
+            "pictures": [
+                "image1.jpg",
+                "image2.jpg"
+            ],
+            "interests": [],
+            "preferences": {
+                "gender": {
+                    "male": true,
+                    "female": false,
+                    "nonbinary": false
+                },
+                "age_max": 33,
+                "age_min": 27,
+                "distance_meters": 50
+            },
+            "seen_users": []
+        },
+        {
+            "username": "michael_brown",
+            "name": "Michael Brown",
+            "age": 32,
+            "gender": "male",
+            "location": "San Francisco, CA",
+            "bio": "Tech geek and movie buff. Always up for a sci-fi film.",
+            "likes": [],
+            "pictures": [
+                "image1.jpg",
+                "/static/images/avatar.png"
+            ],
+            "interests": [],
+            "preferences": {
+                "gender": {
+                    "male": true,
+                    "female": true,
+                    "nonbinary": false
+                },
+                "age_max": 35,
+                "age_min": 28,
+                "distance_meters": 50
+            },
+            "seen_users": []
+        },
+        {
+            "username": "sarah_lee",
+            "name": "Sarah Lee",
+            "age": 25,
+            "gender": "female",
+            "location": "Seattle, WA",
+            "bio": "Nature lover and painter. Find me in a gallery or a forest.",
+            "likes": [],
+            "pictures": [
+                "image1.jpg",
+                "/static/images/avatar.png"
+            ],
+            "interests": [],
+            "preferences": {
+                "gender": {
+                    "male": true,
+                    "female": false,
+                    "nonbinary": false
+                },
+                "age_max": 30,
+                "age_min": 25,
+                "distance_meters": 75
+            },
+            "seen_users": []
+        }
+    ],
+    "default_username": "john_doe",
+    "matches": [],
+    "likes": [],
+    "chats": [],
+    "interests": [
+        {
+            "name": "Art",
+            "icon": null
+        },
+        {
+            "name": "Rock climbing",
+            "icon": null
+        },
+        {
+            "name": "Music",
+            "icon": null
+        },
+        {
+            "name": "Bar hopping",
+            "icon": null
+        }
+    ]
 }
