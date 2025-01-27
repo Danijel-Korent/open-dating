@@ -6,7 +6,9 @@
 - Install the requirements with `pip install -r requirements.txt`.
 - Select a database file by running `flask db select-database <path>` or edit `DATABASE_FILE` in the `.env`
 - Run `python run.py` in the root directory
-- Run `npm run dev` in `/assets`
+- In folder `/assets`
+  - Run `npm install`
+  - Run `npm run dev`
 
 ## Code structure
 
