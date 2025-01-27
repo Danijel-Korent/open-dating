@@ -1,4 +1,5 @@
 {% import "/components/forms.html" as forms %}
+{% from "includes/macros.html" import profile, profile_buttons with context %}
 
 {% macro match(user) %}
 <div class="hover:scale-105 shadow-md rounded-md overflow-clip">
@@ -21,13 +22,13 @@
 
 
 {% macro full_profile(user, lucideIcon=None, buttonClick="", shown="true") %}
-<div class="flex flex-col w-full h-full justify-center items-center">
+<div class="flex flex-col w-full h-full justify-center items-center" x-data="matchButtons">
 	{% if user %}
-	<div class="absolute">
+	<div class="absolute" x-show="showMatch">
 		{{match_popup(user)}}
 	</div>
 	{% endif %}
-	<div class="mb-8 h-full w-full md:max-h-[750px] md:max-w-[450px] md:shadow-lg md:rounded-3xl">
+	<div class="mb-8 h-full w-full md:max-h-[750px] md:max-w-[450px] md:shadow-lg md:rounded-3xl" x-show="!showMatch">
 		{% if user %}
 		{{profile(user)}}
 		{{profile_buttons()}}

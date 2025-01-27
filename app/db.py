@@ -14,6 +14,16 @@ class GenderPreference:
     female: bool
     nonbinary: bool
 
+    def check_user(self, user: "User") -> bool:
+        if user.gender == "female" and self.female:
+            return True
+        if user.gender == "male" and self.male:
+            return True
+        if user.gender == "nonbinary" and self.nonbinary:
+            return True
+
+        return False
+
 
 @dataclass
 class Preferences:
@@ -25,7 +35,7 @@ class Preferences:
     def check_user(self, user: "User") -> bool:
         if user.age > self.age_max or user.age < self.age_min:
             return False
-        if user.gender != self.gender:
+        if self.gender.check_user(user) is not True:
             return False
         return True
 
@@ -268,8 +278,10 @@ class DB:
 
     def validate_user_recommendation(self, user) -> bool:
         if user.username in self.get_current_user().seen_users:
+            print("User has been seen")
             return False
         if user.username == session["username"]:
+            print("User is current user")
             return False
         for like in self.likes:
             if like.liked == user.username:
