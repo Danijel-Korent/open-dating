@@ -40,8 +40,15 @@ class User:
     bio: str
     likes: list["Like"]
     pictures: list[str]
+    interests: list["Interest"]
     preferences: Preferences
     seen_users: list[str]
+
+
+@dataclass
+class Interest:
+    name: str
+    icon: str | None
 
 
 @dataclass
@@ -81,6 +88,7 @@ class DB:
     matches: list[Match]
     likes: list[Like]
     chats: list[Chat]
+    interests: list[Interest]
 
     def __init__(self, filename):
         self.filename = filename
@@ -89,6 +97,7 @@ class DB:
         self.likes = []
         self.matches = []
         self.chats = []
+        self.interests = []
 
         if not os.path.exists(self.filename):
             self.save()
@@ -112,6 +121,7 @@ class DB:
                     bio=user["bio"],
                     likes=[],
                     pictures=user["pictures"],
+                    interests=user["interests"],
                     preferences=Preferences(
                         gender=GenderPreference(
                             male=user["preferences"]["gender"]["male"],
@@ -155,6 +165,12 @@ class DB:
             )
             for chat in json_dict["chats"]
         ]
+
+        for interest in json_dict["interests"]:
+            icon = None
+            if "icon" in interest:
+                icon = interest["icon"]
+            self.interests.append(Interest(name=interest["name"], icon=icon))
 
     def save(self):
         with open(self.filename, "w+") as file:
