@@ -1,5 +1,5 @@
 {% macro chat_display(user, chat) %}
-<a href="{{url_for('.chat', user=user.username)}}" class="flex flex-row items-center hover:bg-neutral-100 p-4 rounded-lg gap-4 dark:hover:bg-neutral-700">
+<a href="{{url_for('.chat', user=user.username)}}" class="hover:cursor-pointer flex flex-row items-center hover:bg-neutral-100 p-4 rounded-lg gap-4 dark:hover:bg-neutral-700">
     <img src="{{get_image_path(user.username, user.pictures[0])}}" class="w-12 h-12 object-cover rounded-full"/>
     <span class="flex flex-col leading-none flex-1">
     <p class="font-bold text-lg">{{user.name}}</p>

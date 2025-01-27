@@ -26,7 +26,7 @@
     {% endif %}
     {% call components.details("Likes", likes|length) %}
         {% if likes|length > 0 %}
-        <div class="flex flex-row w-full flex-wrap w-fit gap-8 max-h-96 overflow-y-scroll ">
+        <div class="flex flex-row w-full flex-wrap gap-8 max-h-96 overflow-y-scroll ">
             {% for like in likes %}
                 {{macros.like(like)}}
             {% endfor %}

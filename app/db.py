@@ -262,9 +262,8 @@ class DB:
                 return False
             if match.user2 == user.username and match.user1 == session["username"]:
                 return False
-        if (
-            self.get_user_by_username(session["username"]).preferences.check_user(user)
-            != True
+        if not self.get_user_by_username(session["username"]).preferences.check_user(
+            user
         ):
             return False
 
