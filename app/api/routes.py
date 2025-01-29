@@ -54,6 +54,14 @@ def register_routes(db: DB):
             )
         return make_response(400)
 
+    @api_bp.route("/get_interest/<id>", methods=["GET"])
+    def get_interest(id: str):
+        for interest in db.interests:
+            if interest.id == id:
+                return json.dumps(interest)
+
+        return make_response(400)
+
     @api_bp.route("/next_user")
     def next_user():
         next_user = db.get_recommended_user()

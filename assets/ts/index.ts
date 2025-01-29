@@ -9,6 +9,7 @@ import profile from "./components/profile"
 import checkbox from './components/checkbox';
 import range from './components/range';
 import match from './components/match';
+import interest from './components/interest';
 
 declare global {
 	interface Window { htmx: any, Alpine: any, lucide: () => void }
@@ -25,6 +26,7 @@ Alpine.data("modal", modal)
 Alpine.data("checkbox", checkbox)
 Alpine.data("range", range)
 Alpine.data("matchButtons", match)
+Alpine.data("interest", interest)
 
 Alpine.start()
 window.lucide()

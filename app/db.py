@@ -58,6 +58,7 @@ class User:
 @dataclass
 class Interest:
     name: str
+    id: str
     icon: str | None
 
 
@@ -116,6 +117,7 @@ class DB:
     def load(self):
         with open(self.filename, "r") as file:
             self.from_json(json.load(file))
+        self.validate_state()
         print("Loaded DB")
 
     def from_json(self, json_dict: dict):
@@ -180,7 +182,19 @@ class DB:
             icon = None
             if "icon" in interest:
                 icon = interest["icon"]
-            self.interests.append(Interest(name=interest["name"], icon=icon))
+            self.interests.append(
+                Interest(name=interest["name"], id=interest["id"], icon=icon)
+            )
+
+    def validate_state(self):
+        interest_ids = [x.id for x in self.interests]
+        for user in self.users:
+            for interest in user.interests:
+                if interest not in interest_ids:
+                    raise RuntimeError(
+                        "User has interest not contained in master interest list"
+                    )
+        pass
 
     def save(self):
         with open(self.filename, "w+") as file:
