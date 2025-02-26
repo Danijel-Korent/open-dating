@@ -352,3 +352,12 @@ def init_new_db(path: str):
     db.save()
 
     fd.close()
+
+
+def reset_db(db: DB):
+    db.likes = []
+    db.matches = []
+    for user in db.users:
+        user.seen_users = []
+
+    db.chats = []

@@ -30,9 +30,10 @@ def create_app():
     app.config.from_object(Config)
     app.config["SECRET_KEY"] = os.getenv("SECRET")
     app.secret_key = os.urandom(24)  # Generates a random 24-byte key
-    add_cmdline_options(app)
 
     database = DB(app.config.get("DATABASE_FILE"))
+
+    add_cmdline_options(app, database)
 
     dating.register_routes(database)
     app.register_blueprint(dating.dating_bp)
@@ -51,7 +52,7 @@ def create_app():
     return app
 
 
-def add_cmdline_options(app: App):
+def add_cmdline_options(app: App, db: DB):
     db_cli = AppGroup("db")
 
     @db_cli.command("select-database")
@@ -74,6 +75,12 @@ def add_cmdline_options(app: App):
         load_dotenv()
         set_key(".env", "SECRET", uuid.uuid4().hex)
         print("Generated secret key and set in .env")
+        exit()
+
+    @click.command("reset-db")
+    def reset_db():
+        reset_db(db)
+        print("Reset database chats, likes, matches, and seen users")
         exit()
 
     app.cli.add_command(db_cli)
