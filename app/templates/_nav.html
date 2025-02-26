@@ -21,7 +21,8 @@
     {{nav_link('Profiles', url_for('dating.index'), 'home')}}
     {{nav_link('Likes', url_for('dating.likes'), 'heart')}}
     {{nav_link('Messages', url_for('messages.messages'), 'send')}}
-    {{nav_link('Community', url_for('community.index'), 'users')}}
+    {{nav_link('Community', url_for('community.index'), 'group')}}
+		{{nav_link('All profiles', url_for('dating.all_profiles'), 'users')}}
     <div class="md:hidden ">
       {% call nav_link('Profile', '/profile', 'fe:circle') %}
       <img class="rounded-full w-6 h-6" src="{{get_image_path(active_user.username, active_user.pictures[0])}}">

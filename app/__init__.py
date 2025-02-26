@@ -9,7 +9,7 @@ from flask_socketio import SocketIO
 from flask_compress import Compress
 import uuid
 
-from .db import DB
+from .db import DB, init_new_db
 from .routes import configure_api_and_processors
 from .config import Config
 from .dating import routes as dating
@@ -60,12 +60,21 @@ def add_cmdline_options(app: App):
         load_dotenv()
         set_key(".env", "DATABASE_FILE", path)
         print("Set DATABASE_FILE in .env to ", path)
+        exit()
+
+    @db_cli.command("init-db")
+    @click.argument("path")
+    def init_db(path: str):
+        init_new_db(path)
+        print("Created new database at ", path)
+        exit()
 
     @click.command("gen-secret")
     def gen_secret():
         load_dotenv()
         set_key(".env", "SECRET", uuid.uuid4().hex)
         print("Generated secret key and set in .env")
+        exit()
 
     app.cli.add_command(db_cli)
     app.cli.add_command(gen_secret)

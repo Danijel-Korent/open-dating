@@ -14,7 +14,7 @@ def register_routes(db: DB):
         user = get_feed_recommendation(db)
         return render_template("index.html", user=user, title="Profiles")
 
-    @dating_bp.route("/<user>")
+    @dating_bp.route("/users/<user>")
     def user(user):
         user = db.get_user_by_username(user)
         return render_template("user.html", user=user, title=user.name)
@@ -66,6 +66,10 @@ def register_routes(db: DB):
         return render_template(
             "profile.html", title="Profile", current_user=db.get_current_user()
         )
+
+    @dating_bp.route("/all")
+    def all_profiles():
+        return render_template("all.html", title="All profiles", users=db.users)
 
     @dating_bp.route("/profile/edit_profile", methods=["POST"])
     def edit_profile():

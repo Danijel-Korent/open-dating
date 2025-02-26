@@ -1,7 +1,7 @@
 {% from "includes/macros.html" import profile,profile_buttons,no_profiles with context %}
 {% from "dating-macros.html" import match_popup with context %}
 
-{% extends 'base.html' %}
+{% extends 'basic.html' %}
 
 {% block title %}
   Home
@@ -14,7 +14,7 @@
 {% block content %}
   <div class="flex flex-col w-full h-full justify-center items-center">
     <div class="h-full w-full grow md:max-h-[750px] md:w-[450px] md:shadow-lg rounded-3xl  ">
-      {{profile(user, hasButtons=True)}}
+      {{profile(user)}}
     </div>
   </div>
 {% endblock content%}

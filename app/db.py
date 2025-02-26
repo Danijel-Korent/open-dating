@@ -341,3 +341,14 @@ class DB:
             self.get_user_by_username(session["username"]).pictures.append(filename)
         else:
             self.get_user_by_username(session["username"]).pictures[index] = filename
+
+
+def init_new_db(path: str):
+    if os.path.exists(path):
+        raise FileExistsError("Database file already exists")
+
+    fd = open(path)
+    db = DB(path)
+    db.save()
+
+    fd.close()

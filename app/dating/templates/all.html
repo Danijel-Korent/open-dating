@@ -1,0 +1,20 @@
+{% from "includes/macros.html" import profile with context %}
+{% import "dating-macros.html" as macros with context %}
+
+{%extends 'basic.html'%}
+
+{% block content %}
+
+
+
+<section class="m-8 p-8 rounded-m bg-neutral-50">
+	<h2 class="font-sans font-bold text-4xl mb-4">All users</h2>
+	<div class="flex flex-row flex-wrap gap-4 ">
+{% for u in users %}
+	{{macros.like(user=u)}}
+{% endfor %}
+
+	</div>
+</section>
+
+{% endblock %}
