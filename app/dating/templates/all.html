@@ -1,5 +1,6 @@
 {% from "includes/macros.html" import profile with context %}
 {% import "dating-macros.html" as macros with context %}
+{% import "components/forms.html" as forms with context %}
 
 {%extends 'basic.html'%}
 
@@ -7,9 +8,13 @@
 
 
 
-<section class="m-8 p-8 rounded-m bg-neutral-50">
-	<h2 class="font-sans font-bold text-4xl mb-4">All users</h2>
+<section class="m-8 p-8 w-fit rounded-md bg-neutral-50">
+	<span class="flex flex-row items-center mb-4">
+	<h2 class="font-sans font-bold text-4xl mr-4 block mb-1">All users</h2>
+	{{forms.checkbox("Filter by preferences", "filter")}}
+	</span>
 	<div class="flex flex-row flex-wrap gap-4 ">
+
 {% for u in users %}
 	{{macros.like(user=u)}}
 {% endfor %}
