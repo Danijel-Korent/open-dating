@@ -69,7 +69,15 @@ def register_routes(db: DB):
 
     @dating_bp.route("/all")
     def all_profiles():
-        return render_template("all.html", title="All profiles", users=db.users)
+        return render_template(
+            "all.html", title="All profiles", users=db.users, filtered=False
+        )
+
+    @dating_bp.route("/all/filtered")
+    def profiles_filtered():
+        return render_template(
+            "all.html", title="All profiles", users=db.users, filtered=True
+        )
 
     @dating_bp.route("/profile/edit_profile", methods=["POST"])
     def edit_profile():

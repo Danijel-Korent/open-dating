@@ -343,6 +343,21 @@ class DB:
             self.get_user_by_username(session["username"]).pictures[index] = filename
 
 
+def preference_filter(curr: User, users: list[User]):
+    users.remove(curr)
+
+    for user in users:
+        if not (
+            user.age > curr.preferences.age_min and user.age < curr.preferences.age_max
+        ):
+            users.remove(user)
+
+        if not (curr.preferences.gender.check_user(user)) and user in users:
+            users.remove(user)
+
+    return users
+
+
 def init_new_db(path: str):
     if os.path.exists(path):
         raise FileExistsError("Database file already exists")

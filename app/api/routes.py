@@ -8,7 +8,7 @@ from flask import (
     render_template_string,
     request,
 )
-from ..db import DB, GenderPreference, Preferences
+from ..db import DB, GenderPreference, Preferences, preference_filter
 
 api_bp = Blueprint("api", __name__)
 
@@ -67,3 +67,17 @@ def register_routes(db: DB):
         next_user = db.get_recommended_user()
 
         return make_response(200)
+
+    @api_bp.route("/all_users", methods=["GET"])
+    def all_users():
+        users = db.users
+
+        if db.get_current_user() in users:
+            users.remove(db.get_current_user())
+
+        return users
+
+    @api_bp.route("/all_users/filtered", methods=["GET"])
+    def filtered_users():
+        users = db.users
+        return make_response(preference_filter(db.get_current_user(), users))

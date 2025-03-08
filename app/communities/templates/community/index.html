@@ -1,5 +1,5 @@
 {% from "includes/navigation.html" import mobile_header %}
-{% from "community/macros/community.html" import community %}
+{% from "community/macros/community.html" import community, community_group %}
 
 {% extends 'basic.html' %}
 
@@ -17,15 +17,18 @@
 
 
 {% block content %}
-<div class="w-fit bg-neutral-50 px-8 py-4 ">
-	<h2 class="text-3xl font-bold">Community</h2>
-	<h3 class="text-xl font-semibold">Support</h3>
-	<div class="grid grid-cols-3 gap-4">
-		{% for i in range(6) %}
+<div class="w-fit m-8 rounded-lg bg-neutral-50 px-8 py-4 ">
+	<h2 class="text-3xl font-bold mb-2">Community</h2>
+	{% call community_group("Popular") %}
+	{% for i in range(3) %}
+	{{community()}}
+	{% endfor %}
+	{% endcall %}
+	{% call community_group("Support") %}	
+		{% for i in range(3) %}
 		{{community()}}
 		{% endfor %}
-	</div>
-	<a class="flex flex-row items-center text-sm text-accent-500 gap-1 font-bold">See more<i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+	{%endcall %}
 </div>
 {% endblock content %}
 
