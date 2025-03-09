@@ -1,3 +1,5 @@
+{% from "community/macros/community.html" import community_tab with context %}
+
 {% extends 'basic.html' %}
 
 {% block title %}
@@ -5,26 +7,29 @@
 {% endblock %}
 
 {% block content %}
-<div class="m-8 p-4 bg-neutral-50 rounded-lg">
+<section class="m-8 p-4 bg-neutral-50 rounded-lg">
 	<div class="flex flex-row items-center">
 		<div class="flex flex-col justify-center w-full">
-
-	<span class="flex flex-row gap-4 items-center w-full">
-	<div class="w-10 h-10 shadow-sm rounded-full bg-neutral-100"></div>
-  <h1 class="text-3xl font-bold">{{community_name}}</h1>
-	<a href="{{url_for('community.community', name=community_name)}}/members" class="block italic text-sm mr-auto">352 members</a>
-	<span class="flex flex-row gap-4 items-center">
-		<button class="px-2 py-1 cursor-pointer bg-accent-500 text-neutral-50 rounded hover:bg-accent-600">Join</button>
-	</span>
-
-	</span>
-
-
-	<p class="mt-4">This is where the community description will go</p>
-	</div>
+			<span class="flex flex-row gap-4 items-center w-full">
+				<div class="w-10 h-10 shadow-sm rounded-full bg-neutral-100"></div>
+				<h1 class="text-3xl font-bold">{{community_name}}</h1>
+				<p class="block italic text-sm mr-auto">352 members</p>
+				<span class="flex flex-row gap-4 items-center">
+					<button class="px-2 py-1 cursor-pointer bg-accent-500 text-neutral-50 rounded hover:bg-accent-600">Join</button>
+				</span>
+			</span>
+			<p class="mt-4">This is where the community description will go</p>
 		</div>
+	</div>
 	<hr class="my-4 border-neutral-300">
-</div>
+	<div class="flex flex-row ">
+		{{community_tab("Posts", "")}}
+		{{community_tab("Members", "")}}
+		{{community_tab("Info", "")}}
+
+		
+	</div>
+</section>
 {% endblock %}
 
 
