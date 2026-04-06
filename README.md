@@ -1,41 +1,35 @@
-# Flask Dating App
+# Dating App Prototype
 
 A small app for prototyping
 
 ## Usage
 
-- If desired, create a virtual environment and activate it. (Highly recommended)
-- Install the requirements with `pip install -r requirements.txt`.
-- Select a database file by running `flask db select-database <path>` or edit `DATABASE_FILE` in the `.env`
-- Run `python run.py` in the root directory
-- In folder `/assets`
-  - Run `npm install`
-  - Run `npm run dev`
+Serve it from a web server with PHP support
+
+## Technical
+
+Vanilla PHP backend + vanilla JS SPA frontend
 
 ## Code structure
 
-Overview of the main folders (see [ARCHITECTURE.md](ARCHITECTURE.md) for detail):
+Overview of the main folders:
 
 ```
 .
-├── app/                        Flask application package
-│   ├── __init__.py             App factory, blueprints, Socket.IO
-│   ├── db.py                   JSON-backed database layer
-│   ├── config.py               Configuration
-│   ├── routes.py               Session, context processors, shared routes
-│   ├── algo.py                 Feed recommendation scoring
-│   ├── util.py                 Utilities
-│   ├── api/                    /api blueprint
-│   ├── dating/                 Main dating UI routes and templates
-│   ├── messages/               Chat routes, templates, Socket.IO handlers
-│   ├── communities/            Communities routes and templates
-│   ├── static/                 Built JS/CSS (dist/) and images
-│   └── templates/              Base templates, includes, navigation
-├── assets/                     Frontend source (Webpack, Tailwind, TypeScript)
-│   ├── package.json            NPM scripts and dependencies
-│   ├── webpack.config.js
-│   └── ts/                     TypeScript entry and Alpine components
-├── run.py                      Dev server entry (Socket.IO + Flask)
-├── requirements.txt            Python dependencies
-└── ARCHITECTURE.md             Architecture and design notes
+├── backend/                    PHP API and image serving (no URL rewriting)
+│   ├── api.php                 JSON API; dispatch via ?action=…
+│   ├── image.php               Serves files under data/images/ safely
+│   └── lib/
+│       ├── store.php           Load/save database.json with flock
+│       ├── service.php         Feed, likes, matches, chats, react
+│       └── pictures.php        Picture URL helpers and path validation
+├── data/
+│   ├── database.json           Single source of truth (users, likes, matches, chats, …)
+│   └── images/                 Profile and shared images (e.g. avatar.png, <username>/…)
+├── js/
+│   ├── api.js                  fetch helpers for backend/api.php
+│   └── app.js                  Hash-router SPA (views, navigation)
+├── index.html                  SPA shell
+├── styles.css                  Vanilla CSS
+└── LICENSE
 ```
