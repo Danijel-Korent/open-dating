@@ -300,4 +300,23 @@ if ($action === 'users' && $method === 'GET') {
     api_json(200, ['users' => $out]);
 }
 
+if ($action === 'admin_clear' && $method === 'POST') {
+    $body = api_read_json_body();
+    $what = $body['what'] ?? '';
+    $scope = $body['scope'] ?? '';
+    if (!is_string($what) || !is_string($scope)) {
+        api_json(400, ['error' => 'expected what and scope strings']);
+    }
+    if (!in_array($what, ['likes', 'matches', 'messages'], true)) {
+        api_json(400, ['error' => 'what must be likes, matches, or messages']);
+    }
+    if (!in_array($scope, ['me', 'all'], true)) {
+        api_json(400, ['error' => 'scope must be me or all']);
+    }
+    $db = db_load();
+    svc_admin_clear($db, $meName, $what, $scope);
+    db_save($db);
+    api_json(200, ['ok' => true]);
+}
+
 api_json(404, ['error' => 'unknown action']);

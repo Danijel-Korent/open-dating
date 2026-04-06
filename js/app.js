@@ -277,7 +277,7 @@ async function viewChat(username) {
 }
 
 /**
- * Current user preview, user switcher, and preferences form (`action=users`, `action=preferences`).
+ * Current user preview, user switcher, preferences form, and admin data reset (`action=users`, `action=preferences`, `action=admin_clear`).
  * @returns {Promise<string>}
  */
 async function viewProfile() {
@@ -337,6 +337,33 @@ async function viewProfile() {
         </label>
         <button type="submit" class="btn btn--primary">Save preferences</button>
       </form>
+    </section>
+    <section class="panel panel--admin">
+      <h2 class="panel__title">Admin</h2>
+      <p class="admin-hint">Local demo only. Writes directly to the JSON database.</p>
+      <div class="admin-actions">
+        <div class="admin-actions__row">
+          <span class="admin-actions__label">Likes</span>
+          <div class="admin-actions__btns">
+            <button type="button" class="btn btn--danger btn--admin" data-admin-what="likes" data-admin-scope="me">This user</button>
+            <button type="button" class="btn btn--danger btn--admin" data-admin-what="likes" data-admin-scope="all">All users</button>
+          </div>
+        </div>
+        <div class="admin-actions__row">
+          <span class="admin-actions__label">Matches</span>
+          <div class="admin-actions__btns">
+            <button type="button" class="btn btn--danger btn--admin" data-admin-what="matches" data-admin-scope="me">This user</button>
+            <button type="button" class="btn btn--danger btn--admin" data-admin-what="matches" data-admin-scope="all">All users</button>
+          </div>
+        </div>
+        <div class="admin-actions__row">
+          <span class="admin-actions__label">Messages</span>
+          <div class="admin-actions__btns">
+            <button type="button" class="btn btn--danger btn--admin" data-admin-what="messages" data-admin-scope="me">This user</button>
+            <button type="button" class="btn btn--danger btn--admin" data-admin-what="messages" data-admin-scope="all">All users</button>
+          </div>
+        </div>
+      </div>
     </section>`;
 }
 
@@ -416,7 +443,7 @@ async function renderRoute() {
 }
 
 /**
- * Bind handlers for feed reactions, user switch, preferences save, and chat send.
+ * Bind handlers for feed reactions, user switch, preferences save, chat send, and admin clear.
  */
 function wireActions() {
   document.querySelectorAll("[data-react]").forEach((btn) => {
@@ -500,6 +527,26 @@ function wireActions() {
     const log = document.getElementById("chat-log");
     if (log) log.scrollTop = log.scrollHeight;
   }
+
+  document.querySelectorAll("[data-admin-what]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const what = btn.getAttribute("data-admin-what");
+      const scope = btn.getAttribute("data-admin-scope");
+      if (!what || !scope) return;
+      const whatWords =
+        what === "likes" ? "likes" : what === "matches" ? "matches" : "chat messages";
+      const scopeWords = scope === "me" ? "the current user only" : "all users";
+      if (!confirm(`Clear ${whatWords} for ${scopeWords}? This cannot be undone.`)) return;
+      try {
+        await apiPost("action=admin_clear", { what, scope });
+        state.session = null;
+        await loadSession();
+        await renderRoute();
+      } catch (e) {
+        alert(e.message || String(e));
+      }
+    });
+  });
 }
 
 window.addEventListener("hashchange", () => renderRoute());

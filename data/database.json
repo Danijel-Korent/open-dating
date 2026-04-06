@@ -106,7 +106,8 @@
                 "distance_meters": 50
             },
             "seen_users": [
-                "john_doe"
+                "john_doe",
+                "sam_wilson"
             ]
         },
         {
@@ -165,51 +166,15 @@
         }
     ],
     "default_username": "john_doe",
-    "matches": [
-        {
-            "user1": "emily_jones",
-            "user2": "john_doe",
-            "match_date": ""
-        }
-    ],
+    "matches": [],
     "likes": [
         {
-            "liker": "john_doe",
-            "liked": "jane_smith",
-            "timestamp": ""
-        },
-        {
-            "liker": "john_doe",
-            "liked": "sarah_lee",
+            "liker": "emily_jones",
+            "liked": "sam_wilson",
             "timestamp": ""
         }
     ],
-    "chats": [
-        {
-            "user1": "emily_jones",
-            "user2": "john_doe",
-            "messages": [
-                {
-                    "sender_id": "emily_jones",
-                    "receiver_id": "john_doe",
-                    "timestamp": "2026-04-06T15:18:32+00:00",
-                    "message": "Test"
-                },
-                {
-                    "sender_id": "emily_jones",
-                    "receiver_id": "john_doe",
-                    "timestamp": "2026-04-06T15:18:35+00:00",
-                    "message": "test2"
-                },
-                {
-                    "sender_id": "john_doe",
-                    "receiver_id": "emily_jones",
-                    "timestamp": "2026-04-06T15:30:41+00:00",
-                    "message": "Test test test"
-                }
-            ]
-        }
-    ],
+    "chats": [],
     "interests": [
         {
             "name": "Art",

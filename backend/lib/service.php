@@ -333,3 +333,62 @@ function svc_send_message(array $db, string $from, string $to, string $text): vo
     ];
     db_save($db);
 }
+
+/**
+ * Dev/admin: clear likes, matches, or chat messages. Mutates `$db`; caller must `db_save`.
+ * `$what` is `likes`, `matches`, or `messages`. `$scope` is `me` (session user only) or `all`.
+ *
+ * @param array<string, mixed> $db
+ */
+function svc_admin_clear(array &$db, string $username, string $what, string $scope): void
+{
+    if ($scope === 'all') {
+        if ($what === 'likes') {
+            $db['likes'] = [];
+        } elseif ($what === 'matches') {
+            $db['matches'] = [];
+        } elseif ($what === 'messages') {
+            $db['chats'] = [];
+        }
+        return;
+    }
+
+    if ($scope !== 'me') {
+        return;
+    }
+
+    if ($what === 'likes') {
+        $likes = $db['likes'] ?? [];
+        $out = [];
+        foreach ($likes as $like) {
+            if (($like['liker'] ?? '') === $username || ($like['liked'] ?? '') === $username) {
+                continue;
+            }
+            $out[] = $like;
+        }
+        $db['likes'] = $out;
+        return;
+    }
+
+    if ($what === 'matches') {
+        $matches = $db['matches'] ?? [];
+        $out = [];
+        foreach ($matches as $m) {
+            if (($m['user1'] ?? '') === $username || ($m['user2'] ?? '') === $username) {
+                continue;
+            }
+            $out[] = $m;
+        }
+        $db['matches'] = $out;
+        return;
+    }
+
+    if ($what === 'messages') {
+        $chats = $db['chats'] ?? [];
+        foreach ($chats as $i => $c) {
+            if (($c['user1'] ?? '') === $username || ($c['user2'] ?? '') === $username) {
+                $db['chats'][$i]['messages'] = [];
+            }
+        }
+    }
+}

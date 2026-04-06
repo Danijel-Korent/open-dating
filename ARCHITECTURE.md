@@ -60,6 +60,7 @@ flowchart LR
 | GET | `chat_messages` | Query `with` — messages for a match. |
 | POST | `chat_send` | Query `with` — body `{"message": "..."}`. |
 | GET | `users` | Other users (for the profile switcher). |
+| POST | `admin_clear` | Dev reset. JSON body: `what` (`likes`, `matches`, or `messages`) and `scope` (`me` or `all`). Scope `me` removes rows involving the session user; `all` clears that category globally (messages: all chat threads). |
 
 Unknown `action` → 404 JSON.
 

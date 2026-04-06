@@ -212,6 +212,24 @@ a:active {
   color: #fff;
 }
 
+.btn--danger {
+  background: rgba(180, 60, 70, 0.35);
+  color: #ffb4b8;
+  border: 1px solid rgba(255, 120, 130, 0.35);
+}
+
+.btn--danger:active {
+  background: rgba(200, 70, 80, 0.45);
+}
+
+.btn--admin {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  flex: 1;
+}
+
 .bottom-nav {
   position: fixed;
   left: 0;
@@ -442,6 +460,40 @@ a:active {
   font-size: 1rem;
   color: var(--muted);
   font-weight: 600;
+}
+
+.panel--admin {
+  border: 1px solid rgba(255, 120, 130, 0.2);
+}
+
+.admin-hint {
+  margin: 0 0 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.admin-actions__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-actions__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.admin-actions__btns {
+  display: flex;
+  gap: 0.5rem;
 }
 
 .profile-mini img {
