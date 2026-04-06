@@ -8,7 +8,7 @@ Serve it from a web server with PHP support
 
 ## Technical
 
-Vanilla PHP backend + vanilla JS SPA frontend
+Vanilla PHP backend + vanilla JS SPA frontend. See [ARCHITECTURE.md](ARCHITECTURE.md) for design and request flow.
 
 ## Code structure
 
