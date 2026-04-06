@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * JSON HTTP API for the dating SPA. Dispatches on `action` query parameter and request method.
+ *
+ * Session holds the current user (`$_SESSION['username']`). Invalid or missing session falls back
+ * to `default_username` from the database.
+ */
+
 declare(strict_types=1);
 
 session_start();
@@ -11,6 +18,8 @@ require_once __DIR__ . '/lib/service.php';
 header('Content-Type: application/json; charset=utf-8');
 
 /**
+ * Emit JSON and terminate the request.
+ *
  * @param array<string, mixed>|list<mixed> $data
  */
 function api_json(int $code, $data): void
@@ -20,6 +29,12 @@ function api_json(int $code, $data): void
     exit;
 }
 
+/**
+ * Parse the request body as JSON. Returns an empty array if the body is empty.
+ * On invalid JSON, responds with 400 and exits (does not return).
+ *
+ * @return array<string, mixed>
+ */
 function api_read_json_body(): array
 {
     $raw = file_get_contents('php://input');
@@ -35,8 +50,11 @@ function api_read_json_body(): array
 }
 
 /**
+ * Shape a raw user row for JSON responses: resolve interest IDs to objects, add picture URLs.
+ *
  * @param array<string, mixed> $db
  * @param array<string, mixed> $user
+ * @param bool $includePrefs When true, include `preferences` in the output (e.g. session / profile).
  * @return array<string, mixed>
  */
 function api_expand_user(array $db, array $user, bool $includePrefs): array

@@ -45,6 +45,9 @@ function pic_fs_path(string $username, string $filename): ?string
     return null;
 }
 
+/**
+ * Resolve filesystem path for a file in the shared images root (`data/images/<name>`).
+ */
 function pic_fs_shared(string $name): ?string
 {
     $root = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR;

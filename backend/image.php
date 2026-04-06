@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Serves image files from `data/images/` with MIME detection and cache headers.
+ *
+ * Query modes:
+ * - `shared=<filename>` — file in the images root (e.g. shared avatar).
+ * - `u=<username>&f=<filename>` — file under `data/images/<username>/`.
+ */
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/lib/pictures.php';

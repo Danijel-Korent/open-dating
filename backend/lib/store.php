@@ -2,12 +2,17 @@
 
 declare(strict_types=1);
 
+/**
+ * Absolute path to the JSON database file.
+ */
 function db_path(): string
 {
     return dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'database.json';
 }
 
 /**
+ * Read and decode the database with a shared lock. Exits with 500 JSON on missing file or read error.
+ *
  * @return array<string, mixed>
  */
 function db_load(): array
@@ -35,6 +40,8 @@ function db_load(): array
 }
 
 /**
+ * Atomically rewrite the database file with an exclusive lock.
+ *
  * @param array<string, mixed> $data
  */
 function db_save(array $data): void

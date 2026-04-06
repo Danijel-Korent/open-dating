@@ -1,11 +1,24 @@
+/**
+ * Hash-routed SPA: renders views into `#app`, uses `state.session` from `action=session`.
+ */
+
 /* global apiGet, apiPost */
 
+/**
+ * Escape a string for safe insertion into HTML text or attributes.
+ * @param {string} s
+ * @returns {string}
+ */
 function escapeHtml(s) {
   const d = document.createElement("div");
   d.textContent = s;
   return d.innerHTML;
 }
 
+/**
+ * Parse `location.hash` into route id and optional path segment (e.g. `user/jane`).
+ * @returns {{ route: string, arg: string|null, raw: string }}
+ */
 function parseHash() {
   const h = (location.hash || "#/feed").replace(/^#/, "") || "/feed";
   const parts = h.split("/").filter(Boolean);
@@ -20,10 +33,18 @@ const state = {
   error: null,
 };
 
+/**
+ * Load current session from the API into `state.session`.
+ * @returns {Promise<void>}
+ */
 async function loadSession() {
   state.session = await apiGet("action=session");
 }
 
+/**
+ * Bottom navigation entries (id matches hash route).
+ * @returns {Array<{ id: string, label: string, icon: string }>}
+ */
 function navItems() {
   return [
     { id: "feed", label: "Discover", icon: "◇" },
@@ -34,6 +55,11 @@ function navItems() {
   ];
 }
 
+/**
+ * HTML for the bottom nav; `active` highlights the current tab.
+ * @param {string} active Route id
+ * @returns {string}
+ */
 function renderNav(active) {
   const items = navItems();
   return `
@@ -50,6 +76,12 @@ function renderNav(active) {
     </nav>`;
 }
 
+/**
+ * HTML for the top app header.
+ * @param {string} title
+ * @param {string} [subtitle]
+ * @returns {string}
+ */
 function renderHeader(title, subtitle) {
   return `
     <header class="app-header">
@@ -58,6 +90,10 @@ function renderHeader(title, subtitle) {
     </header>`;
 }
 
+/**
+ * Discover feed: one profile card from `action=feed`, or empty state.
+ * @returns {Promise<string>}
+ */
 async function viewFeed() {
   let data;
   try {
@@ -95,6 +131,10 @@ async function viewFeed() {
     </article>`;
 }
 
+/**
+ * List users who liked the current user (`action=likes`).
+ * @returns {Promise<string>}
+ */
 async function viewLikes() {
   let data;
   try {
@@ -112,6 +152,12 @@ async function viewLikes() {
   );
 }
 
+/**
+ * Single row for likes/matches lists.
+ * @param {object} u Expanded user from the API
+ * @param {boolean} showChat When true, show a link to `#/chat/:username`
+ * @returns {string}
+ */
 function userListItemHtml(u, showChat) {
   const pic = (u.picture_urls && u.picture_urls[0]) || "";
   return `
@@ -131,6 +177,10 @@ function userListItemHtml(u, showChat) {
     </li>`;
 }
 
+/**
+ * Matched users (`action=matches`) with chat shortcuts.
+ * @returns {Promise<string>}
+ */
 async function viewMatches() {
   let data;
   try {
@@ -148,6 +198,10 @@ async function viewMatches() {
   );
 }
 
+/**
+ * Chat inbox with last message preview (`action=chats`).
+ * @returns {Promise<string>}
+ */
 async function viewChats() {
   let data;
   try {
@@ -182,6 +236,11 @@ async function viewChats() {
   );
 }
 
+/**
+ * Thread UI for a match (`action=chat_messages`, `action=user`).
+ * @param {string} username Peer username
+ * @returns {Promise<string>}
+ */
 async function viewChat(username) {
   let messages;
   try {
@@ -217,6 +276,10 @@ async function viewChat(username) {
     </div>`;
 }
 
+/**
+ * Current user preview, user switcher, and preferences form (`action=users`, `action=preferences`).
+ * @returns {Promise<string>}
+ */
 async function viewProfile() {
   const u = state.session.user;
   const prefs = u.preferences;
@@ -277,6 +340,11 @@ async function viewProfile() {
     </section>`;
 }
 
+/**
+ * Read-only profile for any user (`action=user`).
+ * @param {string} username
+ * @returns {Promise<string>}
+ */
 async function viewUser(username) {
   let data;
   try {
@@ -303,6 +371,10 @@ async function viewUser(username) {
     </article>`;
 }
 
+/**
+ * Render the current hash route into `#app` and attach event handlers.
+ * @returns {Promise<void>}
+ */
 async function renderRoute() {
   const { route, arg } = parseHash();
   const app = document.getElementById("app");
@@ -343,6 +415,9 @@ async function renderRoute() {
   wireActions();
 }
 
+/**
+ * Bind handlers for feed reactions, user switch, preferences save, and chat send.
+ */
 function wireActions() {
   document.querySelectorAll("[data-react]").forEach((btn) => {
     btn.addEventListener("click", async () => {

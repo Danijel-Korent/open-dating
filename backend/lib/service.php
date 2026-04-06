@@ -1,10 +1,16 @@
 <?php
 
+/**
+ * Domain logic for users, feed, likes, matches, and chats over the JSON store.
+ */
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/store.php';
 
 /**
+ * Find a user row by username.
+ *
  * @param array<string, mixed> $db
  * @return array<string, mixed>|null
  */
@@ -19,6 +25,8 @@ function svc_find_user(array $db, string $username): ?array
 }
 
 /**
+ * Whether `user` fits the age and gender filters in `prefs`.
+ *
  * @param array<string, mixed> $prefs
  * @param array<string, mixed> $user
  */
@@ -43,6 +51,10 @@ function svc_prefs_match_user(array $prefs, array $user): bool
 }
 
 /**
+ * Whether `user` may appear in the feed for `currentUsername`: not self, not already seen,
+ * candidate has no incoming likes yet (any liker), not already matched with current user,
+ * and matches current user's preferences.
+ *
  * @param array<string, mixed> $db
  */
 function svc_is_eligible_for_feed(array $db, array $user, string $currentUsername): bool
@@ -72,7 +84,10 @@ function svc_is_eligible_for_feed(array $db, array $user, string $currentUsernam
 }
 
 /**
- * Interest overlap score between current user and a candidate (feed ranking).
+ * Interest overlap score between the current user and a candidate (used for feed ranking).
+ *
+ * @param array<string, mixed> $current
+ * @param array<string, mixed> $candidate
  */
 function svc_score_user(array $current, array $candidate): float
 {
@@ -90,6 +105,8 @@ function svc_score_user(array $current, array $candidate): float
 }
 
 /**
+ * Next feed card: among eligible users, pick one with the highest interest overlap score.
+ *
  * @param array<string, mixed> $db
  * @return array<string, mixed>|null
  */
@@ -121,6 +138,8 @@ function svc_feed_next(array $db, string $currentUsername): ?array
 }
 
 /**
+ * Users who liked the current user (incoming likes), as full user rows.
+ *
  * @param array<string, mixed> $db
  * @return array<int, array<string, mixed>>
  */
@@ -139,6 +158,8 @@ function svc_get_users_who_liked_me(array $db, string $currentUsername): array
 }
 
 /**
+ * All users matched with the current user.
+ *
  * @param array<string, mixed> $db
  * @return array<int, array<string, mixed>>
  */
@@ -162,6 +183,8 @@ function svc_get_match_users(array $db, string $currentUsername): array
 }
 
 /**
+ * Chat record between two users, or null if none exists.
+ *
  * @param array<string, mixed> $db
  */
 function svc_get_chat_between(array $db, string $a, string $b): ?array
@@ -176,6 +199,8 @@ function svc_get_chat_between(array $db, string $a, string $b): ?array
 }
 
 /**
+ * One row per match: peer user plus last message (or null if no messages).
+ *
  * @param array<string, mixed> $db
  * @return array<int, array<string, mixed>>
  */
@@ -199,6 +224,9 @@ function svc_get_match_chats(array $db, string $currentUsername): array
 }
 
 /**
+ * Feed reaction: `pass`/`nope` records seen_users; `like` may create a match if the other user
+ * already liked you, otherwise appends a pending like. Persists when state changes.
+ *
  * @param array<string, mixed> $db
  * @return array{match: bool}
  */
@@ -255,6 +283,8 @@ function svc_react(array $db, string $currentUsername, string $targetUsername, s
 }
 
 /**
+ * Replace a user row in `$db['users']` by matching `username`. Mutates `$db` by reference.
+ *
  * @param array<string, mixed> $db
  * @param array<string, mixed> $user
  */
@@ -269,6 +299,8 @@ function svc_replace_user(array &$db, array $user): void
 }
 
 /**
+ * Append a message to the chat between `from` and `to`, or create the chat. No-op if `text` is empty.
+ *
  * @param array<string, mixed> $db
  */
 function svc_send_message(array $db, string $from, string $to, string $text): void
